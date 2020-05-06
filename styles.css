@@ -1,0 +1,23 @@
+#attribute_block, #skill_block {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid blue;
+}
+
+#attribute_block > div, #skill_block > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid red;
+}
+
+#attribute_block > div > h3, #skill_block > div > h3 {
+}
+
+#attribute_block > div > button, #skill_block > div > button {
+    width: 32px;
+    height: 32px;
+}
+
+#attribute_block > div > p, #skill_block > div > p {
+}
