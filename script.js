@@ -1,3 +1,5 @@
+const MAX_LEVEL = 16;
+
 const RACE_BONUSES = {
     'Human': {
         'Might': 1,
@@ -35,6 +37,22 @@ const CLASS_BONUSES = {
         'Athletics': 2,
         'Survival': 1
     }
+};
+
+const CLASS_DEFLECTIONS = {
+    'Barbarian': 15
+};
+
+const CLASS_ACCURACIES = {
+    'Barbarian': 25
+};
+
+const CLASS_ENDURANCES = {
+    'Barbarian': 14
+};
+
+const CLASS_HEALTH_MULTIPLIERS = {
+    'Barbarian': 6
 };
 
 const BACKGROUND_BONUSES = {
@@ -81,16 +99,52 @@ let current_class = '';
 let current_background = '';
 let current_level = 1;
 
+function get_attribute(attribute) {
+    let race_bonus = 0;
+    if (attribute in RACE_BONUSES[current_race])
+        race_bonus = RACE_BONUSES[current_race][attribute];
+    let culture_bonus = 0;
+    if (attribute == CULTURE_BONUSES[current_culture])
+        culture_bonus = 1;
+    return current_attributes[attribute] + race_bonus + culture_bonus;
+}
+
+function update_level() {
+    let level_counter = document.getElementById('level_counter');
+    level_counter.innerText = 'Level ' + current_level;
+
+    update_skills();
+    update_defense();
+    update_stats();
+}
+
+function add_level() {
+    if (current_level < MAX_LEVEL) {
+        current_level += 1;
+        free_skill_points += 6;
+        update_level();
+    }
+}
+
+function reset_level() {
+    current_level = 1;
+    update_level();
+}
+
+function max_level() {
+    current_level = MAX_LEVEL;
+    update_level();
+}
+
 function init_level_buttons() {
     let add_level_button = document.getElementById('add_level_button');
-    add_level_button.onclick = function() {
-        current_level += 1;
-        let level_counter = document.getElementById('level_counter');
-        level_counter.innerText = 'Level ' + current_level;
+    add_level_button.onclick = add_level;
 
-        free_skill_points += 6;
-        update_skills();
-    };
+    let reset_level_button = document.getElementById('reset_level_button');
+    reset_level_button.onclick = reset_level;
+
+    let max_level_button = document.getElementById('max_level_button');
+    max_level_button.onclick = max_level;
 }
 
 function init_race_select() {
@@ -176,6 +230,8 @@ function init_attributes() {
     }
 
     update_attributes();
+    update_defense();
+    update_stats();
 }
 
 function init_skills() {
@@ -213,6 +269,7 @@ function init_skills() {
 function set_race(new_race) {
     current_race = new_race;
     update_attributes();
+    update_defense();
 }
 
 function set_class(new_class) {
@@ -239,14 +296,11 @@ function update_attributes() {
 
     for (let attribute in current_attributes) {
         let value_field = document.getElementById(attribute + '_value');
-        let race_bonus = 0;
-        if (attribute in RACE_BONUSES[current_race])
-            race_bonus = RACE_BONUSES[current_race][attribute];
-        let culture_bonus = 0;
-        if (attribute == CULTURE_BONUSES[current_culture])
-            culture_bonus = 1;
-        value_field.innerText = current_attributes[attribute] + race_bonus + culture_bonus;
+        value_field.innerText = get_attribute(attribute);
     }
+
+    update_defense();
+    update_stats();
 }
 
 function update_skills() {
@@ -263,6 +317,51 @@ function update_skills() {
             background_bonus = BACKGROUND_BONUSES[current_background][skill];
         value_field.innerText = current_skills[skill] + class_bonus + background_bonus;
     }
+}
+
+function update_defense() {
+    const START_DEFENSE = 20;
+    const DEFENSE_PER_LEVEL = 3;
+
+    const DEFLECTION_PER_RESOLVE = 1;
+    const FORTITUDE_PER_STRENGTH = 2;
+    const FORTITUDE_PER_CONSTITUTION = 2;
+    const REFLEX_PER_DEXTERITY = 2;
+    const REFLEX_PER_PERCEPTION = 2;
+    const WILL_PER_INTELLECT = 2;
+    const WILL_PER_RESOLVE = 2;
+
+    let deflection_field = document.getElementById('deflection_field');
+    deflection_field.innerText = CLASS_DEFLECTIONS[current_class] +
+    (get_attribute('Resolve') - 10) * DEFLECTION_PER_RESOLVE + 
+    (current_level - 1) * DEFENSE_PER_LEVEL;
+
+    let fortitude_field = document.getElementById('fortitude_field');
+    fortitude_field.innerText = START_DEFENSE +
+    (get_attribute('Might') - 10) * FORTITUDE_PER_STRENGTH +
+    (get_attribute('Constitution') - 10) * FORTITUDE_PER_CONSTITUTION +
+    (current_level - 1) * DEFENSE_PER_LEVEL;
+
+    let reflex_field = document.getElementById('reflex_field');
+    reflex_field.innerText = START_DEFENSE +
+    (get_attribute('Dexterity') - 10) * REFLEX_PER_DEXTERITY +
+    (get_attribute('Perception') - 10) * REFLEX_PER_PERCEPTION +
+    (current_level - 1) * DEFENSE_PER_LEVEL;
+
+    let will_field = document.getElementById('will_field');
+    will_field.innerText = START_DEFENSE +
+    (get_attribute('Intellect') - 10) * WILL_PER_INTELLECT +
+    (get_attribute('Resolve') - 10) * WILL_PER_RESOLVE +
+    (current_level - 1) * DEFENSE_PER_LEVEL;
+}
+
+function update_stats() {
+    let endurance = CLASS_ENDURANCES[current_class] * (current_level + 2) *
+    ((get_attribute('Constitution') - 10) * 5 + 100) / 100;
+
+    document.getElementById('endurance_field').innerText = endurance;
+    let health_field = document.getElementById('health_field');
+    health_field.innerText = endurance * CLASS_HEALTH_MULTIPLIERS[current_class];
 }
 
 function increase_attribute(attribute) {

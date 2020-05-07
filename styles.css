@@ -1,6 +1,7 @@
 #attribute_block, #skill_block {
     display: flex;
     flex-direction: row;
+    gap: 16px;
     border: 2px solid blue;
 }
 
@@ -20,4 +21,14 @@
 }
 
 #attribute_block > div > p, #skill_block > div > p {
+}
+
+#table_box {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0px 16px 0px;
+}
+
+table {
+    border: 1px solid black;
 }
