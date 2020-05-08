@@ -13,6 +13,16 @@ const RACE_BONUSES = {
         'Dexterity': 1,
         'Perception': 1,
     },
+    'Mountain dwarf': {
+        'Might': 2,
+        'Constitution': 1,
+        'Dexterity': -1
+    },
+    'Boreal dwarf': {
+        'Might': 2,
+        'Constitution': 1,
+        'Dexterity': -1
+    }
 };
 
 const CULTURE_BONUSES = {
@@ -36,23 +46,31 @@ const CLASS_BONUSES = {
     'Barbarian': {
         'Athletics': 2,
         'Survival': 1
+    },
+    'Paladin': {
+        'Athletics': 2,
+        'Lore': 1
     }
 };
 
 const CLASS_DEFLECTIONS = {
-    'Barbarian': 15
+    'Barbarian': 15,
+    'Paladin': 20
 };
 
 const CLASS_ACCURACIES = {
-    'Barbarian': 25
+    'Barbarian': 25,
+    'Paladin': 25
 };
 
 const CLASS_ENDURANCES = {
-    'Barbarian': 14
+    'Barbarian': 16,
+    'Paladin': 14
 };
 
 const CLASS_HEALTH_MULTIPLIERS = {
-    'Barbarian': 6
+    'Barbarian': 6,
+    'Paladin': 5
 };
 
 const BACKGROUND_BONUSES = {
@@ -209,13 +227,13 @@ function init_attributes() {
         label.innerText = attribute;
 
         let decrease_button = document.createElement('button');
-        decrease_button.innerText = '-';
+        decrease_button.innerText = '−';
         decrease_button.value = attribute;
         decrease_button.onclick = function() {
             decrease_attribute(this.value);
         };
 
-        let value = document.createElement('p');
+        let value = document.createElement('span');
         value.id = attribute + '_value';
 
         let increase_button = document.createElement('button');
@@ -249,7 +267,7 @@ function init_skills() {
             decrease_skill(this.value);
         };
 
-        let value = document.createElement('p');
+        let value = document.createElement('span');
         value.id = skill + '_value';
 
         let increase_button = document.createElement('button');
@@ -269,12 +287,13 @@ function init_skills() {
 function set_race(new_race) {
     current_race = new_race;
     update_attributes();
-    update_defense();
 }
 
 function set_class(new_class) {
     current_class = new_class;
     update_skills();
+    update_defense();
+    update_stats();
 }
 
 function set_culture(new_culture) {
@@ -362,6 +381,8 @@ function update_stats() {
     document.getElementById('endurance_field').innerText = endurance;
     let health_field = document.getElementById('health_field');
     health_field.innerText = endurance * CLASS_HEALTH_MULTIPLIERS[current_class];
+
+
 }
 
 function increase_attribute(attribute) {

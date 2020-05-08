@@ -1,34 +1,80 @@
+body {
+    background-image: url('background.jpg');
+    color: white;
+}
+
+header {
+    font-size: 32px;
+}
+
+p {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: max-content;
+    padding: 4px 8px;
+}
+
+#level_block > button {
+    margin-right: 8px;
+    border-radius: 16px;
+    background-color: black;
+    color: white;
+    border: 4px solid white;
+    font-size: 16px;
+}
+
 #attribute_block, #skill_block {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 16px;
-    border: 2px solid blue;
 }
 
 #attribute_block > div, #skill_block > div {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid red;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 4px 8px;
 }
 
 #attribute_block > div > h3, #skill_block > div > h3 {
+    margin: 0px 8px 0px 0px;
 }
 
 #attribute_block > div > button, #skill_block > div > button {
     width: 32px;
     height: 32px;
+    margin: 0px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    border: 4px solid white;
+    font-size: 20px;
+    padding: 0px;
 }
 
-#attribute_block > div > p, #skill_block > div > p {
+#attribute_block > div > span, #skill_block > div > span {
+    margin: 0px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    width: 36px;
+    padding: 0px;
+    background: none;
 }
 
 #table_box {
     display: flex;
     gap: 16px;
-    margin: 16px 0px 16px 0px;
+    margin: 16px 0px;
 }
 
 table {
-    border: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px;
+}
+
+table > caption {
+    font-weight: bold;
+    text-transform: uppercase;
 }
