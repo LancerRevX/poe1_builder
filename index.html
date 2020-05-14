@@ -8,16 +8,214 @@
     <body>
         <header>Pillars of Eternity Builder</header>
         <h2>Character</h2>
+
         <div id="level_block">
             <p id="level_counter">Level 1</p>
-            <button id="reset_level_button">Reset level</button>
-            <button id="add_level_button">Add level</button>
-            <button id="max_level_button">Max level</button>
+            <button id="reset_level_button">Reset</button>
+            <button id="add_level_button">Add</button>
+            <button id="max_level_button">Max</button>
         </div>
 
         <div id="table_box">
-            <table>
-                <caption>Stats</caption>
+
+            <table id="race_table">
+                <!-- <caption>Race</caption> -->
+                <tr>
+                    <th>Race</th>
+                    <th>
+                        <select  id="race_select"></select>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Ability</td>
+                    <td><a href="https://pillarsofeternity.gamepedia.com/Fighting_Spirit" target="_blank">Fighting Spirit</a></td>
+                </tr>
+                <tr>
+                    <td>Attribute bonuses</td>
+                    <td>
+                        <ul>
+                            <li>Might +1</li>
+                            <li>Resolve +1</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="class_table">
+                <!-- <caption>Class</caption> -->
+                <tr>
+                    <th>Class</th>
+                    <th>
+                        <select id="class_select"></select>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Endurance</td>
+                    <td>48 + 16 per level</td>
+                </tr>
+                <tr>
+                    <td>Health</td>
+                    <td>6 x Endurance</td>
+                </tr>
+                <tr>
+                    <td>Base accuracy</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>Base deflection</td>
+                    <td>15</td>
+                </tr>
+                <tr>
+                    <td>Skill bonuses</td>
+                    <td>
+                        <ul>
+                            <li>Athletics +2</li>
+                            <li>Survival +1</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="culture_table">
+                <tr>
+                    <th>Culture</th>
+                    <th>
+                        <select  id="culture_select"><option>The White that Wends</option></select>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Attribute bonuses</td>
+                    <td>
+                        <ul>
+                            <li>Might +1</li>
+                            <li>Resolve +1</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="background_table">
+                <tr>
+                    <th>Background</th>
+                    <th>
+                        <select  id="background_select"></select>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Skill bonuses</td>
+                    <td>
+                        <ul>
+                            <li>Athletics +2</li>
+                            <li>Survival +1</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="attribute_table">
+                <tr>
+                    <th colspan="2">Attributes</th>
+                </tr>
+                <tr>
+                    <td>Might</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>10</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Constitution</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>10</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dexterity</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>10</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Perception</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>10</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Intellect</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>10</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Resolve</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>10</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="skill_table">
+                <tr>
+                    <th colspan="2">Skills</th>
+                </tr>
+                <tr>
+                    <td>Stealth</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>0</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Athletics</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>0</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lore</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>0</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mechanics</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>0</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Survival</td>
+                    <td class="value_box">
+                        <button>-</button>
+                        <span>0</span>
+                        <button>+</button>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="vitality_table">
+                <tr>
+                    <th colspan="2">Vitality</th>
+                </tr>
                 <tr>
                     <td>Endurance</td>
                     <td id="endurance_field">80</td>
@@ -26,25 +224,12 @@
                     <td>Health</td>
                     <td id="health_field">300</td>
                 </tr>
-                <tr>
-                    <td>Accuracy</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>Action speed</td>
-                    <td>1.2</td>
-                </tr>
-                <tr>
-                    <td>Interrupt</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>Concentration</td>
-                    <td>20</td>
-                </tr>
             </table>
+
             <table id="defense_table">
-                <caption>Defense</caption>
+                <tr>
+                    <th colspan="2">Defense</th>
+                </tr>
                 <tr>
                     <td>Deflection</td>
                     <td id="deflection_field"></td>
@@ -62,39 +247,12 @@
                     <td id="will_field"></td>
                 </tr>
             </table>
-        </div>
 
-        <label>
-            Race
-            <select id="race_select">
-            </select>
-        </label>
-        <label>
-            Class
-            <select id="class_select">
-            </select>
-        </label>
-        <label>
-            Culture
-            <select id="culture_select">
-            </select>
-        </label>
-        <label>
-            Background
-            <select name="" id="background_select">
-            </select>
-        </label>
-
-        <h2>Attributes</h2>
-        <p id="free_attribute_point_counter"></p>
-        <div id="attribute_block">
-        </div>
-        
-        <h2>Skills</h2>
-        <p id="free_skill_point_counter"></p>
-        <div id="skill_block">
         </div>
     </body>
 
-    <script src="script.js"></script>
+    <!-- <script src="skills.js"></script> -->
+    <script src="scripts/classes.js"></script>
+    <script src="scripts/character.js"></script>
+    <script src="scripts/interface.js"></script>
 </html>
