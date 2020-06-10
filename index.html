@@ -119,16 +119,16 @@
                 <tr>
                     <td>Might</td>
                     <td class="value_box">
-                        <button>-</button>
-                        <span>10</span>
-                        <button>+</button>
+                        <button onclick="character.decrease_attribute(Attribute.MIGHT); update()">-</button>
+                        <span id="might_field">10</span>
+                        <button onclick="character.increase_attribute(Attribute.MIGHT); update()">+</button>
                     </td>
                 </tr>
                 <tr>
                     <td>Constitution</td>
                     <td class="value_box">
                         <button>-</button>
-                        <span>10</span>
+                        <span id="constitution_field">10</span>
                         <button>+</button>
                     </td>
                 </tr>
@@ -136,7 +136,7 @@
                     <td>Dexterity</td>
                     <td class="value_box">
                         <button>-</button>
-                        <span>10</span>
+                        <span id="dexterity_field">10</span>
                         <button>+</button>
                     </td>
                 </tr>
@@ -144,7 +144,7 @@
                     <td>Perception</td>
                     <td class="value_box">
                         <button>-</button>
-                        <span>10</span>
+                        <span id="perception_field">10</span>
                         <button>+</button>
                     </td>
                 </tr>
@@ -152,7 +152,7 @@
                     <td>Intellect</td>
                     <td class="value_box">
                         <button>-</button>
-                        <span>10</span>
+                        <span id="intellect_field">10</span>
                         <button>+</button>
                     </td>
                 </tr>
@@ -160,7 +160,7 @@
                     <td>Resolve</td>
                     <td class="value_box">
                         <button>-</button>
-                        <span>10</span>
+                        <span id="resolve_field">10</span>
                         <button>+</button>
                     </td>
                 </tr>
@@ -251,8 +251,32 @@
         </div>
     </body>
 
-    <!-- <script src="skills.js"></script> -->
+    <script src="scripts/attribute_set.js"></script>
+    <script src="scripts/skill_set.js"></script>
     <script src="scripts/classes.js"></script>
+    <script src="scripts/races.js"></script>
+    <script src="scripts/backgrounds.js"></script>
+    <script src="scripts/cultures.js"></script>
     <script src="scripts/character.js"></script>
-    <script src="scripts/interface.js"></script>
+
+    <script>
+        let character = new Character();
+
+        function update() {
+            document.getElementById('might_field').innerHTML = character.get_attribute(Attribute.MIGHT);
+            document.getElementById('constitution_field').innerHTML = character.get_attribute(Attribute.CONSTITUTION);
+            document.getElementById('dexterity_field').innerHTML = character.get_attribute(Attribute.DEXTERITY);
+            document.getElementById('perception_field').innerHTML = character.get_attribute(Attribute.PERCEPTION);
+            document.getElementById('intellect_field').innerHTML = character.get_attribute(Attribute.INTELLECT);
+            document.getElementById('resolve_field').innerHTML = character.get_attribute(Attribute.RESOLVE);
+
+            let defense = character.get_defense();
+            document.getElementById('deflection_field').innerHTML = defense.deflection;
+            document.getElementById('fortitude_field').innerHTML = defense.fortitude;
+            document.getElementById('reflex_field').innerHTML = defense.reflex;
+            document.getElementById('will_field').innerHTML = defense.will;
+        }
+
+        update()
+    </script>
 </html>
