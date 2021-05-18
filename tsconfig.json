@@ -1,0 +1,14 @@
+// tsconfig.json
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es2015",
+        "strict": true,
+        "moduleResolution": "node",
+        "paths": {
+            "@/*": [
+                "./*"
+            ]
+        }
+    }
+}
