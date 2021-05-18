@@ -1,8 +1,22 @@
-import Vue from 'vue'
+import Vue, { VNode } from 'vue'
+import VueI18n, { LocaleMessages } from 'vue-i18n'
+
 import App from './App.vue'
 
+declare module '*.vue' {
+
+  export default Vue
+}
+
+Vue.use(VueI18n)
 Vue.config.productionTip = false
 
+let i18n = new VueI18n({
+  locale: navigator.language,
+  fallbackLocale: 'en-US'
+})
+
 new Vue({
-  render: h => h(App)
+  i18n,
+  render: createElement => createElement(App)
 }).$mount('#app')

@@ -1,18 +1,21 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <language-switcher></language-switcher>
+    <hello-i18n></hello-i18n>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import HelloI18n from './components/HelloI18n.vue'
+import LanguageSwitcher from './components/LanguageSwitcher.vue'
 
 export default Vue.extend({
   name: 'App',
   components: {
-    HelloWorld
+    LanguageSwitcher,
+    HelloI18n
   }
 })
 </script>
