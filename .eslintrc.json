@@ -1,0 +1,12 @@
+{
+    "env": {
+        "browser": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2015,
+        "sourceType": "module"
+    },
+    "rules": {
+        "semi": "error"
+    }
+}
