@@ -3,11 +3,6 @@ import VueI18n, { LocaleMessages } from 'vue-i18n'
 
 import App from './App.vue'
 
-declare module '*.vue' {
-
-  export default Vue
-}
-
 Vue.use(VueI18n)
 Vue.config.productionTip = false
 
