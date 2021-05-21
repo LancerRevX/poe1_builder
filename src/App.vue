@@ -2,6 +2,7 @@
     <div id="app">
         <language-switcher></language-switcher>
         <save-character-block :character="character"></save-character-block>
+        <class-table :character="character"></class-table>
         <attributes-table :character="character"></attributes-table>
         <skills-table :character="character" :selected="selected"></skills-table>
         <levels-table :character="character" :selected="selected"></levels-table>
@@ -14,6 +15,7 @@
     import LevelsTable from './components/LevelsTable.vue';
     import SaveCharacterBlock from './components/SaveCharacterBlock.vue';
     import SkillsTable from './components/SkillsTable.vue';
+    import ClassTable from './components/ClassTable.vue';
     import Character from './model/character.js';
 
 
@@ -25,7 +27,8 @@
             AttributesTable,
             LevelsTable,
             SaveCharacterBlock,
-            SkillsTable
+            SkillsTable,
+            ClassTable
         },
         data: () => ({
             character: new Character,

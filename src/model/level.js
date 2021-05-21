@@ -1,4 +1,5 @@
 import skillsData from './skills.js';
+import classesData from './classes.js';
 
 export default class Level {
     constructor(character, levelNumber) {
@@ -10,18 +11,23 @@ export default class Level {
         for (let skill in skillsData) {
             Object.defineProperty(level.skills, skill, {
                 get: function() {
-                    return this['_' + skill]/* + this.race.attributeBonuses[attribute] + this.culture.attributeBonuses[attribute]*/;
+                    let result = this['_' + skill];
+                    let classBonus = classesData[level.character.class].skillBonuses[skill];
+                    if (classBonus) {
+                        result += classBonus;
+                    }
+                    return result;
                 },
                 set: function(newValue) {
                     let previousLevelSkills = level.previous().skills;
-                    if (newValue < previousLevelSkills[skill]) {
+                    if (newValue < previousLevelSkills['_' + skill]) {
                         return;
                     }
-                    let skillDifference = newValue - this[skill];
+                    let skillDifference = newValue - this['_' + skill];
                     if (skillDifference > 0) {
                         let requiredPointsNumber = 0;
                         for (let i = 1; i <= skillDifference; i++) {
-                            requiredPointsNumber += this[skill] + i;
+                            requiredPointsNumber += this['_' + skill] + i;
                         }
                         if (requiredPointsNumber <= level.skillPoints) {
                             level.skillPoints -= requiredPointsNumber;
@@ -31,7 +37,7 @@ export default class Level {
                     } else if (skillDifference < 0) {
                         let releasedPointsNumber = 0;
                         for (let i = 0; i > skillDifference; i--) {
-                            releasedPointsNumber += this[skill] + i;
+                            releasedPointsNumber += this['_' + skill] + i;
                         }
                         level.skillPoints += releasedPointsNumber;
                     } else {
@@ -50,7 +56,7 @@ export default class Level {
     resetSkills() {
         let previousLevel = this.previous();
         for (let skill in skillsData) {
-            this.skills['_' + skill] = previousLevel.skills[skill];
+            this.skills['_' + skill] = previousLevel.skills['_' + skill];
         }
         this.skillPoints = previousLevel.skillPoints + this.character.SKILL_POINTS_PER_LEVEL;
     }
@@ -62,7 +68,7 @@ export default class Level {
                 skillPoints: 0
             };
             for (let skill in skillsData) {
-                emptyLevel.skills[skill] = 0;
+                emptyLevel.skills['_' + skill] = 0;
             }
             return emptyLevel;
         } else {

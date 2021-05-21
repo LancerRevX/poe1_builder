@@ -8,6 +8,11 @@ export default class Character {
         let character = this;
         character.name = 'Watcher';
 
+        this.race = {};
+        this.class = Object.keys(classesData)[0];
+        this.culture = {};
+        this.background = {};
+
         character.ATTRIBUTE_DEFAULT = 10;
         character.ATTRIBUTE_MIN = 3;
         character.ATTRIBUTE_MAX = 18;
@@ -37,10 +42,7 @@ export default class Character {
         }
         console.log(character.levels);
 
-        this.race = {};
-        this.class = Object.keys(classesData)[0];
-        this.culture = {};
-        this.background = {};
+        console.log(this);
     }
 
     attributePoints() {
