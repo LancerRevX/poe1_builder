@@ -2,8 +2,8 @@
     <table class="attributes-table">
         <caption>{{ $t('attributes') + attributesCounter }}</caption>
         <tr v-for="attribute in Object.keys(attributesData)" v-bind:key="attribute">
-            <td><button v-on:click="character.attributes[attribute] -= 1">-</button></td>
             <td>{{ $root.$t('attributes.' + attribute) }}</td>
+            <td><button v-on:click="character.attributes[attribute] -= 1">-</button></td>
             <td>{{ character.attributes[attribute] }}</td>
             <td><button v-on:click="character.attributes[attribute] += 1">+</button></td>
         </tr>
@@ -13,7 +13,7 @@
 <script lang="ts">
     import Character from '../model/character.js';
 
-    import {attributesData} from '../model/attributes.js';
+    import attributesData from '../model/attributes.js';
 
     export default {
         name: 'attributes-table',

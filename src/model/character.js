@@ -1,45 +1,44 @@
-import {
-    attributesData,
-    ATTRIBUTE_DEFAULT,
-    ATTRIBUTE_MIN,
-    ATTRIBUTE_MAX
-} from './attributes.js';
+import attributesData from './attributes.js';
+import classesData from './classes.js';
+
+import Level from './level.js';
 
 export default class Character {
     constructor() {
         let character = this;
         character.name = 'Watcher';
 
+        character.ATTRIBUTE_DEFAULT = 10;
+        character.ATTRIBUTE_MIN = 3;
+        character.ATTRIBUTE_MAX = 18;
+
         character.attributes = {};
         character.MAX_ATTRIBUTES_NUMBER = 76;
         for (let attribute in attributesData) {
-            character.attributes['_' + attribute] = ATTRIBUTE_DEFAULT;
+            character.attributes['_' + attribute] = character.ATTRIBUTE_DEFAULT;
             Object.defineProperty(character.attributes, attribute, {
                 get: function() {
                     return this['_' + attribute]/* + this.race.attributeBonuses[attribute] + this.culture.attributeBonuses[attribute]*/;
                 },
                 set: function(newValue) {
-                    if (newValue >= ATTRIBUTE_MIN && newValue <= ATTRIBUTE_MAX) {
+                    if (newValue >= character.ATTRIBUTE_MIN && newValue <= character.ATTRIBUTE_MAX) {
                         this['_' + attribute] = newValue;
                     }
                 }
             });
         }
 
-        class Level {
-            constructor(levelNumber) {
-                this.number = levelNumber;
-            }
-        }
         character.MAX_LEVEL = 16;
+        character.SKILL_POINTS_PER_LEVEL = 6;
+
         character.levels = Array(character.MAX_LEVEL);
         for (let i = 0; i < character.levels.length; i++) {
-            character.levels[i] = new Level(i + 1);
+            character.levels[i] = new Level(this, i + 1);
         }
-        console.log(character);
+        console.log(character.levels);
 
         this.race = {};
-        this.class = {};
+        this.class = Object.keys(classesData)[0];
         this.culture = {};
         this.background = {};
     }
@@ -50,5 +49,11 @@ export default class Character {
             attributesSum += this.attributes['_' + attribute];
         }
         return this.MAX_ATTRIBUTES_NUMBER - attributesSum;
+    }
+
+    level(level) {
+        if (level >= 1 && level <= this.MAX_LEVEL) {
+            return this.levels[level - 1];
+        }
     }
 }

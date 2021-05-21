@@ -20,6 +20,13 @@ export default {
             'ranger': 'Ranger',
             'rogue': 'Rogue',
             'wizard': 'Wizard'
+        },
+        'skills': {
+            'stealth': 'Stealth',
+            'athletics': 'Athletics',
+            'lore': 'Lore',
+            'mechanics': 'Mechanics',
+            'survival': 'Survival'
         }
     },
     'ru-RU': {
@@ -43,6 +50,13 @@ export default {
             'ranger': 'Рейнджер',
             'rogue': 'Авантюрист',
             'wizard': 'Волшебник'
+        },
+        'skills': {
+            'stealth': 'Скрытность',
+            'athletics': 'Атлетика',
+            'lore': 'Знание',
+            'mechanics': 'Механика',
+            'survival': 'Выживание'
         }
     }
 };

@@ -5,7 +5,8 @@
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
-        "lint": "vue-cli-service lint"
+        "lint": "vue-cli-service lint",
+        "deploy": "deploy.bat"
     },
     "dependencies": {
         "vue": "^2.6.11",
@@ -35,6 +36,7 @@
                 "localeDir": "locales",
                 "enableInSFC": true
             }
-        }
+        },
+        "publicPath": "/poe1_builder/"
     }
 }

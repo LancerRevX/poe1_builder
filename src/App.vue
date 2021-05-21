@@ -3,15 +3,17 @@
         <language-switcher></language-switcher>
         <save-character-block :character="character"></save-character-block>
         <attributes-table :character="character"></attributes-table>
-        <levels-table :character="character"></levels-table>
+        <skills-table :character="character" :selected="selected"></skills-table>
+        <levels-table :character="character" :selected="selected"></levels-table>
     </div>
 </template>
 
-<script lang="ts">
+<script>
     import LanguageSwitcher from './components/LanguageSwitcher.vue';
     import AttributesTable from './components/AttributesTable.vue';
     import LevelsTable from './components/LevelsTable.vue';
     import SaveCharacterBlock from './components/SaveCharacterBlock.vue';
+    import SkillsTable from './components/SkillsTable.vue';
     import Character from './model/character.js';
 
 
@@ -22,38 +24,34 @@
             LanguageSwitcher,
             AttributesTable,
             LevelsTable,
-            SaveCharacterBlock
+            SaveCharacterBlock,
+            SkillsTable
         },
         data: () => ({
-            character: new Character
-        })
+            character: new Character,
+            selected: {
+                level: null
+            }
+        }),
+        created: function() {
+            this.selected.level = this.character.level(1);
+        }
     };
 </script>
 
 <style>
     #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
+
     }
 </style>
 
 <i18n>
 {
     "en-US": {
-        "name": "Name",
-        "save-in-browser": "Save in browser",
-        "get-link": "Get link",
-        "name-exists": "Character with name \"{name}\" already exists in your LocalStorage. Do you want to overwrite it?"
+
     },
     "ru-RU": {
-        "name": "Имя",
-        "save-in-browser": "Сохранить в браузере",
-        "get-link": "Получить ссылку",
-        "name-exists": "В вашем браузере уже сохранён персонаж с именем \"{name}\". Перезаписать его?"
+
     }
 }
 </i18n>
