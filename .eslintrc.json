@@ -57,6 +57,8 @@
             "single"
         ],
         "semi": "error",
-        "camelcase": "error"
+        "camelcase": "error",
+
+        "no-debugger": "warn"
     }
 }

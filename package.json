@@ -27,16 +27,5 @@
         "eslint-plugin-vue": "^6.2.2",
         "vue-cli-plugin-i18n": "~2.1.0",
         "vue-template-compiler": "^2.6.11"
-    },
-    "vue": {
-        "pluginOptions": {
-            "i18n": {
-                "locale": "en",
-                "fallbackLocale": "en",
-                "localeDir": "locales",
-                "enableInSFC": true
-            }
-        },
-        "publicPath": "/poe1_builder/"
     }
 }

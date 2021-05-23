@@ -2,8 +2,8 @@
     <table>
         <caption>{{ $t('class') }}</caption>
         <tr><th><select v-model="character.class">
-            <option v-for="className in Object.keys(classesData)" v-bind:key="className" v-bind:value="className">
-                {{ $root.$t('classes.' + className) }}
+            <option v-for="classData in classesData" v-bind:key="classData.name" v-bind:value="classData">
+                {{ $root.$t('classes.' + classData.name) }}
             </option>
         </select></th></tr>
     </table>

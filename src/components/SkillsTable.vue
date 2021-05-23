@@ -1,34 +1,26 @@
 <template>
     <table>
-        <caption>{{ $t('skills') + skillPointsCounter}}</caption>
+        <caption>{{ `${$t('skills')} (${selected.level.skillPoints})` }}</caption>
         <tr v-for="skill in Object.keys(skillsData)" v-bind:key="skill">
             <td>{{ $root.$t('skills.' + skill) }}</td>
-            <td><button v-on:click="selected.level.skills[skill] -= 1">-</button></td>
+            <td><button v-on:click="selected.level.decreaseSkill(skill)">-</button></td>
             <td>{{ selected.level.skills[skill] }}</td>
-            <td><button v-on:click="selected.level.skills[skill] += 1">+</button></td>
+            <td><button v-on:click="selected.level.increaseSkill(skill)">+</button></td>
         </tr>
     </table>
 </template>
 
 <script>
-    import Character from '../model/character.js';
     import skillsData from '../model/skills.js';
 
     export default {
         'name': 'skills-table',
         'props': {
-            character: Character,
             selected: Object
         },
         data: () => ({
             skillsData
-        }),
-        computed: {
-            skillPointsCounter: function() {
-                return this.selected.level.skillPoints ?
-                    ` (${this.selected.level.skillPoints})` : '';
-            }
-        }
+        })
     };
 </script>
 

@@ -5,7 +5,11 @@ file = file.read()
 file = file.replace('\n', '')
 
 def print_property(name, data):
-    print("    '" + name + "': '" + str(data) + "',")
+    if name == 'description':
+        quote = '"'
+    else:
+        quote = "'"
+    print("    " + name + ": " + quote + str(data) + quote + ",")
 
 pattern = ('<tr>'
 '<td.*?src="(.*?)".*?</td>'
@@ -23,9 +27,14 @@ data = re.findall(pattern, file)
 formatted = []
 fields_number = 2
 for group in data:
+    name = group[1]
+    name = name[0].lower() + name[1:]
+    name = name.replace(' ', '')
+    link = group[0]
+    link = re.sub(r'/revision.*', '', link)
     print('{')
-    print_property('image link', group[0])
-    print_property('ability name', group[1])
+    print_property('name', name)
+    print_property('imageLink', link)
     print_property('level', group[2])
     print_property('activation', group[3])
     print_property('effects', group[4])

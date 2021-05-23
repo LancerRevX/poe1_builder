@@ -9,7 +9,7 @@ export default class Character {
         character.name = 'Watcher';
 
         this.race = {};
-        this.class = Object.keys(classesData)[0];
+        this.class = classesData[0];
         this.culture = {};
         this.background = {};
 
@@ -40,9 +40,8 @@ export default class Character {
         for (let i = 0; i < character.levels.length; i++) {
             character.levels[i] = new Level(this, i + 1);
         }
-        console.log(character.levels);
 
-        console.log(this);
+        character.TALENTS_PER_LEVEL = 1;
     }
 
     attributePoints() {

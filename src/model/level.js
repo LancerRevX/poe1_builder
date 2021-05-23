@@ -1,5 +1,4 @@
 import skillsData from './skills.js';
-import classesData from './classes.js';
 
 export default class Level {
     constructor(character, levelNumber) {
@@ -12,45 +11,40 @@ export default class Level {
             Object.defineProperty(level.skills, skill, {
                 get: function() {
                     let result = this['_' + skill];
-                    let classBonus = classesData[level.character.class].skillBonuses[skill];
+                    let classBonus = level.character.class.skillBonuses[skill];
                     if (classBonus) {
                         result += classBonus;
                     }
                     return result;
-                },
-                set: function(newValue) {
-                    let previousLevelSkills = level.previous().skills;
-                    if (newValue < previousLevelSkills['_' + skill]) {
-                        return;
-                    }
-                    let skillDifference = newValue - this['_' + skill];
-                    if (skillDifference > 0) {
-                        let requiredPointsNumber = 0;
-                        for (let i = 1; i <= skillDifference; i++) {
-                            requiredPointsNumber += this['_' + skill] + i;
-                        }
-                        if (requiredPointsNumber <= level.skillPoints) {
-                            level.skillPoints -= requiredPointsNumber;
-                        } else {
-                            return;
-                        }
-                    } else if (skillDifference < 0) {
-                        let releasedPointsNumber = 0;
-                        for (let i = 0; i > skillDifference; i--) {
-                            releasedPointsNumber += this['_' + skill] + i;
-                        }
-                        level.skillPoints += releasedPointsNumber;
-                    } else {
-                        return;
-                    }
-                    this['_' + skill] = newValue;
-                    for (let i = level.number; i < character.MAX_LEVEL; i++) {
-                        level.character.levels[i].resetSkills();
-                    }
                 }
             });
         }
         level.resetSkills();
+
+        level.selectedAbilities = [];
+    }
+
+    increaseSkill(skill) {
+        let requiredPointsNumber = this.skills['_' + skill] + 1;
+        if (requiredPointsNumber <= this.skillPoints) {
+            this.skillPoints -= requiredPointsNumber;
+            this.skills['_' + skill] += 1;
+            for (let i = this.number; i < this.character.MAX_LEVEL; i++) {
+                this.character.levels[i].resetSkills();
+            }
+        }
+    }
+
+    decreaseSkill(skill) {
+        let previousLevelSkills = this.previous().skills;
+        if (this.skills['_' + skill] > previousLevelSkills['_' + skill]) {
+            let releasedPointsNumber = this.skills['_' + skill];
+            this.skillPoints += releasedPointsNumber;
+            this.skills['_' + skill] -= 1;
+            for (let i = this.number; i < this.character.MAX_LEVEL; i++) {
+                this.character.levels[i].resetSkills();
+            }
+        }
     }
 
     resetSkills() {
@@ -58,7 +52,11 @@ export default class Level {
         for (let skill in skillsData) {
             this.skills['_' + skill] = previousLevel.skills['_' + skill];
         }
-        this.skillPoints = previousLevel.skillPoints + this.character.SKILL_POINTS_PER_LEVEL;
+        if (this.number == 1) {
+            this.skillPoints = 0;
+        } else {
+            this.skillPoints = previousLevel.skillPoints + this.character.SKILL_POINTS_PER_LEVEL;
+        }
     }
 
     previous() {
@@ -77,10 +75,70 @@ export default class Level {
     }
 
     availableAbilities() {
-
+        let availableAbilities = [];
+        nextAbility: for (let ability of this.character.class.abilities) {
+            if (ability.level > this.number) {
+                continue;
+            }
+            for (let i = 0; i < this.number - 1; i++) {
+                for (let selectedAbility of this.character.levels[i].selectedAbilities) {
+                    if (selectedAbility.name == ability.name) {
+                        continue nextAbility;
+                    }
+                }
+            }
+            availableAbilities.push(ability);
+        }
+        return availableAbilities;
     }
 
     selectAbility(ability) {
+        if (this.selectedAbilities.includes(ability)) {
+            this.selectedAbilities.splice(this.selectedAbilities.indexOf(ability), 1);
+        } else if (this.remainingAbilityPoints() > 0) {
+            this.selectedAbilities.push(ability);
+        }
+    }
 
+    isAbilitySelected(ability) {
+        return this.selectedAbilities.includes(ability);
+    }
+
+    abilitiesToSelect() {
+        let abilitiesToSelect = [];
+        if (this.number % 2 == 0) {
+            abilitiesToSelect.push('talents');
+        }
+        if (['wizard', 'cipher'].includes(this.character.class.name)) {
+            abilitiesToSelect.push('abilities');
+        } else if (this.character.class.name == 'chanter') {
+            if (this.character.class.progression[this.number - 1].invocations > 0) {
+                abilitiesToSelect.push('abilities');
+            }
+            if (this.character.class.progression[this.number - 1].phrases > 0) {
+                abilitiesToSelect.push('phrases');
+            }
+        } else if (this.number % 2 == 1) {
+            abilitiesToSelect.push('abilities');
+        }
+        return abilitiesToSelect;
+    }
+
+    abilityPoints() {
+        if (this.character.class.name == 'chanter') {
+            return this.character.class.progression[this.number - 1].invocations;
+        } else if (['druid', 'priest'].includes(this.character.class.name)) {
+            return 0;
+        } else if (this.number % 2 == 1) {
+            return 1;
+        }
+    }
+
+    remainingAbilityPoints() {
+        return this.abilityPoints() - this.selectedAbilities.length;
+    }
+
+    talentPoints() {
+        return this.character.TALENT_POINTS_PER_LEVEL;
     }
 }
