@@ -1,7 +1,6 @@
 <template>
     <div id="app">
         <div id="left-block">
-            <language-switcher></language-switcher>
             <save-character-block :character="character"></save-character-block>
             <class-table :character="character"></class-table>
             <attributes-table :character="character"></attributes-table>
@@ -15,7 +14,6 @@
 </template>
 
 <script>
-    import LanguageSwitcher from './components/LanguageSwitcher.vue';
     import AttributesTable from './components/AttributesTable.vue';
     import LevelsTable from './components/LevelsTable.vue';
     import SaveCharacterBlock from './components/SaveCharacterBlock.vue';
@@ -27,7 +25,6 @@
     export default {
         name: 'App',
         components: {
-            LanguageSwitcher,
             AttributesTable,
             LevelsTable,
             SaveCharacterBlock,

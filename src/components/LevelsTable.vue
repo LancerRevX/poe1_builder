@@ -1,16 +1,13 @@
 <template>
     <div class="levels-outer-block">
-        <h2>{{ $t('levels') }}</h2>
-        <div class="levels-inner-block">
+        <div class="levels-header-block">
+            <h2>{{ $t('levels') }}</h2>
+            <button v-on:click="selected.level = selected.level.previous()">←</button>
+            <button v-on:click="selected.level = selected.level.next()">→</button>
+        </div>
+
+        <div class="levels-table-block">
             <table class="levels-table">
-                <thead>
-                    <tr>
-                        <th>{{ $t('level') }}</th>
-                        <th>{{ $t('selectedAbilities') }}</th>
-                        <th>{{ $t('upgradedSkills') }}</th>
-                        <th>{{ $t('weapon') }}</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr
                         v-for="level in character.levels"
@@ -23,12 +20,16 @@
                         <td>
                             <ul>
                                 <li v-for="ability in level.selectedAbilities" :key="ability.name">
-                                    {{ $root.$t('abilities.' + selected.level.character.class.name + '.' + ability.name) }}
+                                    Select {{ level.character.abilityTerm() }} "{{ ability.name }}"
+                                </li>
+                                <li v-for="phrase in level.selectedPhrases" :key="phrase.name">
+                                    Select phrase "{{ phrase.name }}"
+                                </li>
+                                <li v-for="advancedSkill in level.advancedSkills()" :key="advancedSkill.name">
+                                    Add {{ advancedSkill.value }} point{{ advancedSkill.value > 1 ? 's' : '' }} to skill "{{ advancedSkill.name }}"
                                 </li>
                             </ul>
                         </td>
-                        <td></td>
-                        <td></td>
                     </tr>
                 </tbody>
             </table>
@@ -56,7 +57,19 @@
         height: 100%;
     }
 
-    div.levels-inner-block {
+    div.levels-header-block {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+    }
+
+    div.levels-header-block > button {
+        height: 24px;
+        width: 24px;
+    }
+
+    div.levels-table-block {
         overflow: scroll;
         flex-grow: 1;
     }

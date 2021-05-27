@@ -1,20 +1,20 @@
 export default {
-    might: {
+    'Might': {
 
     },
-    constitution: {
+    'Constitution': {
 
     },
-    dexterity: {
+    'Dexterity': {
 
     },
-    perception: {
+    'Perception': {
 
     },
-    intelligence: {
+    'Intelligence': {
 
     },
-    resolve: {
+    'Resolve': {
 
     }
 };

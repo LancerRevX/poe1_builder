@@ -1,8 +1,8 @@
 <template>
     <table class="attributes-table">
-        <caption>{{ $t('attributes') + attributesCounter }}</caption>
+        <caption>Attributes ({{ character.attributePoints() }})</caption>
         <tr v-for="attribute in Object.keys(attributesData)" v-bind:key="attribute">
-            <td>{{ $root.$t('attributes.' + attribute) }}</td>
+            <td>{{ attribute }}</td>
             <td><button v-on:click="character.attributes[attribute] -= 1">-</button></td>
             <td>{{ character.attributes[attribute] }}</td>
             <td><button v-on:click="character.attributes[attribute] += 1">+</button></td>

@@ -1,32 +1,61 @@
 <template>
     <div class="abilities-block">
         <div class="abilities-table-outer-block" v-if="showAbilitiesTable">
-            <h2>{{ `${abilitiesTitle} (${selected.level.remainingAbilityPoints()})`}}</h2>
+            <h2>{{ `${abilitiesTitle} (${selected.level.remainingAbilityPoints()})` }}</h2>
             <div class="abilities-table-inner-block">
                 <table class="abilities-table">
                     <tr
                         v-for="ability in selected.level.availableAbilities()"
                         v-bind:key="ability.name"
                         v-bind:class="{selected: selected.level.isAbilitySelected(ability)}"
-                        v-on:click="selected.level.selectAbility(ability)"
                     >
-                        <td><img v-bind:src="[ability.imageLink]" decoding="async" width="32" height="32"></td>
-                        <td>{{ $root.$t('abilities.' + selected.level.character.class.name + '.' + ability.name) }}</td>
+                        <td><img :src="ability.imageLink" decoding="async" width="32" height="32"></td>
+                        <td><a :href="ability.link" target="_blank">{{ ability.name }}</a></td>
+                        <td v-html="ability.effects"></td>
+                        <td>
+                            <button
+                                v-on:click="selected.level.selectAbility(ability)"
+                                v-if="selected.level.remainingAbilityPoints()"
+                            >
+                                ✓
+                            </button>
+                            <button
+                                v-on:click="selected.level.selectAbility(ability)"
+                                v-else-if="selected.level.isAbilitySelected(ability)"
+                            >
+                                ✗
+                            </button>
+                        </td>
                     </tr>
                 </table>
             </div>
         </div>
         <div class="abilities-table-outer-block" v-if="showPhrasesTable">
-            <h2>{{ $t('phrases') }}</h2>
+            <h2>Phrases ({{ selected.level.remainingPhrasePoints() }})</h2>
             <div class="abilities-table-inner-block">
                 <table class="abilities-table">
                     <tr
-                        v-for="ability in selected.level.availableAbilities()"
-                        v-bind:key="ability.name"
-                        v-bind:class="{selected: selected.level.isAbilitySelected(ability)}"
-                        v-on:click="selected.level.selectAbility(ability)"
+                        v-for="phrase in selected.level.availablePhrases()"
+                        v-bind:key="phrase.name"
+                        v-bind:class="{selected: selected.level.isPhraseSelected(phrase)}"
                     >
-                        <td><img v-bind:src="[ability.imageLink]" decoding="async" width="100" height="100"></td>
+                        <td><img v-bind:src="phrase.imageLink" decoding="async" width="32" height="32"></td>
+                        <td><a :href="phrase.link" target="_blank">{{ phrase.name }}</a></td>
+                        <td v-html="phrase.effects"></td>
+                        <td>
+                            <button
+                                v-on:click="selected.level.selectPhrase(phrase)"
+                                v-if="selected.level.isPhraseSelected(phrase)"
+                            >
+                                ✗
+                            </button>
+                            <button
+                                v-on:click="selected.level.selectPhrase(phrase)"
+                                v-else-if="selected.level.remainingPhrasePoints()"
+                            >
+                                ✓
+                            </button>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -60,25 +89,25 @@
         }),
         computed: {
             abilitiesTitle: function() {
-                if (['druid', 'priest', 'wizard'].includes(this.selected.level.character.class.name)) {
-                    return this.$t('spells');
-                } else if (this.selected.level.character.class.name == 'chanter') {
-                    return this.$t('invocations');
+                if (['Druid', 'Priest', 'Wizard'].includes(this.selected.level.character.class.name)) {
+                    return 'Spells';
+                } else if (this.selected.level.character.class.name == 'Chanter') {
+                    return 'Invocations';
                 } else {
-                    return this.$t('abilities');
+                    return 'Abilities';
                 }
             },
-            abilitiesToSelect: function() {
-                return this.selected.level.abilitiesToSelect();
+            typesOfAbilitiesToSelect: function() {
+                return this.selected.level.typesOfAbilitiesToSelect();
             },
             showAbilitiesTable: function() {
-                return this.abilitiesToSelect.includes('abilities');
+                return this.typesOfAbilitiesToSelect.includes('abilities');
             },
             showPhrasesTable: function() {
-                return this.abilitiesToSelect.includes('phrases');
+                return this.typesOfAbilitiesToSelect.includes('phrases');
             },
             showTalentsTable: function() {
-                return this.abilitiesToSelect.includes('talents');
+                return this.typesOfAbilitiesToSelect.includes('talents');
             }
         }
     };
@@ -100,7 +129,8 @@
 
     div.abilities-table-inner-block {
         flex-grow: 1;
-        overflow: scroll;
+        overflow-y: scroll;
+
     }
 
     table.abilities-table {
@@ -108,32 +138,52 @@
         width: 100%;
     }
 
-    table.abilities-table > tr {
+    table.abilities-table tr {
+        border: 1px solid black;
+    }
+
+    table.abilities-table td {
+        vertical-align: top;
+    }
+
+    table.abilities-table ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* table.abilities-table > tr.selected {
+        background-color: red;
+        color: white;
+        border-color: green
+    } */
+
+    table.abilities-table button {
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        border-radius: 100%;
+        border: 1px solid white;
+        background-color: greenyellow;
+    }
+
+    table.abilities-table tr.selected button {
+        background-color: red;
+    }
+
+    table.abilities-table button:hover {
         cursor: pointer;
         border: 1px solid black;
     }
 
-    table.abilities-table > tr.selected {
+    /* table.abilities-table > tr.selected > :nth-child(1),
+    table.abilities-table > tr.selected > :nth-child(2) {
         background-color: red;
         color: white;
     }
-</style>
 
-<i18n>
-{
-    "en-US": {
-        "abilities": "Abilities",
-        "spells": "Spells",
-        "invocations": "Invocations",
-        "phrases": "Phrases",
-        "talents": "Talents"
-    },
-    "ru-RU": {
-        "abilities": "Способности",
-        "spells": "Заклинания",
-        "invocations": "Наговоры",
-        "phrases": "Фразы",
-        "talents": "Таланты"
-    }
-}
-</i18n>
+    table.abilities-table > tr.selected > :nth-child(1),
+    table.abilities-table > tr.selected > :nth-child(2) {
+        background-color: red;
+        color: white;
+    } */
+</style>

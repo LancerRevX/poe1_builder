@@ -27,6 +27,29 @@ export default {
             'lore': 'Lore',
             'mechanics': 'Mechanics',
             'survival': 'Survival'
+        },
+        'abilities': {
+            'barbarian': {
+                barbaricYell: 'Barbaric Yell',
+                carnage: 'Carnage',
+                frenzy: 'Frenzy',
+                blooded: 'Blooded',
+                savageDefiance: 'Savage Defiance',
+                wildSprint: 'Wild Sprint',
+                bloodlust: 'Bloodlust',
+                bruteForce: 'Brute Force',
+                oneStandsAlone: 'One Stands Alone',
+                bloodThirst: 'Blood Thirst',
+                thickSkinned: 'Thick-skinned',
+                threateningPresence: 'Threatening Presence',
+                barbaricShout: 'Barbaric Shout',
+                vengefulDefeat: 'Vengeful Defeat',
+                eyeoftheStorm: 'Eye of the Storm',
+                heartofFury: 'Heart of Fury',
+                barbaricRetaliation: 'Barbaric Retaliation',
+                dragonLeap: 'Dragon Leap',
+                echoingShout: 'Echoing Shout',
+            }
         }
     },
     'ru-RU': {
@@ -57,6 +80,29 @@ export default {
             'lore': 'Знание',
             'mechanics': 'Механика',
             'survival': 'Выживание'
+        },
+        abilities: {
+            barbarian: {
+                barbaricYell: 'Варварский клич',
+                carnage: 'Резня',
+                frenzy: 'Безумие',
+                blooded: 'Обескровленность',
+                savageDefiance: 'Дикая неутомимость',
+                wildSprint: 'Дикий спринт',
+                bloodlust: 'Bloodlust',
+                bruteForce: 'Brute Force',
+                oneStandsAlone: 'One Stands Alone',
+                bloodThirst: 'Blood Thirst',
+                thickSkinned: 'Thick-skinned',
+                threateningPresence: 'Threatening Presence',
+                barbaricShout: 'Barbaric Shout',
+                vengefulDefeat: 'Vengeful Defeat',
+                eyeoftheStorm: 'Eye of the Storm',
+                heartofFury: 'Heart of Fury',
+                barbaricRetaliation: 'Barbaric Retaliation',
+                dragonLeap: 'Dragon Leap',
+                echoingShout: 'Echoing Shout',
+            }
         }
     }
 };

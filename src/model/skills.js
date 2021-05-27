@@ -1,17 +1,17 @@
 export default {
-    'stealth': {
+    'Stealth': {
 
     },
-    'athletics': {
+    'Athletics': {
 
     },
-    'lore': {
+    'Lore': {
 
     },
-    'mechanics': {
+    'Mechanics': {
 
     },
-    'survival': {
+    'Survival': {
 
     }
 };

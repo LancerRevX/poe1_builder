@@ -22,6 +22,8 @@ export default class Level {
         level.resetSkills();
 
         level.selectedAbilities = [];
+        level.selectedPhrases = [];
+        level.selectedTalents = [];
     }
 
     increaseSkill(skill) {
@@ -47,47 +49,70 @@ export default class Level {
         }
     }
 
-    resetSkills() {
+    advancedSkills() {
         let previousLevel = this.previous();
+        let result = [];
         for (let skill in skillsData) {
-            this.skills['_' + skill] = previousLevel.skills['_' + skill];
+            if (this.skills['_' + skill] > previousLevel.skills['_' + skill]) {
+                result.push({
+                    name: skill,
+                    value: this.skills['_' + skill] - previousLevel.skills['_' + skill]
+                });
+            }
         }
+        return result;
+    }
+
+    resetSkills() {
         if (this.number == 1) {
             this.skillPoints = 0;
+            for (let skill in skillsData) {
+                this.skills['_' + skill] = 0;
+            }
         } else {
+            let previousLevel = this.previous();
+            for (let skill in skillsData) {
+                this.skills['_' + skill] = previousLevel.skills['_' + skill];
+            }
             this.skillPoints = previousLevel.skillPoints + this.character.SKILL_POINTS_PER_LEVEL;
         }
     }
 
     previous() {
         if (this.number == 1) {
-            let emptyLevel = {
-                skills: {},
-                skillPoints: 0
-            };
-            for (let skill in skillsData) {
-                emptyLevel.skills['_' + skill] = 0;
-            }
-            return emptyLevel;
+            return this;
         } else {
             return this.character.levels[this.number - 2];
         }
     }
 
+    next() {
+        if (this.number == this.character.MAX_LEVEL) {
+            return this;
+        } else {
+            return this.character.levels[this.number];
+        }
+    }
+
     availableAbilities() {
         let availableAbilities = [];
-        nextAbility: for (let ability of this.character.class.abilities) {
-            if (ability.level > this.number) {
-                continue;
-            }
-            for (let i = 0; i < this.number - 1; i++) {
-                for (let selectedAbility of this.character.levels[i].selectedAbilities) {
-                    if (selectedAbility.name == ability.name) {
-                        continue nextAbility;
-                    }
+        for (let ability of this.character.class.abilities) {
+            if (['Druid', 'Priest'].includes(this.character.class.name)) {
+                if (ability.level == this.number) {
+                    availableAbilities.push(ability);
+                }
+            } else {
+                if (ability.level <= this.number) {
+                    availableAbilities.push(ability);
                 }
             }
-            availableAbilities.push(ability);
+        }
+        for (let i = 0; i < this.character.levels.length; i++) {
+            if (i != this.number - 1) {
+                availableAbilities = availableAbilities.filter(
+                    ability => !this.character.levels[i].selectedAbilities.includes(ability)
+                );
+            }
         }
         return availableAbilities;
     }
@@ -104,30 +129,42 @@ export default class Level {
         return this.selectedAbilities.includes(ability);
     }
 
-    abilitiesToSelect() {
-        let abilitiesToSelect = [];
-        if (this.number % 2 == 0) {
-            abilitiesToSelect.push('talents');
+    typesOfAbilitiesToSelect() {
+        let typesOfAbilitiesToSelect = [];
+        if (this.abilityPoints()) {
+            typesOfAbilitiesToSelect.push('abilities');
         }
-        if (['wizard', 'cipher'].includes(this.character.class.name)) {
-            abilitiesToSelect.push('abilities');
-        } else if (this.character.class.name == 'chanter') {
-            if (this.character.class.progression[this.number - 1].invocations > 0) {
-                abilitiesToSelect.push('abilities');
-            }
-            if (this.character.class.progression[this.number - 1].phrases > 0) {
-                abilitiesToSelect.push('phrases');
-            }
-        } else if (this.number % 2 == 1) {
-            abilitiesToSelect.push('abilities');
+        if (this.phrasePoints()) {
+            typesOfAbilitiesToSelect.push('phrases');
         }
-        return abilitiesToSelect;
+        if (this.talentPoints()) {
+            typesOfAbilitiesToSelect.push('talents');
+        }
+        return typesOfAbilitiesToSelect;
     }
 
     abilityPoints() {
-        if (this.character.class.name == 'chanter') {
-            return this.character.class.progression[this.number - 1].invocations;
-        } else if (['druid', 'priest'].includes(this.character.class.name)) {
+        if (this.character.class.name == 'Chanter') {
+            if (this.number == 1 || this.number % 2 == 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else if (this.character.class.name == 'Wizard') {
+            if (this.number == 1) {
+                return 4;
+            } else if (this.number % 2 == 0) {
+                return 1;
+            } else if (this.number % 2 == 1) {
+                return 2;
+            }
+        } else if (this.character.class.name == 'Cipher') {
+            if (this.number % 2 == 0) {
+                return 1;
+            } else if (this.number % 2 == 1) {
+                return 2;
+            }
+        } else if (['Druid', 'Priest'].includes(this.character.class.name)) {
             return 0;
         } else if (this.number % 2 == 1) {
             return 1;
@@ -138,7 +175,62 @@ export default class Level {
         return this.abilityPoints() - this.selectedAbilities.length;
     }
 
+    availablePhrases() {
+        if (this.character.class.name != 'Chanter') {
+            return [];
+        }
+
+        let availablePhrases = [];
+        for (let phrase of this.character.class.phrases) {
+            if (phrase.level <= this.number) {
+                availablePhrases.push(phrase);
+            }
+        }
+        for (let i = 0; i < this.character.levels.length; i++) {
+            if (i != this.number - 1) {
+                availablePhrases = availablePhrases.filter(
+                    phrase => !this.character.levels[i].selectedPhrases.includes(phrase)
+                );
+            }
+        }
+        return availablePhrases;
+    }
+
+    selectPhrase(phrase) {
+        if (this.selectedPhrases.includes(phrase)) {
+            this.selectedPhrases.splice(this.selectedPhrases.indexOf(phrase), 1);
+        } else if (this.remainingPhrasePoints() > 0) {
+            this.selectedPhrases.push(phrase);
+        }
+    }
+
+    isPhraseSelected(ability) {
+        return this.selectedPhrases.includes(ability);
+    }
+
+    phrasePoints() {
+        if (this.character.class.name != 'Chanter') {
+            return 0;
+        }
+
+        if (this.number == 1) {
+            return 2;
+        } else if (this.number % 2 == 1) {
+            return 1;
+        } else if (this.number % 2 == 0) {
+            return 0;
+        }
+    }
+
+    remainingPhrasePoints() {
+        return this.phrasePoints() - this.selectedPhrases.length;
+    }
+
     talentPoints() {
-        return this.character.TALENT_POINTS_PER_LEVEL;
+        if (this.number % 2 == 0) {
+            return this.character.TALENT_POINTS_PER_LEVEL;
+        } else {
+            return 0;
+        }
     }
 }

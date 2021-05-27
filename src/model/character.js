@@ -9,7 +9,6 @@ export default class Character {
         character.name = 'Watcher';
 
         this.race = {};
-        this.class = classesData[0];
         this.culture = {};
         this.background = {};
 
@@ -41,7 +40,11 @@ export default class Character {
             character.levels[i] = new Level(this, i + 1);
         }
 
-        character.TALENTS_PER_LEVEL = 1;
+        character.TALENT_POINTS_PER_LEVEL = 1;
+
+
+        this.class = classesData[0];
+        this.spiritForm = classesData.find(classData => classData.name == 'Druid').spiritForms[0];
     }
 
     attributePoints() {
@@ -55,6 +58,31 @@ export default class Character {
     level(level) {
         if (level >= 1 && level <= this.MAX_LEVEL) {
             return this.levels[level - 1];
+        }
+    }
+
+    get class() {
+        return classesData.find(classData => classData.name == this._class);
+    }
+
+    set class(newClass) {
+        for (let level of this.levels) {
+            level.selectedAbilities = [];
+            level.selectedPhrases = [];
+            // for (let i = 0; i < level.selectedTalents) {
+
+            // }
+        }
+        this._class = newClass.name;
+    }
+
+    abilityTerm() {
+        if (['Wizard', 'Cipher'].includes(this.class.name)) {
+            return 'spell';
+        } else if (this.class.name == 'Chanter') {
+            return 'invokation';
+        } else {
+            return 'ability';
         }
     }
 }

@@ -58,6 +58,10 @@
         ],
         "semi": "error",
         "camelcase": "error",
+        "array-element-newline": [
+            "error",
+            "consistent"
+        ],
 
         "no-debugger": "warn"
     }
