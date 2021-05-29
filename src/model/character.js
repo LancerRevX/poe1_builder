@@ -4,9 +4,12 @@ import classesData from './classes.js';
 import Level from './level.js';
 
 export default class Character {
-    constructor() {
+    constructor(name) {
         let character = this;
-        character.name = 'Watcher';
+
+        character.name = name;
+
+        character.companion = false;
 
         this.race = {};
         this.culture = {};

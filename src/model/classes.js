@@ -65,7 +65,19 @@ export default [
             {
                 name: 'Bear',
                 link: 'https://pillarsofeternity.fandom.com/wiki/Spiritshift_Bear',
-                damage: '<a href="https://pillarsofeternity.fandom.com/wiki/Slash" title="Slash"><img alt="Slash" src="https://static.wikia.nocookie.net/eternitywiki/images/5/50/Slash_icon.png" width="18" height="18"></a>'
+                damageType: '<a href="https://pillarsofeternity.fandom.com/wiki/Slash" title="Slash"><img alt="Slash" src="https://static.wikia.nocookie.net/eternitywiki/images/5/50/Slash_icon.png" width="18" height="18"></a>'
+            },
+            {
+                name: 'Boar'
+            },
+            {
+                name: 'Cat'
+            },
+            {
+                name: 'Stag'
+            },
+            {
+                name: 'Wolf'
             }
         ]
     },
@@ -134,7 +146,27 @@ export default [
             Survival: +2
         },
         baseAbility: undefined,
-        abilities: []
+        abilities: [],
+        companions: [
+            {
+                name: 'Antelope',
+            },
+            {
+                name: 'Bear',
+            },
+            {
+                name: 'Boar',
+            },
+            {
+                name: 'Lion',
+            },
+            {
+                name: 'Stag',
+            },
+            {
+                name: 'Wolf',
+            }
+        ]
     },
     {
         name: 'Rogue',

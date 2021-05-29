@@ -15,20 +15,6 @@
                 </tr></table>
             </td>
         </tr>
-        <tr v-if="character.class.name == 'Druid'">
-            <td>Spirit form</td>
-            <td>
-                <select v-model="character.spiritForm">
-                    <option
-                        v-for="spiritForm in character.class.spiritForms"
-                        :key="spiritForm.name"
-                        :value="spiritForm"
-                    >
-                        {{ spiritForm.name }}
-                    </option>
-                </select>
-            </td>
-        </tr>
         <tr>
             <td>Endurance per level</td>
             <td>{{ character.class.endurancePerLevel }}</td>
@@ -50,16 +36,20 @@
 
 <script>
     import classesData from '../model/classes.js';
-    import Character from '../model/character.js';
 
     export default {
         name: 'class-table',
         props: {
-            character: Character
+            selected: Object
         },
         data: () => ({
             classesData
-        })
+        }),
+        computed: {
+            character: function() {
+                return this.selected.character;
+            }
+        }
     };
 </script>
 
