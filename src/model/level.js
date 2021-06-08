@@ -1,5 +1,7 @@
 import skillsData from './skills.js';
 
+import commonTalents from './abilities/common-talents.js';
+
 export default class Level {
     constructor(character, levelNumber) {
         let level = this;
@@ -98,7 +100,7 @@ export default class Level {
         let availableAbilities = [];
         for (let ability of this.character.class.abilities) {
             if (['Druid', 'Priest'].includes(this.character.class.name)) {
-                if (ability.level == this.number) {
+                if (ability.level == this.number && ability.deity == this.character.deity) {
                     availableAbilities.push(ability);
                 }
             } else {
@@ -129,9 +131,18 @@ export default class Level {
         return this.selectedAbilities.includes(ability);
     }
 
+    isAbilitySelectedOnPreviousLevels(abilityName) {
+        for (let i = 0; i < this.number; i++) {
+            if (this.character.levels[i].selectedAbilities.find(ability => ability.name == abilityName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     typesOfAbilitiesToSelect() {
         let typesOfAbilitiesToSelect = [];
-        if (this.abilityPoints()) {
+        if (['Druid', 'Priest'].includes(this.character.class.name) && this.number % 2 == 1 || this.abilityPoints()) {
             typesOfAbilitiesToSelect.push('abilities');
         }
         if (this.phrasePoints()) {
@@ -231,6 +242,73 @@ export default class Level {
             return this.character.TALENT_POINTS_PER_LEVEL;
         } else {
             return 0;
+        }
+    }
+
+    remainingTalentPoints() {
+        return this.talentPoints() - this.selectedTalents.length;
+    }
+
+    isTalentSelected(talent) {
+        return this.selectedTalents.includes(talent);
+    }
+
+    isTalentSelectedOnPreviousLevels(talentName) {
+        for (let i = 0; i < this.number - 1; i++) {
+            if (this.character.levels[i].selectedTalents.find(talent => talent.name == talentName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    availableTalents() {
+        let availableTalents = [];
+        for (let commonTalent of commonTalents) {
+            if (commonTalent.level > this.level) {
+                continue;
+            }
+            if (commonTalent.crossClass && commonTalent.crossClass == this.character.class.name) {
+                continue;
+            }
+            availableTalents.push(commonTalent);
+        }
+        nextClassTalent: for (let classTalent of this.character.class.talents) {
+            if (classTalent.requiredAbility && !this.isAbilitySelectedOnPreviousLevels(classTalent.requiredAbility)) {
+                continue;
+            }
+            if (classTalent.requiredTalent && !this.isTalentSelectedOnPreviousLevels(classTalent.requiredTalent)) {
+                continue;
+            }
+            if (classTalent.exceptionalTalents) {
+                for (let exceptionalTalent of classTalent.exceptionalTalents) {
+                    if (this.isTalentSelectedOnPreviousLevels(exceptionalTalent)) {
+                        continue nextClassTalent;
+                    }
+                }
+            }
+            if (classTalent.order && classTalent.order != this.character.orderName) {
+                continue;
+            }
+            availableTalents.push(classTalent);
+        }
+
+        for (let i = 0; i < this.character.levels.length; i++) {
+            if (i != this.number - 1) {
+                availableTalents = availableTalents.filter(
+                    talent => !this.character.levels[i].selectedTalents.includes(talent)
+                );
+            }
+        }
+
+        return availableTalents;
+    }
+
+    selectTalent(talent) {
+        if (this.selectedTalents.includes(talent)) {
+            this.selectedTalents.splice(this.selectedTalents.indexOf(talent), 1);
+        } else if (this.remainingTalentPoints() > 0) {
+            this.selectedTalents.push(talent);
         }
     }
 }

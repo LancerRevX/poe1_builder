@@ -1,36 +1,40 @@
 <template>
     <table class="attributes-table">
-        <caption>Attributes ({{ character.attributePoints() }})</caption>
+        <caption>Attributes{{ attributePointsCounter }}</caption>
         <tr v-for="attribute in Object.keys(attributesData)" v-bind:key="attribute">
             <td>{{ attribute }}</td>
-            <td><button v-on:click="character.attributes[attribute] -= 1">-</button></td>
+            <td><button v-on:click="character.attributes[attribute] -= 1" v-if="!character.storyCompanion">-</button></td>
             <td>{{ character.attributes[attribute] }}</td>
-            <td><button v-on:click="character.attributes[attribute] += 1">+</button></td>
+            <td><button v-on:click="character.attributes[attribute] += 1" v-if="!character.storyCompanion">+</button></td>
         </tr>
     </table>
 </template>
 
-<script lang="ts">
-    import Character from '../model/character.js';
-
+<script>
     import attributesData from '../model/attributes.js';
 
     export default {
         name: 'attributes-table',
         props: {
-            character: Character,
+            selected: Object
         },
         data: () => ({
             attributesData
         }),
         computed: {
-            attributesCounter: function() {
+            attributePointsCounter: function() {
+                if (this.character.storyCompanion) {
+                    return '';
+                }
+
                 let attributePoints = this.character.attributePoints();
                 return attributePoints ? ` (${attributePoints})` : '';
+            },
+            character: function() {
+                return this.selected.character;
             }
         },
         created: () => {
-            1;
         },
     };
 </script>

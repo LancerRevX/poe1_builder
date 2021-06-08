@@ -1,21 +1,15 @@
 <template>
     <div id="app">
-        <div id="upper-block">
-            <character-switcher :selected="selected"></character-switcher>
+        <character-switcher :selected="selected"></character-switcher>
+        <div id="tables-block">
+            <!-- <save-character-block :character="character"></save-character-block> -->
+            <class-table v-bind="{selected}"></class-table>
+            <!-- <spirit-form-table :character="character" :selected="selected"></spirit-form-table> -->
+            <attributes-table v-bind="{selected}"></attributes-table>
+            <skills-table  v-bind="{selected}"></skills-table>
         </div>
-        <div id="lower-block">
-            <div id="left-block">
-                <!-- <save-character-block :character="character"></save-character-block> -->
-                <class-table :selected="selected"></class-table>
-                <!-- <spirit-form-table :character="character" :selected="selected"></spirit-form-table> -->
-                <!-- <attributes-table :character="character"></attributes-table> -->
-                <!-- <skills-table :selected="selected"></skills-table> -->
-            </div>
-            <!-- <abilities-block :selected="selected"></abilities-block> -->
-            <div id="right-block">
-                <!-- <levels-table :selected="selected"></levels-table> -->
-            </div>
-        </div>
+        <abilities-block v-bind="{selected}"></abilities-block>
+        <levels-table v-bind="{selected}"></levels-table>
     </div>
 </template>
 
@@ -62,7 +56,9 @@
     }
 
     #app {
-        display: flex;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 2fr 1fr 1fr;
         flex-direction: column;
     }
 

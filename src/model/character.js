@@ -9,8 +9,6 @@ export default class Character {
 
         character.name = name;
 
-        character.companion = false;
-
         this.race = {};
         this.culture = {};
         this.background = {};
@@ -72,11 +70,33 @@ export default class Character {
         for (let level of this.levels) {
             level.selectedAbilities = [];
             level.selectedPhrases = [];
+            level.selectedTalents = [];
+
             // for (let i = 0; i < level.selectedTalents) {
 
             // }
         }
+
+        if (newClass.name == 'Paladin') {
+            this.orderName = newClass.orders[0].name;
+        }
+
         this._class = newClass.name;
+    }
+
+    get order() {
+        return this.class.orders.find(order => order.name == this.orderName);
+    }
+
+    set order(newOrder) {
+        for (let level of this.levels) {
+            for (let talent of level.selectedTalents) {
+                if (talent.order) {
+                    level.selectedTalents.splice(level.selectedTalents.indexOf(talent), 1);
+                }
+            }
+        }
+        this.orderName = newOrder.name;
     }
 
     abilityTerm() {

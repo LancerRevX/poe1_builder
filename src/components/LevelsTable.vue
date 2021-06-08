@@ -25,6 +25,9 @@
                                 <li v-for="phrase in level.selectedPhrases" :key="phrase.name">
                                     Select phrase "{{ phrase.name }}"
                                 </li>
+                                <li v-for="talent in level.selectedTalents" :key="talent.name">
+                                    Select talent "{{ talent.name }}"
+                                </li>
                                 <li v-for="advancedSkill in level.advancedSkills()" :key="advancedSkill.name">
                                     Add {{ advancedSkill.value }} point{{ advancedSkill.value > 1 ? 's' : '' }} to skill "{{ advancedSkill.name }}"
                                 </li>
@@ -38,23 +41,25 @@
 </template>
 
 <script>
-    import Character from '../model/character.js';
-
     export default {
         name: 'levels-table',
         props: {
-            character: Character,
             selected: Object
+        },
+        computed: {
+            character: function() {
+                return this.selected.character;
+            }
         }
     };
 </script>
 
 <style>
     div.levels-outer-block {
-        flex: 1;
+        min-height: 0;
+
         display: flex;
         flex-direction: column;
-        height: 100%;
     }
 
     div.levels-header-block {

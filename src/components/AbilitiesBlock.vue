@@ -15,15 +15,15 @@
                         <td>
                             <button
                                 v-on:click="selected.level.selectAbility(ability)"
-                                v-if="selected.level.remainingAbilityPoints()"
+                                v-if="selected.level.isAbilitySelected(ability)"
                             >
-                                ✓
+                                ✗
                             </button>
                             <button
                                 v-on:click="selected.level.selectAbility(ability)"
-                                v-else-if="selected.level.isAbilitySelected(ability)"
+                                v-else-if="selected.level.remainingAbilityPoints()"
                             >
-                                ✗
+                                ✓
                             </button>
                         </td>
                     </tr>
@@ -61,16 +61,31 @@
             </div>
         </div>
         <div class="abilities-table-outer-block" v-if="showTalentsTable">
-            <h2>{{ $t('talents') }}</h2>
+            <h2>Talents ({{ selected.level.remainingTalentPoints() }})</h2>
             <div class="abilities-table-inner-block">
                 <table class="abilities-table">
                     <tr
-                        v-for="ability in selected.level.availableAbilities()"
-                        v-bind:key="ability.name"
-                        v-bind:class="{selected: selected.level.isAbilitySelected(ability)}"
-                        v-on:click="selected.level.selectAbility(ability)"
+                        v-for="talent in selected.level.availableTalents()"
+                        v-bind:key="talent.name"
+                        v-bind:class="{selected: selected.level.isTalentSelected(talent)}"
                     >
-                        <td><img v-bind:src="[ability.imageLink]" decoding="async" width="100" height="100"></td>
+                        <td><img :src="talent.imageLink" decoding="async" width="32" height="32"></td>
+                        <td>{{ talent.name }}</td>
+                        <td v-html="talent.description || talent.effects"></td>
+                        <td>
+                            <button
+                                v-on:click="selected.level.selectTalent(talent)"
+                                v-if="selected.level.isTalentSelected(talent)"
+                            >
+                                ✗
+                            </button>
+                            <button
+                                v-on:click="selected.level.selectTalent(talent)"
+                                v-else-if="selected.level.remainingTalentPoints()"
+                            >
+                                ✓
+                            </button>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -89,9 +104,9 @@
         }),
         computed: {
             abilitiesTitle: function() {
-                if (['Druid', 'Priest', 'Wizard'].includes(this.selected.level.character.class.name)) {
+                if (['Druid', 'Priest', 'Wizard'].includes(this.character.class.name)) {
                     return 'Spells';
-                } else if (this.selected.level.character.class.name == 'Chanter') {
+                } else if (this.character.class.name == 'Chanter') {
                     return 'Invocations';
                 } else {
                     return 'Abilities';
@@ -108,6 +123,9 @@
             },
             showTalentsTable: function() {
                 return this.typesOfAbilitiesToSelect.includes('talents');
+            },
+            character: function() {
+                return this.selected.character;
             }
         }
     };
@@ -115,7 +133,8 @@
 
 <style>
     div.abilities-block {
-        flex: 1;
+        min-height: 0;
+
         display: flex;
         flex-direction: column;
     }

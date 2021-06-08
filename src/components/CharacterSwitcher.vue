@@ -89,16 +89,16 @@
             mainCharacter: new Character('Watcher'),
             storyCompanions: [
                 new companions.Aloth,
-                new Character('Eder'),
+                new companions.Eder,
                 new Character('Kana Rua'),
                 new Character('Durance')
             ],
             customCompanions: [
-                new Character(),
-                new Character(),
-                new Character(),
-                new Character(),
-                new Character()
+                new Character('Adventurer 1'),
+                new Character('Adventurer 2'),
+                new Character('Adventurer 3'),
+                new Character('Adventurer 4'),
+                new Character('Adventurer 5')
             ],
             selectedCompanions: [],
             oldSelectedCompanions: undefined
@@ -125,6 +125,9 @@
         watch: {
             party: function() {
                 this.selectCharacter(this.mainCharacter);
+            },
+            'selected.character': function() {
+                this.selected.level = this.selected.character.level(1);
             },
             selectedCompanions: function() {
 
@@ -155,14 +158,19 @@
                     }
                 }
 
+                // this.selectCharacter(this.selectedCompanions[newCompanionIndex]);
+
                 this.oldSelectedCompanions = this.selectedCompanions.slice();
-            }
+            },
+
         }
     };
 </script>
 
 <style>
     div.character-switcher {
+        grid-column: span 3;
+
         padding: 4px 8px;
         border-bottom: 1px solid black;
         display: flex;
