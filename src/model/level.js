@@ -290,6 +290,9 @@ export default class Level {
             if (classTalent.order && classTalent.order != this.character.orderName) {
                 continue;
             }
+            if (classTalent.deity && classTalent.deity != this.character.deityName) {
+                continue;
+            }
             availableTalents.push(classTalent);
         }
 

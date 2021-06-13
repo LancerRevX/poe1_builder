@@ -45,7 +45,9 @@ export default class Character {
 
 
         this.class = classesData[0];
-        this.spiritForm = classesData.find(classData => classData.name == 'Druid').spiritForms[0];
+        this.spiritFormName = null;
+        this.orderName = null;
+        this.deityName = null;
     }
 
     attributePoints() {

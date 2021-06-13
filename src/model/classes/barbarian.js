@@ -1,9 +1,19 @@
+const barbarianPassiveImageLink = 'https://static.wikia.nocookie.net/eternitywiki/images/5/50/Barbarian_passive_icon.png';
+
 export default {
-    base:
-    {
+    name: 'Barbarian',
+    endurancePerLevel: 16,
+    healthMultiplier: 6,
+    accuracy: 25,
+    deflection: 15,
+    skillBonuses: {
+        'Athletics': +2,
+        'Survival': +1
+    },
+    baseAbility: {
         name: 'Carnage',
         link: 'https://pillarsofeternity.fandom.com/wiki/Carnage',
-        imageLink: 'https://static.wikia.nocookie.net/eternitywiki/images/5/50/Barbarian_passive_icon.png',
+        imageLink: barbarianPassiveImageLink,
         level: '1',
         activation: 'Passive',
         effects: '<ul><li>Causes 0.66x <a target="_blank" href="https://pillarsofeternity.fandom.com/wiki/Damage" class="mw-redirect" title="Damage">damage</a> to enemies in a 1.5m radius from the targeted enemy</li></ul>',
@@ -12,7 +22,7 @@ export default {
         area: '1.5m Radius from Target',
         description: 'The barbarian\'s attacks become so forceful as to impact others around the target enemy. For every successful melee attack, the barbarian makes reduced-damage attacks at all other enemies within a short distance of the target.',
     },
-    rest: [
+    abilities: [
         {
             name: 'Barbaric Yell',
             link: 'https://pillarsofeternity.fandom.com/wiki/Barbaric_Yell',
@@ -229,5 +239,45 @@ export default {
             area: 'Length',
             description: 'The barbarian projects his or her rage into a wave of energy that causes Crush damage and Dazes everyone caught in its path. If the shout strikes a solid surface, it will bounce once.',
         },
+    ],
+    talents: [
+        {
+            name: 'Accurate Carnage',
+            description: 'The barbarian learns to line up his or her most savage blows, improving the Accuracy of secondary attacks from Carnage.',
+            effects: '<ul><li>+5 <a href="/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16"></a></li></ul>',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Accurate_Carnage',
+            imageLink: barbarianPassiveImageLink
+        },
+        {
+            name: 'Greater Frenzy',
+            requiredAbility: 'Frenzy',
+            description: 'Cultivates the barbarian\'s inner rage, granting additional bonuses while under the effects of Frenzy.',
+            effects: '<ul><li>+2 <a href="/wiki/Might" title="Might">Might</a></li><li>+2 <a href="/wiki/Constitution" title="Constitution">Constitution</a></li></ul>',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Greater_Frenzy',
+            imageLink: barbarianPassiveImageLink
+        },
+        {
+            name: 'Powerful Sprint',
+            requiredAbility: 'Wild Sprint',
+            description: 'The barbarian\'s charges become even more ferocious. Speed of Wild Sprint is increased.',
+            effects: '<ul><li>+2 <a href="/wiki/Move_Speed" title="Move Speed">Move Speed</a></li></ul>',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Powerful_Sprint',
+            imageLink: barbarianPassiveImageLink
+        },
+        {
+            name: 'Stalwart Defiance',
+            requiredAbility: 'Savage Defiance',
+            description: 'Strengthens Savage Defiance, causing it to provide a bonus to all defenses.',
+            effects: '<ul><li>+10 <a href="/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235317" decoding="async" width="18" height="18"></a></li><li>+10 <a href="/wiki/Fortitude" title="Fortitude"><img alt="Fortitude" src="https://static.wikia.nocookie.net/eternitywiki/images/b/b9/Fortitude_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235327" decoding="async" width="18" height="18"></a></li><li>+10 <a href="/wiki/Reflex" title="Reflex"><img alt="Reflex" src="https://static.wikia.nocookie.net/eternitywiki/images/8/80/Reflex_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235341" decoding="async" width="18" height="18"></a></li><li>+10 <a href="/wiki/Will" title="Will"><img alt="Will" src="https://static.wikia.nocookie.net/eternitywiki/images/9/96/Will_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202632" decoding="async" width="18" height="18"></a></li></ul>',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Stalwart_Defiance',
+            imageLink: barbarianPassiveImageLink
+        },
+        {
+            name: 'Barbaric Blow',
+            description: 'The barbarian deals a massive blow, causing additional Crits and extra damage on Crits. Carnage is not affected.',
+            effects: '<ul><li><a href="/wiki/Full_Attack" class="mw-redirect" title="Full Attack">Full Attack</a> (<a href="/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16"></a> vs <a href="/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235317" decoding="async" width="18" height="18"></a>)</li><li>+25% Ability Area of Effect</li><li>+30% of <a href="/wiki/Hit" class="mw-redirect" title="Hit">Hits</a> converted to <a href="/wiki/Crit" class="mw-redirect" title="Crit">Crits</a></li><li>+0.5 to <a href="/wiki/Crit" class="mw-redirect" title="Crit">Crit</a> damage multiplier</li></ul>',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Barbaric_Blow',
+            imageLink: barbarianPassiveImageLink
+        }
     ]
 };

@@ -24,7 +24,7 @@
         </tr>
         <tr v-if="character.class.name == 'Paladin'">
             <select v-model="character.order" v-if="!character.storyCompanion">
-                <option v-for="order in character.class.orders" :key="order.name" :value="order">{{ order.name }}</option>
+                <option v-for="order in paladinOrders" :key="order.name" :value="order">{{ order.name }}</option>
             </select>
             <span v-else>
                 {{ character.order }}
@@ -75,6 +75,9 @@
         computed: {
             character: function() {
                 return this.selected.character;
+            },
+            paladinOrders: function() {
+                return this.character.class.orders.filter(order => !order.companionOnly);
             }
         }
     };
