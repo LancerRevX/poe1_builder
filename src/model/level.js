@@ -1,6 +1,6 @@
 import skillsData from './skills.js';
 
-import commonTalents from './abilities/common-talents.js';
+import commonTalents from './common-talents.js';
 
 export default class Level {
     constructor(character, levelNumber) {
@@ -8,14 +8,22 @@ export default class Level {
         level.character = character;
         level.number = levelNumber;
 
+        this.comment = '';
+        this.skillPoints = 0;
+
         level.skills = {};
-        for (let skill in skillsData) {
-            Object.defineProperty(level.skills, skill, {
+        for (let skillName in skillsData) {
+            this.skills['_' + skillName] = 0;
+            Object.defineProperty(level.skills, skillName, {
                 get: function() {
-                    let result = this['_' + skill];
-                    let classBonus = level.character.class.skillBonuses[skill];
+                    let result = this['_' + skillName];
+                    let classBonus = level.character.class.skillBonuses[skillName];
                     if (classBonus) {
                         result += classBonus;
+                    }
+                    let backgroundBonus = level.character.background.skillBonuses[skillName];
+                    if (backgroundBonus) {
+                        result += backgroundBonus;
                     }
                     return result;
                 }
@@ -99,10 +107,12 @@ export default class Level {
     availableAbilities() {
         let availableAbilities = [];
         for (let ability of this.character.class.abilities) {
-            if (['Druid', 'Priest'].includes(this.character.class.name)) {
+            if (this.character.class.name == 'Priest') {
                 if (ability.level == this.number && ability.deity == this.character.deity) {
                     availableAbilities.push(ability);
                 }
+            } else if (this.character.class.name == 'Druid' && ability.level == this.number) {
+                availableAbilities.push(ability);
             } else {
                 if (ability.level <= this.number) {
                     availableAbilities.push(ability);
@@ -274,6 +284,9 @@ export default class Level {
             availableTalents.push(commonTalent);
         }
         nextClassTalent: for (let classTalent of this.character.class.talents) {
+            if (classTalent.level > this.level) {
+                continue;
+            }
             if (classTalent.requiredAbility && !this.isAbilitySelectedOnPreviousLevels(classTalent.requiredAbility)) {
                 continue;
             }
@@ -287,10 +300,10 @@ export default class Level {
                     }
                 }
             }
-            if (classTalent.order && classTalent.order != this.character.orderName) {
+            if (classTalent.order && classTalent.order != this.character._order) {
                 continue;
             }
-            if (classTalent.deity && classTalent.deity != this.character.deityName) {
+            if (classTalent.deity && classTalent.deity != this.character._deity) {
                 continue;
             }
             availableTalents.push(classTalent);
@@ -313,5 +326,18 @@ export default class Level {
         } else if (this.remainingTalentPoints() > 0) {
             this.selectedTalents.push(talent);
         }
+    }
+
+    toJSON() {
+        let json = {
+            number: this.number,
+            skillPoints: this.skillPoints,
+            skills: this.skills,
+            selectedTalents: this.selectedTalents.map(talent => talent.name),
+            selectedAbilities: this.selectedAbilities.map(ability => ability.name),
+            selectedPhrases: this.selectedPhrases.map(phrase => phrase.name),
+            comment: this.comment,
+        };
+        return json;
     }
 }

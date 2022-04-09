@@ -12,7 +12,7 @@
                         <td><img :src="ability.imageLink" decoding="async" width="32" height="32"></td>
                         <td><a :href="ability.link" target="_blank">{{ ability.name }}</a></td>
                         <td v-html="ability.effects"></td>
-                        <td>
+                        <td v-if="!character.storyCompanion || selected.level.number > 1">
                             <button
                                 v-on:click="selected.level.selectAbility(ability)"
                                 v-if="selected.level.isAbilitySelected(ability)"
@@ -70,7 +70,7 @@
                         v-bind:class="{selected: selected.level.isTalentSelected(talent)}"
                     >
                         <td><img :src="talent.imageLink" decoding="async" width="32" height="32"></td>
-                        <td>{{ talent.name }}</td>
+                        <td><a :href="talent.link" target="_blank">{{ talent.name }}</a></td>
                         <td v-html="talent.description || talent.effects"></td>
                         <td>
                             <button
@@ -134,6 +134,8 @@
 <style>
     div.abilities-block {
         min-height: 0;
+
+        grid-row: span 2;
 
         display: flex;
         flex-direction: column;

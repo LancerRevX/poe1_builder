@@ -1,3 +1,5 @@
+const rangerPassiveImageLink = 'https://static.wikia.nocookie.net/eternitywiki/images/3/33/Ranger_passive_icon.png';
+
 export default {
     name: 'Ranger',
     endurancePerLevel: 12,
@@ -230,7 +232,7 @@ export default {
             description: 'When a ranger or his or her animal companion are knocked out, the partner suffers the normal effects of Bonded grief, but becomes filled with focused rage for a short duration. While so focused, they gain Speed, Movement, and do additional Damage.',
         },
     ],
-    companions: [
+    animalCompanions: [
         {
             name: 'Antelope',
         },
@@ -250,5 +252,65 @@ export default {
             name: 'Wolf',
         }
     ],
-    talents: []
+    talents: [
+        {
+            name: 'Vicious Companion',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Vicious_Companion',
+            imageLink: 'https://pillarsofeternity.fandom.com/wiki/Vicious_Companion',
+            description: 'Trains the ranger\'s animal companion in vicious tactics, causing it to deal more damage and penetrate Damage Reduction with each hit.'
+        },
+        {
+            name: 'Swift and Steady',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Swift_and_Steady',
+            imageLink: rangerPassiveImageLink,
+            description: 'The ranger becomes better able to shoot quickly, reducing the Accuracy penalty of Swift Aim.',
+            requiredAbility: 'Swift Aim'
+        },
+        {
+            name: 'Accurate Wounding Shot',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Accurate_Wounding_Shot',
+            imageLink: rangerPassiveImageLink,
+            description: 'The ranger\'s aim becomes deadlier, making their Wounding Shots more accurate. ',
+            requiredAbility: 'Wounding Shot'
+        },
+        {
+            name: 'Brutal Takedown',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Brutal_Takedown',
+            imageLink: rangerPassiveImageLink,
+            description: 'The ranger trains his or her animal companion to inflict Crush damage on opponents when using Takedown.',
+            requiredAbility: 'Takedown'
+        },
+        {
+            name: 'Thorny Roots',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Thorny_Roots',
+            imageLink: rangerPassiveImageLink,
+            description: 'The ranger\'s Binding Roots sprout nasty thorns that do additional Pierce and Slash damage to the target.',
+            requiredAbility: 'Binding Roots'
+        },
+        {
+            name: 'Faithful Companion',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Faithful_Companion',
+            imageLink: rangerPassiveImageLink,
+            description: 'The ranger\'s animal companion gains improved defenses against Charmed, Confused, and Dominated afflictions.'
+        },
+        {
+            name: 'Resilient Companion',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Resilient_Companion',
+            imageLink: rangerPassiveImageLink,
+            description: 'The ranger\'s animal companion gains improved Damage Reductions against all damage types.'
+        },
+        {
+            name: 'Merciless Companion',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Merciless_Companion',
+            imageLink: rangerPassiveImageLink,
+            description: 'Animal companions do small amounts of Sneak Attack damage against targets that qualify.'
+        },
+        {
+            name: 'Strengthened Bond',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Strengthened_Bond',
+            imageLink: rangerPassiveImageLink,
+            description: 'Increases the shared bonus provided by Defensive Bond.',
+            requiredAbility: 'Defensive Bond'
+        }
+    ]
 };

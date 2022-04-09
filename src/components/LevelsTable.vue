@@ -1,7 +1,7 @@
 <template>
     <div class="levels-outer-block">
         <div class="levels-header-block">
-            <h2>{{ $t('levels') }}</h2>
+            <h2>Levels</h2>
             <button v-on:click="selected.level = selected.level.previous()">←</button>
             <button v-on:click="selected.level = selected.level.next()">→</button>
         </div>
@@ -57,6 +57,8 @@
 <style>
     div.levels-outer-block {
         min-height: 0;
+
+        grid-row: span 2;
 
         display: flex;
         flex-direction: column;

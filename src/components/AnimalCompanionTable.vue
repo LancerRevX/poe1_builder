@@ -1,15 +1,15 @@
 <template>
-    <table v-if="character.class.name == 'Druid'">
-        <caption>Spirit form</caption>
+    <table v-if="character.class.name == 'Ranger'">
+        <caption>Animal Companion</caption>
         <tr>
             <td>
-                <select v-model="character.spiritForm">
+                <select v-model="character.animalCompanion">
                     <option
-                        v-for="spiritForm in character.class.spiritForms"
-                        :key="spiritForm.name"
-                        :value="spiritForm"
+                        v-for="animalCompanion in character.class.animalCompanions"
+                        :key="animalCompanion.name"
+                        :value="animalCompanion"
                     >
-                        {{ spiritForm.name }}
+                        {{ animalCompanion.name }}
                     </option>
                 </select>
             </td>
@@ -20,7 +20,7 @@
 <script>
 
     export default {
-        name: 'spirit-form-table',
+        name: 'animal-companion-table',
         props: {
             selected: Object
         },

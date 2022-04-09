@@ -694,7 +694,7 @@ export default {
         {
             name: 'Bear',
             link: 'https://pillarsofeternity.fandom.com/wiki/Spiritshift_Bear',
-            damageType: '<a href="https://pillarsofeternity.fandom.com/wiki/Slash" title="Slash"><img alt="Slash" src="https://static.wikia.nocookie.net/eternitywiki/images/5/50/Slash_icon.png" width="18" height="18"></a>'
+            damageType: 'Slash'
         },
         {
             name: 'Boar'

@@ -1,25 +1,22 @@
 <template>
     <table class="attributes-table">
         <caption>Attributes{{ attributePointsCounter }}</caption>
-        <tr v-for="attribute in Object.keys(attributesData)" v-bind:key="attribute">
-            <td>{{ attribute }}</td>
-            <td><button v-on:click="character.attributes[attribute] -= 1" v-if="!character.storyCompanion">-</button></td>
-            <td>{{ character.attributes[attribute] }}</td>
-            <td><button v-on:click="character.attributes[attribute] += 1" v-if="!character.storyCompanion">+</button></td>
+        <tr v-for="attributeName in Object.keys(character.attributes)" v-bind:key="attributeName">
+            <td>{{ attributeName }}</td>
+            <td><button @click="character.attributes[attributeName].decrease()" v-if="!character.storyCompanion">-</button></td>
+            <td>{{ character.attributes[attributeName] }}</td>
+            <td><button @click="character.attributes[attributeName].increase()" v-if="!character.storyCompanion">+</button></td>
         </tr>
     </table>
 </template>
 
 <script>
-    import attributesData from '../model/attributes.js';
-
     export default {
         name: 'attributes-table',
         props: {
             selected: Object
         },
         data: () => ({
-            attributesData
         }),
         computed: {
             attributePointsCounter: function() {
@@ -38,14 +35,3 @@
         },
     };
 </script>
-
-<i18n>
-{
-    "en-US": {
-        "attributes": "Attributes"
-    },
-    "ru-RU": {
-        "attributes": "Атрибуты"
-    }
-}
-</i18n>

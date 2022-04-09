@@ -1,3 +1,5 @@
+const roguePassiveImageLink = 'https://static.wikia.nocookie.net/eternitywiki/images/d/dc/Rogue_passive_icon.png';
+
 export default {
     name: 'Rogue',
     endurancePerLevel: 12,
@@ -219,5 +221,41 @@ export default {
             description: 'The rogue collapses to the ground and pretends to be out of a fight, regaining Endurance and biding his or her time until the moment is right to return to battle. When the rogue stands up, he or she becomes invisible for a short period of time.',
         },
     ],
-    talents: []
+    talents: [
+        {
+            name: 'Deflecting Assault',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Deflecting_Assault',
+            imageLink: roguePassiveImageLink,
+            description: 'Increases the rogue\'s ability to concentrate, reducing the Deflection penalty when using Reckless Assault.',
+            requiredAbility: 'Reckless Assault'
+        },
+        {
+            name: 'Devastating Blow',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Devastating_Blow',
+            imageLink: roguePassiveImageLink,
+            description: 'Broadens the rogue\'s knowledge of critical anatomy, increasing the damage done by Finishing Blow.',
+            requiredAbility: 'Finishing Blow',
+            level: 6
+        },
+        {
+            name: 'Vicious Fighting',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Vicious_Fighting',
+            imageLink: roguePassiveImageLink,
+            description: 'Improves the rogue\'s skill with devious maneuvers, increasing the percentage of the rogue\'s hits that are converted to Critical Hits when using Dirty Fighting.',
+            requiredAbility: 'Dirty Fighting'
+        },
+        {
+            name: 'Shadowing Beyond',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Shadowing_Beyond',
+            imageLink: roguePassiveImageLink,
+            effects: '<ul><li><a href="/wiki/Invisible?action=edit&amp;redlink=1" class="new" title="Invisible (page does not exist)">Invisible</a></li><li>Immune to <a href="/wiki/Engagement" class="mw-redirect" title="Engagement">Engagement</a>, <a href="/wiki/Untargetable?action=edit&amp;redlink=1" class="new" title="Untargetable (page does not exist)">Untargetable</a></li><li>Break <a href="/wiki/Engagement" class="mw-redirect" title="Engagement">Engagements</a></li></ul>',
+            level: 4
+        },
+        {
+            name: 'Backstab',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Backstab',
+            imageLink: roguePassiveImageLink,
+            effects: '<ul><li>+150% <a href="/wiki/Damage" title="Damage"><img alt="Damage" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e2/Damage_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235308" decoding="async" width="18" height="18"></a> from <a href="/wiki/Stealth" title="Stealth">Stealth</a> or <a href="/wiki/Invisibility" title="Invisibility">Invisibility</a></li></ul>'
+        }
+    ]
 };

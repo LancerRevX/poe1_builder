@@ -72,6 +72,8 @@
                 </button>
             </div>
         </div>
+
+        <button class="get-link-button" v-on:click="getLink()">Get link</button>
     </div>
 </template>
 
@@ -90,8 +92,8 @@
             storyCompanions: [
                 new companions.Aloth,
                 new companions.Eder,
-                new Character('Kana Rua'),
-                new Character('Durance')
+                new companions.KanaRua,
+                new companions.Durance
             ],
             customCompanions: [
                 new Character('Adventurer 1'),
@@ -120,6 +122,20 @@
             selectCharacter: function(character) {
                 this.selected.character = character;
                 this.selected.level = character.level(1);
+            },
+            getLink: function() {
+                let link =  window.location.href.split('?')[0];
+                link += '?';
+                link += `party=${this.party ? 1 : 0}`;
+                link += '&';
+                link += `maincharacter=${this.mainCharacter}`;
+                for (let i = 0; i < this.selectedCompanions.length; i++) {
+                    link += '&';
+                    link += `companion${i+1}=${JSON.stringify(this.selectedCompanions[i])}`;
+                }
+                navigator.clipboard.writeText(link);
+                // alert('Your link is copied to clipboard');
+                console.log(link);
             }
         },
         watch: {
@@ -172,7 +188,8 @@
         grid-column: span 3;
 
         padding: 4px 8px;
-        border-bottom: 1px solid black;
+        border-style: solid;
+        border-width: 1px 0px;
         display: flex;
         flex-direction: row;
         gap: 8px;
@@ -222,5 +239,16 @@
     div.party-buttons-block {
         display: flex;
         flex-direction: column;
+    }
+
+    button.get-link-button {
+        margin-left: auto;
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 32px;
+        width: 8em;
     }
 </style>

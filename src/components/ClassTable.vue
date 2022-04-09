@@ -23,24 +23,28 @@
             </td>
         </tr>
         <tr v-if="character.class.name == 'Paladin'">
-            <select v-model="character.order" v-if="!character.storyCompanion">
-                <option v-for="order in paladinOrders" :key="order.name" :value="order">{{ order.name }}</option>
-            </select>
-            <span v-else>
-                {{ character.order }}
-            </span>
+            <td colspan="2">
+                <select v-model="character.order" v-if="!character.storyCompanion">
+                    <option v-for="order in paladinOrders" :key="order.name" :value="order">{{ order.name }}</option>
+                </select>
+                <span v-else>
+                    {{ character.order }}
+                </span>
+            </td>
         </tr>
         <tr v-if="character.class.name == 'Paladin' && !character.storyCompanion">
-            <table>
-                <tr>
-                    <td>Favored behavior</td>
-                    <td>{{ character.order.favoredBehavior }}</td>
-                </tr>
-                <tr>
-                    <td>Disfavored behavior</td>
-                    <td>{{ character.order.disfavoredBehavior }}</td>
-                </tr>
-            </table>
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td>Favored behavior</td>
+                        <td>{{ character.order.favoredBehavior }}</td>
+                    </tr>
+                    <tr>
+                        <td>Disfavored behavior</td>
+                        <td>{{ character.order.disfavoredBehavior }}</td>
+                    </tr>
+                </table>
+            </td>
         </tr>
         <tr>
             <td>Endurance per level</td>
@@ -84,8 +88,17 @@
 </script>
 
 <style>
+    table.class-table {
+        border: 1px outset black;
+    }
+
     table.class-table select {
         font-size: 16px;
         font-weight: bold;
+        width: 100%;
+    }
+
+    table table {
+        border: none;
     }
 </style>

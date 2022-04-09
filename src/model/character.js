@@ -1,61 +1,41 @@
-import attributesData from './attributes.js';
-import classesData from './classes.js';
+import Attributes from './attributes.js';
+import classes from './classes.js';
+import races from './races.js';
+import cultures from './cultures.js';
+import backgrounds from './backgrounds.js';
 
 import Level from './level.js';
 
 export default class Character {
     constructor(name) {
-        let character = this;
+        this.name = name;
+        this.race = races[0];
+        this._culture = cultures[0];
+        this.background = backgrounds[0];
+        this._class = classes[0];
+        this.spiritForm = null;
+        this.animalCompanion = null;
+        this._order = null;
+        this._deity = null;
 
-        character.name = name;
+        this.ATTRIBUTE_DEFAULT = 10;
+        this.MIN_ATTRIBUTE = 3;
+        this.MAX_ATTRIBUTE = 18;
+        this.MAX_ATTRIBUTES_SUM = 76;
+        this.MAX_LEVEL = 16;
+        this.SKILL_POINTS_PER_LEVEL = 6;
+        this.TALENT_POINTS_PER_LEVEL = 1;
 
-        this.race = {};
-        this.culture = {};
-        this.background = {};
+        this.attributes = new Attributes(this);
 
-        character.ATTRIBUTE_DEFAULT = 10;
-        character.ATTRIBUTE_MIN = 3;
-        character.ATTRIBUTE_MAX = 18;
-
-        character.attributes = {};
-        character.MAX_ATTRIBUTES_NUMBER = 76;
-        for (let attribute in attributesData) {
-            character.attributes['_' + attribute] = character.ATTRIBUTE_DEFAULT;
-            Object.defineProperty(character.attributes, attribute, {
-                get: function() {
-                    return this['_' + attribute]/* + this.race.attributeBonuses[attribute] + this.culture.attributeBonuses[attribute]*/;
-                },
-                set: function(newValue) {
-                    if (newValue >= character.ATTRIBUTE_MIN && newValue <= character.ATTRIBUTE_MAX) {
-                        this['_' + attribute] = newValue;
-                    }
-                }
-            });
+        this.levels = Array(this.MAX_LEVEL);
+        for (let i = 0; i < this.levels.length; i++) {
+            this.levels[i] = new Level(this, i + 1);
         }
-
-        character.MAX_LEVEL = 16;
-        character.SKILL_POINTS_PER_LEVEL = 6;
-
-        character.levels = Array(character.MAX_LEVEL);
-        for (let i = 0; i < character.levels.length; i++) {
-            character.levels[i] = new Level(this, i + 1);
-        }
-
-        character.TALENT_POINTS_PER_LEVEL = 1;
-
-
-        this.class = classesData[0];
-        this.spiritFormName = null;
-        this.orderName = null;
-        this.deityName = null;
     }
 
     attributePoints() {
-        let attributesSum = 0;
-        for (let attribute in attributesData) {
-            attributesSum += this.attributes['_' + attribute];
-        }
-        return this.MAX_ATTRIBUTES_NUMBER - attributesSum;
+        return this.MAX_ATTRIBUTES_SUM - this.attributes.sum();
     }
 
     level(level) {
@@ -65,7 +45,7 @@ export default class Character {
     }
 
     get class() {
-        return classesData.find(classData => classData.name == this._class);
+        return this._class;
     }
 
     set class(newClass) {
@@ -73,23 +53,40 @@ export default class Character {
             level.selectedAbilities = [];
             level.selectedPhrases = [];
             level.selectedTalents = [];
-
-            // for (let i = 0; i < level.selectedTalents) {
-
-            // }
         }
 
         if (newClass.name == 'Paladin') {
-            this.orderName = newClass.orders[0].name;
+            this._order = newClass.orders[0];
+        } else {
+            this._order = null;
         }
 
-        this._class = newClass.name;
+        if (newClass.name == 'Priest') {
+            this._deity = newClass.deities[0];
+        } else {
+            this._deity = null;
+        }
+
+        if (newClass.name == 'Druid') {
+            this.spiritForm = newClass.spiritForms[0];
+        } else {
+            this.spiritForm = null;
+        }
+
+        if (newClass.name == 'Ranger') {
+            this.animalCompanion = newClass.animalCompanions[0];
+        } else {
+            this.animalCompanion = null;
+        }
+
+        this._class = newClass;
     }
 
     get order() {
-        return this.class.orders.find(order => order.name == this.orderName);
+        return this._order;
     }
 
+    // remove any chosen order-unique talents
     set order(newOrder) {
         for (let level of this.levels) {
             for (let talent of level.selectedTalents) {
@@ -98,7 +95,34 @@ export default class Character {
                 }
             }
         }
-        this.orderName = newOrder.name;
+        this._order = newOrder;
+    }
+
+    get deity() {
+        return this._deity;
+    }
+
+    // remove any chosen deity-unique talents
+    set deity(newDeity) {
+        for (let level of this.levels) {
+            for (let talent of level.selectedTalents) {
+                if (talent.deity) {
+                    level.selectedTalents.splice(level.selectedTalents.indexOf(talent), 1);
+                }
+            }
+        }
+        this._deity = newDeity;
+    }
+
+    get culture() {
+        return this._culture;
+    }
+
+    set culture(newCulture) {
+        if (!newCulture.backgrounds.includes(this.background)) {
+            this.background = this.culture.backgrounds[0];
+        }
+        this._culture = newCulture;
     }
 
     abilityTerm() {
@@ -109,5 +133,26 @@ export default class Character {
         } else {
             return 'ability';
         }
+    }
+
+    toJSON() {
+        let json = {
+            name: this.name,
+            race: this.race.name,
+            culture: this.culture.name,
+            background: this.background.name,
+            class: this.class.name,
+            spiritForm: this.spiritForm ? this.spiritForm.name : null,
+            animalCompanion: this.animalCompanion ? this.animalCompanion.name : null,
+            order: this.order ? this.order.name : null,
+            deity: this.deity ? this.deity.name : null,
+            levels: this.levels
+        };
+        let attributes = {};
+        for (let attributeName in this.attributes) {
+            attributes[attributeName] = this.attributes[attributeName].value;
+        }
+        json.attributes = attributes;
+        return json;
     }
 }

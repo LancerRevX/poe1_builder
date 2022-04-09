@@ -1,3 +1,6 @@
+const wizardPassiveImageLink = 'https://static.wikia.nocookie.net/eternitywiki/images/2/22/Wizard_passive_icon.png';
+const commonPassiveImageLink = 'https://static.wikia.nocookie.net/eternitywiki/images/0/0f/Generic_passive_icon.png';
+
 export default {
     name: 'Wizard',
     endurancePerLevel: 12,
@@ -1138,5 +1141,62 @@ export default {
             description: 'A parching wind blows across the battlefield, inflicting Raw damage on anyone in the area and leaving them Weakened.',
         },
     ],
-    talents: []
+    talents: [
+        {
+            name: 'Grimoire Slam',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Grimoire_Slam',
+            imageLink: 'https://static.wikia.nocookie.net/eternitywiki/images/d/d1/Grimoire_slam_icon.png',
+            effects: '<ul><li>Target: 20-30 <a href="/wiki/Crush" title="Crush"><img alt="Crush" src="https://static.wikia.nocookie.net/eternitywiki/images/8/8f/Crush_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235303" decoding="async" width="18" height="18"></a> damage</li><li>Target: 2.0m Push</li></ul>'
+        },
+        {
+            name: 'Arcane Veil',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Arcane_Veil',
+            imageLink: 'https://static.wikia.nocookie.net/eternitywiki/images/e/ef/Arcane_veil_icon.png/revision/latest/scale-to-width-down/42?cb=20171108221933',
+            effects: '<ul><li>+50 <a href="/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235317" decoding="async" width="18" height="18"></a></li></ul>'
+        },
+        {
+            name: 'Blast',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Blast',
+            imageLink: wizardPassiveImageLink,
+            effects: '<ul><li>Foe AoE: 6-9 <a href="/wiki/Crush" title="Crush"><img alt="Crush" src="https://static.wikia.nocookie.net/eternitywiki/images/8/8f/Crush_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235303" decoding="async" width="18" height="18"></a> damage</li><li>Foe AoE: 5 <a href="/wiki/Damage_Reduction" title="Damage Reduction (DR)"><img alt="Damage Reduction (DR)" src="https://static.wikia.nocookie.net/eternitywiki/images/2/29/Damage_reduction_icon.png/revision/latest/scale-to-width-down/16?cb=20171001055953" decoding="async" style="vertical-align: text-top" width="16" height="16"></a> bypass</li></ul>'
+        },
+        {
+            name: 'Penetrating Blast',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Penetrating_Blast',
+            imageLink: wizardPassiveImageLink,
+            effects: '<ul><li>+5 <a href="/wiki/Damage_Reduction" title="Damage Reduction (DR)"><img alt="Damage Reduction (DR)" src="https://static.wikia.nocookie.net/eternitywiki/images/2/29/Damage_reduction_icon.png/revision/latest/scale-to-width-down/16?cb=20171001055953" decoding="async" style="vertical-align: text-top" width="16" height="16"></a> bypass</li></ul>',
+            requiredTalent: 'Blast'
+        },
+        {
+            name: 'Hardened Veil',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Hardened_Veil',
+            imageLink: wizardPassiveImageLink,
+            effects: '<ul><li>+25 <a href="/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235317" decoding="async" width="18" height="18"></a></li></ul>',
+            requiredTalent: 'Arcane Veil'
+        },
+        {
+            name: 'Bonus 1st Level Spell',
+            description: 'Gain an extra spell cast of level 1 spells.',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Bonus_1st_Level_Spell',
+            imageLink: commonPassiveImageLink
+        },
+        {
+            name: 'Bonus 2nd Level Spell',
+            description: 'Gain an extra spell cast of level 2 spells.',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Bonus_2nd_Level_Spell',
+            imageLink: commonPassiveImageLink
+        },
+        {
+            name: 'Bonus 3rd Level Spell',
+            description: 'Gain an extra spell cast of level 3 spells.',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Bonus_3rd_Level_Spell',
+            imageLink: commonPassiveImageLink
+        },
+        {
+            name: 'Bonus 4th Level Spell',
+            description: 'Gain an extra spell cast of level 4 spells.',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Bonus_4th_Level_Spell',
+            imageLink: commonPassiveImageLink
+        }
+    ]
 };
