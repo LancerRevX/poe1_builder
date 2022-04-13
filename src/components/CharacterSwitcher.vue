@@ -73,7 +73,13 @@
             </div>
         </div>
 
-        <button class="get-link-button" v-on:click="getLink()">Get link</button>
+        <div class="saveload-buttons-block">
+            <button class="save-text-button">Save to text</button>
+            <button class="save-file-button">Save to file</button>
+            <button class="save-server-button">Save on the server</button>
+            <button class="save-text-button">Load from text</button>            
+            <button class="save-file-button">Load from file</button>
+        </div>
     </div>
 </template>
 
@@ -146,7 +152,6 @@
                 this.selected.level = this.selected.character.level(1);
             },
             selectedCompanions: function() {
-
                 let newCompanionIndex;
                 for (let i = 0; i < this.selectedCompanions.length; i++) {
                     if (this.selectedCompanions[i] != this.oldSelectedCompanions[i]) {
@@ -158,7 +163,9 @@
                 let duplicationFound;
                 let duplicationIndex;
                 for (let i = 0; i < this.selectedCompanions.length; i++) {
-                    if (this.selectedCompanions[i] == this.selectedCompanions[newCompanionIndex] && i != newCompanionIndex) {
+                    if (i != newCompanionIndex &&
+                        this.selectedCompanions[i] == this.selectedCompanions[newCompanionIndex] && 
+                        this.selectedCompanions[i] != null) {
                         duplicationFound = true;
                         duplicationIndex = i;
                         break;
@@ -239,6 +246,34 @@
     div.party-buttons-block {
         display: flex;
         flex-direction: column;
+    }
+
+    .saveload-buttons-block {
+        margin-left: auto;
+
+        display: grid;
+        grid: repeat(2, 1fr) / repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .saveload-buttons-block button {
+        color: white;
+        font-weight: bold;
+        border-radius: 32px;
+        cursor: pointer;
+    }
+
+    .saveload-buttons-block .save-text-button {
+        background-color: green;
+    }
+
+    .saveload-buttons-block .save-file-button {
+        background-color: blue;
+    }
+
+    .saveload-buttons-block .save-server-button {
+        grid-row: span 2;
+        background-color: red;
     }
 
     button.get-link-button {
