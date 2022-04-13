@@ -1,9 +1,11 @@
 <template>
     <div id="app">
-        <h1 class="title">Pillars of Eternity 1 Builder</h1>
-        <span class="version">v.1</span>
+        <div class="title-block">
+            <h1 class="title">Pillars of Eternity 1 Builder</h1>
+            <span class="version">v.1</span>
+        </div>
         <character-switcher :selected="selected"></character-switcher>
-        <div id="tables-block">
+        <div class="tables-block">
             <race-table v-bind="{selected}"></race-table>
             <culture-and-background-table v-bind="{selected}"></culture-and-background-table>
             <class-table v-bind="{selected}"></class-table>
@@ -70,27 +72,36 @@
 
     #app {
         display: grid;
-        grid-template-rows: auto auto 1fr 1fr;
+        grid-template-rows: auto auto 2fr 1fr;
         grid-template-columns: 2fr 1fr 1fr;
     }
 
-    h1.title {
+    .title-block {
+        display: flex;
+        grid-column: span 3;
+        padding: 0 8px 0 16px;
+        align-items: flex-start;
+    }
+
+    .title {
         text-align: center;
         grid-column: span 3;
     }
 
-    span.version {
-        position: absolute;
-        right: 4px;
+    .version {
+        flex-grow: 1;
+        text-align: right;
     }
 
-    #tables-block {
+    .tables-block {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-content: flex-start;
         padding: 0px 16px;
         gap: 16px;
+        overflow: scroll;
+        margin-right: 16px;
     }
 
     table caption {
@@ -101,5 +112,9 @@
     table {
         border: 1px outset black;
         padding: 4px;
+    }
+
+    abilities-block {
+        margin-left: 16px;
     }
 </style>

@@ -28,6 +28,14 @@ export default class Attributes {
         }
     }
 
+    init(attributesArray) {
+        let i = 0;
+        for (let attributeName in this) {
+            this[attributeName].value = attributesArray[i];
+            i += 1;
+        }
+    }
+
     sum() {
         let sum = 0;
         for (let attributeName in this) {

@@ -1,83 +1,72 @@
 import Character from './character.js';
 import fighter from './classes/fighter.js';
+import wizard from './classes/wizard.js';
+import priest from './classes/priest.js';
+import chanter from './classes/chanter.js';
+import races from './races.js';
+import cultures from './cultures.js';
+import backgrounds from './backgrounds.js';
 
-export class Aloth extends Character {
+export class StoryCompanion extends Character {
+    constructor(name) {
+        super(name);
+        this.storyCompanion = true;
+    }
+}
+
+export class Aloth extends StoryCompanion {
     constructor() {
         super('Aloth');
-        this.storyCompanion = true;
 
-        this.attributes._Might = 12;
-        this.attributes._Constitution = 10;
-        this.attributes._Dexterity = 14;
-        this.attributes._Perception = 11;
-        this.attributes._Intelligence = 16;
-        this.attributes._Resolve = 11;
+        this.attributes.init([12, 10, 14, 11, 16, 11]);
 
-        this._class = 'Wizard';
-        this._race = 'Wood Elf';
-        this._culture = 'Aedyr';
-        this._background = 'Gentry';
+        this.class = wizard;
+        this.race = races.find(race => race.name == 'Wood Elf');
+        this.culture = cultures.find(culture => culture.name == 'Aedyr');
+        this.background = backgrounds.find(background => background.name == 'Gentry');
 
         // this.level(1).selectAbility('')
     }
 }
 
-export class Eder extends Character {
+export class Eder extends StoryCompanion {
     constructor() {
         super('Eder');
-        this.storyCompanion = true;
 
-        this.attributes._Might = 15;
-        this.attributes._Constitution = 16;
-        this.attributes._Dexterity = 11;
-        this.attributes._Perception = 12;
-        this.attributes._Intelligence = 10;
-        this.attributes._Resolve = 11;
+        this.attributes.init([15, 16, 11, 12, 10, 11]);
 
-        this._class = 'Fighter';
-        this._race = 'Human';
-        this._culture = 'Dyrwood';
-        this._background = 'Farmer';
+        this.class = fighter;
+        this.race = races.find(race => race.name == 'Human');
+        this.culture = cultures.find(culture => culture.name == 'Dyrwood');
+        this.background = backgrounds.find(background => background.name == 'Farmer');
 
         this.level(1).selectAbility(fighter.abilities.find(ability => ability.name == 'Knock Down'));
     }
 }
 
-export class KanaRua extends Character {
+export class KanaRua extends StoryCompanion {
     constructor() {
         super('Kana Rua');
-        this.storyCompanion = true;
 
-        this.attributes._Might = 14;
-        this.attributes._Constitution = 11;
-        this.attributes._Dexterity = 9;
-        this.attributes._Perception = 14;
-        this.attributes._Intelligence = 17;
-        this.attributes._Resolve = 10;
+        this.attributes.init([14, 11, 9, 14, 17, 10]);
 
-        this._class = 'Chanter';
-        this._race = 'Island Aumaua';
-        this._culture = 'Rauatai';
-        this._background = 'Scholar';
+        this.class = chanter;
+        this.race = races.find(race => race.name == 'Island Aumaua');
+        this.culture = cultures.find(culture => culture.name == 'Rauatai');
+        this.background = backgrounds.find(background => background.name == 'Scholar');
     }
 }
 
-export class Durance extends Character {
+export class Durance extends StoryCompanion {
     constructor() {
         super('Durance');
-        this.storyCompanion = true;
 
-        this.attributes._Might = 13;
-        this.attributes._Constitution = 13;
-        this.attributes._Dexterity = 9;
-        this.attributes._Perception = 9;
-        this.attributes._Intelligence = 15;
-        this.attributes._Resolve = 16;
+        this.attributes.init([13, 13, 9, 9, 15, 16]);
 
-        this._class = 'Priest';
-        this._deity = 'Magran';
-        this._race = 'Human';
-        this._culture = 'Dyrwood';
-        this._background = 'Clergy';
+        this.class = priest;
+        this.deity = priest.deities.find(deity => deity.name == 'Margran');
+        this.race = races.find(race => race.name == 'Human');
+        this.culture = cultures.find(culture => culture.name == 'Dyrwood');
+        this.background = backgrounds.find(background => background.name == 'Clergy');
     }
 }

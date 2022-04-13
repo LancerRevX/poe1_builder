@@ -18,7 +18,7 @@
 
 <style>
     .comment-block {
-        margin: 16px 24px 16px 16px;
+        margin: 0px 24px 16px 16px;
         display: flex;
         flex-direction: column;
     }
