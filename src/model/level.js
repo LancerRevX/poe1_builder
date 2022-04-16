@@ -1,6 +1,7 @@
 import skillsData from './skills.js';
 
 import commonTalents from './common-talents.js';
+import weapons from './weapons.js';
 
 export default class Level {
     constructor(character, levelNumber) {
@@ -10,6 +11,7 @@ export default class Level {
 
         this.comment = '';
         this.skillPoints = 0;
+        this._weapon = weapons[0];
 
         level.skills = {};
         for (let skillName in skillsData) {
@@ -98,7 +100,7 @@ export default class Level {
 
     next() {
         if (this.number == this.character.MAX_LEVEL) {
-            return this;
+            return null;
         } else {
             return this.character.levels[this.number];
         }
@@ -107,16 +109,14 @@ export default class Level {
     availableAbilities() {
         let availableAbilities = [];
         for (let ability of this.character.class.abilities) {
-            if (this.character.class.name == 'Priest') {
-                if (ability.level == this.number && ability.deity == this.character.deity) {
-                    availableAbilities.push(ability);
-                }
+            if (this.character.class.name == 'Priest' &&
+                ability.level == this.number &&
+                (!ability.deity || ability.deity == this.character.deity)) {
+                availableAbilities.push(ability);
             } else if (this.character.class.name == 'Druid' && ability.level == this.number) {
                 availableAbilities.push(ability);
-            } else {
-                if (ability.level <= this.number) {
-                    availableAbilities.push(ability);
-                }
+            } else if (ability.level <= this.number) {
+                availableAbilities.push(ability);
             }
         }
         for (let i = 0; i < this.character.levels.length; i++) {
@@ -326,6 +326,85 @@ export default class Level {
         } else if (this.remainingTalentPoints() > 0) {
             this.selectedTalents.push(talent);
         }
+    }
+
+    get weapon() {
+        return this._weapon;
+    }
+
+    set weapon(weapon) {
+        this._weapon = weapon;
+        let next = this.next();
+        if (next) {
+            next.weapon = weapon;
+        }
+    }
+
+    weaponChanged() {
+        if (this.number == 1) {
+            return true;
+        }
+        if (this.previous().weapon != this.weapon) {
+            return true;
+        }
+        return false;
+    }
+
+    get damage() {
+        let damageMultiplier = 1 +
+            this.character.MIGHT_DAMAGE_MULTIPLIER *
+            (this.character.attributes.might.modified - 10);
+        console.log(damageMultiplier);
+        return [Math.round(this.weapon.baseDamage[0] * damageMultiplier),
+                Math.round(this.weapon.baseDamage[1] * damageMultiplier)];
+    }
+
+    get endurance() {
+        return Math.ceil((this.character.class.endurancePerLevel * 3 +
+            this.character.class.endurancePerLevel * (this.number - 1)) *
+            (1 + (this.character.attributes.const.modified - 10) *
+            this.character.CONST_HEALTH_MULTIPLIER));
+    }
+
+    get health() {
+        return Math.ceil((this.character.class.endurancePerLevel * 3 +
+            this.character.class.endurancePerLevel * (this.number - 1)) *
+            (1 + (this.character.attributes.const.modified - 10) *
+            this.character.CONST_HEALTH_MULTIPLIER) *
+            this.character.class.healthMultiplier);
+    }
+
+    get deflection() {
+        return this.character.class.deflection +
+            (this.character.attributes.resolve.modified - 10) * 1 +
+            (this.number - 1) * this.character.DEFENSE_PER_LEVEL;
+    }
+
+    get fortitude() {
+        return this.character.STARTING_DEFENSE +
+            (this.character.attributes.might.modified - 10) * this.character.DEFENSE_PER_ATTRIBUTE +
+            (this.character.attributes.const.modified - 10) * this.character.DEFENSE_PER_ATTRIBUTE +
+            (this.number - 1) * this.character.DEFENSE_PER_LEVEL;
+    }
+
+    get reflex() {
+        return this.character.STARTING_DEFENSE +
+            (this.character.attributes.dexterity.modified - 10) * this.character.DEFENSE_PER_ATTRIBUTE +
+            (this.character.attributes.perception.modified - 10) * this.character.DEFENSE_PER_ATTRIBUTE +
+            (this.number - 1) * this.character.DEFENSE_PER_LEVEL;
+    }
+
+    get will() {
+        return this.character.STARTING_DEFENSE +
+            (this.character.attributes.intellect.modified - 10) * this.character.DEFENSE_PER_ATTRIBUTE +
+            (this.character.attributes.resolve.modified - 10) * this.character.DEFENSE_PER_ATTRIBUTE +
+            (this.number - 1) * this.character.DEFENSE_PER_LEVEL;
+    }
+
+    get accuracy() {
+        return this.character.class.accuracy +
+            (this.character.attributes.perception.modified - 10) +
+            (this.number - 1) * this.character.ACCURACY_PER_LEVEL;
     }
 
     toJSON() {

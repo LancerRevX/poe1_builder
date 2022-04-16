@@ -12,7 +12,9 @@
             <spirit-form-table v-bind="{selected}"></spirit-form-table>
             <animal-companion-table v-bind="{selected}"></animal-companion-table>
             <attributes-table v-bind="{selected}"></attributes-table>
-            <skills-table  v-bind="{selected}"></skills-table>
+            <skills-table v-bind="{selected}"></skills-table>
+            <!-- <weapon-table v-bind="{selected}"></weapon-table> -->
+            <stats-table v-bind="{selected}"></stats-table>
         </div>
         <abilities-block v-bind="{selected}"></abilities-block>
         <levels-table v-bind="{selected}"></levels-table>
@@ -30,6 +32,8 @@
     import CultureAndBackgroundTable from './components/CultureAndBackgroundTable.vue';
     import SpiritFormTable from './components/SpiritFormTable.vue';
     import AnimalCompanionTable from './components/AnimalCompanionTable.vue';
+    import WeaponTable from './components/WeaponTable.vue';
+    import StatsTable from './components/StatsTable.vue';
     import AbilitiesBlock from './components/AbilitiesBlock.vue';
     import CommentBlock from './components/CommentBlock.vue';
     import Character from './model/character.js';
@@ -47,6 +51,8 @@
             CultureAndBackgroundTable,
             SpiritFormTable,
             AnimalCompanionTable,
+            WeaponTable,
+            StatsTable,
             AbilitiesBlock,
             CommentBlock,
         },

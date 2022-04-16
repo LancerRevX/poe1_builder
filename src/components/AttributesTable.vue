@@ -1,22 +1,27 @@
 <template>
     <table class="attributes-table">
         <caption>Attributes{{ attributePointsCounter }}</caption>
-        <tr v-for="attributeName in Object.keys(character.attributes)" v-bind:key="attributeName">
-            <td>{{ attributeName }}</td>
-            <td><button @click="character.attributes[attributeName].decrease()" v-if="!character.storyCompanion">-</button></td>
-            <td>{{ character.attributes[attributeName] }}</td>
-            <td><button @click="character.attributes[attributeName].increase()" v-if="!character.storyCompanion">+</button></td>
+        <tr v-for="attributeKey in Object.keys(character.attributes)" :key="attributeKey">
+            <td><a :href="attributes[attributeKey].link" target="_blank">{{ attributes[attributeKey].abbreviation }}</a></td>
+            <td><button @click="character.attributes[attributeKey].decrease()" v-if="!character.storyCompanion">-</button></td>
+            <td>{{ character.attributes[attributeKey].base }}</td>
+            <td>+ {{ character.attributes[attributeKey].bonus }}</td>
+            <td>= {{ character.attributes[attributeKey].modified }}</td>
+            <td><button @click="character.attributes[attributeKey].increase()" v-if="!character.storyCompanion">+</button></td>
         </tr>
     </table>
 </template>
 
 <script>
+    import attributes from '../model/attributes.js';
+
     export default {
         name: 'attributes-table',
         props: {
             selected: Object
         },
         data: () => ({
+            attributes
         }),
         computed: {
             attributePointsCounter: function() {

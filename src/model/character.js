@@ -1,4 +1,4 @@
-import Attributes from './attributes.js';
+import attributes from './attributes.js';
 import classes from './classes.js';
 import races from './races.js';
 import cultures from './cultures.js';
@@ -18,15 +18,53 @@ export default class Character {
         this._order = null;
         this._deity = null;
 
-        this.ATTRIBUTE_DEFAULT = 10;
-        this.MIN_ATTRIBUTE = 3;
-        this.MAX_ATTRIBUTE = 18;
-        this.MAX_ATTRIBUTES_SUM = 76;
         this.MAX_LEVEL = 16;
         this.SKILL_POINTS_PER_LEVEL = 6;
         this.TALENT_POINTS_PER_LEVEL = 1;
 
-        this.attributes = new Attributes(this);
+        this.MIGHT_DAMAGE_MULTIPLIER = 0.03;
+        this.CONST_HEALTH_MULTIPLIER = 0.05;
+        this.STARTING_DEFENSE = 20;
+        this.DEFENSE_PER_LEVEL = 3;
+        this.DEFENSE_PER_ATTRIBUTE = 2;
+        this.ACCURACY_PER_LEVEL = 3;
+
+        this.ATTRIBUTE_DEFAULT = 10;
+        this.MAX_ATTRIBUTE = 18;
+        this.MIN_ATTRIBUTE = 3;
+        this.MAX_ATTRIBUTES_SUM = 76;
+
+        this.attributes = {};
+        for (let attributeKey in attributes) {
+            this.attributes[attributeKey] = {
+                base: 10,
+                increase: () => {
+                    if (this.attributes[attributeKey].base < this.MAX_ATTRIBUTE && this.attributePoints() > 0) {
+                        this.attributes[attributeKey].base += 1;
+                    }
+                },
+                decrease: () => {
+                    if (this.attributes[attributeKey].base > this.MIN_ATTRIBUTE) {
+                        this.attributes[attributeKey].base -= 1;
+                    }
+                }
+            };
+            Object.defineProperty(this.attributes[attributeKey], 'bonus', {
+                get: () => {
+                    let result = 0;
+                    let raceBonus = this.race.attributeBonuses[attributeKey];
+                    result += raceBonus ? raceBonus : 0;
+                    let cultureBonus = this.culture.attributeBonuses[attributeKey];
+                    result += cultureBonus ? cultureBonus : 0;
+                    return result;
+                }
+            });
+            Object.defineProperty(this.attributes[attributeKey], 'modified', {
+                get: () => {
+                    return this.attributes[attributeKey].base + this.attributes[attributeKey].bonus;
+                }
+            });
+        }
 
         this.levels = Array(this.MAX_LEVEL);
         for (let i = 0; i < this.levels.length; i++) {
@@ -35,7 +73,11 @@ export default class Character {
     }
 
     attributePoints() {
-        return this.MAX_ATTRIBUTES_SUM - this.attributes.sum();
+        let attributesSum = 0;
+        for (let attributeKey in this.attributes) {
+            attributesSum += this.attributes[attributeKey].base;
+        }
+        return this.MAX_ATTRIBUTES_SUM - attributesSum;
     }
 
     level(level) {

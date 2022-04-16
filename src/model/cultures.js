@@ -17,7 +17,7 @@ let cultures = [
     new Culture(
         'Aedyr',
         {
-            'Resolve': +1
+            resolve: +1
         },
         [
             'Aristocrat',
@@ -35,7 +35,7 @@ let cultures = [
     new Culture(
         'Deadfire Archipelago',
         {
-            'Dexterity': +1
+            dexterity: +1
         },
         [
             'Aristocrat',
@@ -52,7 +52,7 @@ let cultures = [
     new Culture(
         'Ixamitl Plains',
         {
-            'Resolve': +1
+            resolve: +1
         },
         [
             'Aristocrat',
@@ -69,7 +69,7 @@ let cultures = [
     new Culture(
         'Old Vailia',
         {
-            'Intellect': +1
+            intellect: +1
         },
         [
             'Aristocrat',
@@ -88,7 +88,7 @@ let cultures = [
     new Culture(
         'Rauatai',
         {
-            'Constitution': +1
+            const: +1
         },
         [
             'Aristocrat',
@@ -105,7 +105,7 @@ let cultures = [
     new Culture(
         'The Living Lands',
         {
-            'Might': +1
+            might: +1
         },
         [
             'Colonist',
@@ -121,7 +121,7 @@ let cultures = [
     new Culture(
         'The White that Wends',
         {
-            'Perception': +1
+            perception: +1
         },
         [
             'Aristocrat',
@@ -136,7 +136,7 @@ let cultures = [
     new Culture(
         'Dyrwood',
         {
-            'Resolve': +1
+            resolve: +1
         },
         [],
         true
@@ -144,7 +144,7 @@ let cultures = [
     new Culture(
         'Eir Glanfath',
         {
-            'Constitution': +1
+            constitution: +1
         },
         [],
         true
@@ -152,7 +152,7 @@ let cultures = [
     new Culture(
         'Naasitaq',
         {
-            'Perception': +1
+            perception: +1
         },
         [],
         true
@@ -160,7 +160,7 @@ let cultures = [
     new Culture(
         'The Vailian Republics',
         {
-            'Intellect': +1
+            intellect: +1
         },
         [],
         true

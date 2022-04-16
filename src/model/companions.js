@@ -18,7 +18,7 @@ export class Aloth extends StoryCompanion {
     constructor() {
         super('Aloth');
 
-        this.attributes.init([12, 10, 14, 11, 16, 11]);
+        // this.attributes.init([12, 10, 14, 11, 16, 11]);
 
         this.class = wizard;
         this.race = races.find(race => race.name == 'Wood Elf');
@@ -33,7 +33,13 @@ export class Eder extends StoryCompanion {
     constructor() {
         super('Eder');
 
-        this.attributes.init([15, 16, 11, 12, 10, 11]);
+        // this.attributes.init([15, 16, 11, 12, 10, 11]);
+        this.attributes.might = 15;
+        this.attributes.const = 16;
+        this.attributes.dexterity = 11;
+        this.attributes.perception = 12;
+        this.attributes.intellect = 10;
+        this.attributes.resolve = 11;
 
         this.class = fighter;
         this.race = races.find(race => race.name == 'Human');
@@ -48,7 +54,7 @@ export class KanaRua extends StoryCompanion {
     constructor() {
         super('Kana Rua');
 
-        this.attributes.init([14, 11, 9, 14, 17, 10]);
+        // this.attributes.init([14, 11, 9, 14, 17, 10]);
 
         this.class = chanter;
         this.race = races.find(race => race.name == 'Island Aumaua');
@@ -61,7 +67,7 @@ export class Durance extends StoryCompanion {
     constructor() {
         super('Durance');
 
-        this.attributes.init([13, 13, 9, 9, 15, 16]);
+        // this.attributes.init([13, 13, 9, 9, 15, 16]);
 
         this.class = priest;
         this.deity = priest.deities.find(deity => deity.name == 'Margran');

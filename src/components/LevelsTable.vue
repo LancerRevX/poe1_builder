@@ -31,6 +31,9 @@
                                 <li v-for="advancedSkill in level.advancedSkills()" :key="advancedSkill.name">
                                     Add {{ advancedSkill.value }} point{{ advancedSkill.value > 1 ? 's' : '' }} to skill "{{ advancedSkill.name }}"
                                 </li>
+                                <li v-if="level.weaponChanged()">
+                                    Take weapon "{{ level.weapon.name }}"
+                                </li>
                                 <li v-if="level.comment">
                                     + Comment
                                 </li>

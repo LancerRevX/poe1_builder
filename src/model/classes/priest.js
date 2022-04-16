@@ -1,6 +1,34 @@
 const priestPassiveImageLink = 'https://static.wikia.nocookie.net/eternitywiki/images/1/1c/Priest_passive_icon.png';
 const commonPassiveImageLink = 'https://static.wikia.nocookie.net/eternitywiki/images/0/0f/Generic_passive_icon.png';
 
+let deity = {
+    berath: {
+        name: 'Berath',
+        favoredDispositions: ['Stoic', 'Rational'],
+        condemnedDispositions: ['Cruel', 'Passionate']
+    },
+    eothas: {
+        name: 'Eothas',
+        favoredDispositions: ['Honest', 'Benevolent'],
+        condemnedDispositions: ['Cruel', 'Deceptive']
+    },
+    magran: {
+        name: 'Magran',
+        favoredDispositions: ['Aggressive', 'Clever'],
+        condemnedDispositions: ['Passionate', 'Diplomatic']
+    },
+    skaen: {
+        name: 'Skaen',
+        favoredDispositions: ['Cruel', 'Deceptive'],
+        condemnedDispositions: ['Aggressive', 'Benevolent']
+    },
+    wael: {
+        name: 'Wael',
+        favoredDispositions: ['Deceptive', 'Clever'],
+        condemnedDispositions: ['Rational', 'Honest']
+    }
+};
+
 export default {
     name: 'Priest',
     endurancePerLevel: 12,
@@ -714,33 +742,7 @@ export default {
             description: 'The priest\'s faith becomes a wellspring of indomitability for his or her allies. When an affected ally is knocked unconscious in battle, he or she will immediately be revived and have some Endurance healed.',
         },
     ],
-    deities: [
-        {
-            name: 'Berath',
-            favoredDispositions: ['Stoic', 'Rational'],
-            condemnedDispositions: ['Cruel', 'Passionate']
-        },
-        {
-            name: 'Eothas',
-            favoredDispositions: ['Honest', 'Benevolent'],
-            condemnedDispositions: ['Cruel', 'Deceptive']
-        },
-        {
-            name: 'Magran',
-            favoredDispositions: ['Aggressive', 'Clever'],
-            condemnedDispositions: ['Passionate', 'Diplomatic']
-        },
-        {
-            name: 'Skaen',
-            favoredDispositions: ['Cruel', 'Deceptive'],
-            condemnedDispositions: ['Aggressive', 'Benevolent']
-        },
-        {
-            name: 'Wael',
-            favoredDispositions: ['Deceptive', 'Clever'],
-            condemnedDispositions: ['Rational', 'Honest']
-        }
-    ],
+    deities: Object.values(deity),
     talents: [
         {
             name: 'Interdiction',
@@ -815,35 +817,35 @@ export default {
             link: 'https://pillarsofeternity.fandom.com/wiki/The_Pallid_Hand',
             imageLink: priestPassiveImageLink,
             description: 'The faithful of Berath gain an Accuracy bonus with Mace and Great Sword and can cast a special version of Concelhaut\'s Corrosive Siphon.',
-            deity: 'Berath'
+            deity: deity.berath
         },
         {
             name: 'Inspired Flame',
             link: 'https://pillarsofeternity.fandom.com/wiki/Inspired_Flame',
             imageLink: priestPassiveImageLink,
             description: 'The faithful of Magran gain an Accuracy bonus with Sword and Arquebus and can cast a special version of Burst of Summer Flame.',
-            deity: 'Magran'
+            deity: deity.magran
         },
         {
             name: 'Hope Eternal',
             link: 'https://pillarsofeternity.fandom.com/wiki/Hope_Eternal',
             imageLink: priestPassiveImageLink,
             description: 'The faithful of Eothas gain an Accuracy bonus with Flail and Morning Star and can cast a healing spell that shortens Frightened and Terrified durations.',
-            deity: 'Eothas'
+            deity: deity.eothas
         },
         {
             name: 'Prey on the Weak',
             link: 'https://pillarsofeternity.fandom.com/wiki/Prey_on_the_Weak',
             imageLink: priestPassiveImageLink,
             description: 'The faithful of Skaen gain an Accuracy bonus with Stiletto and Club and gain a lesser version of the rogue\'s Sneak Attack ability.',
-            deity: 'Skaen'
+            deity: deity.skaen
         },
         {
             name: 'Incomprehensible Revelation',
             link: 'https://pillarsofeternity.fandom.com/wiki/Incomprehensible_Revelation',
             imageLink: priestPassiveImageLink,
             description: 'The faithful of Wael gain an Accuracy bonus with Quarterstaff and Rod and can cast a special version of Arkemyr\'s Dazzling Lights.',
-            deity: 'Wael'
+            deity: deity.wael
         }
     ]
 };

@@ -25,8 +25,10 @@
                 <td>Attribute bonuses</td>
                 <td colspan="2">
                     <ul>
-                        <li v-for="attributeBonus in Object.entries(character.race.attributeBonuses)" :key="attributeBonus[0]">
-                            {{ attributeBonus[0] + ': ' + (attributeBonus[1] > 0 ? '+' : '') + attributeBonus[1] }}
+                        <li v-for="attributeKey in Object.keys(character.race.attributeBonuses)" :key="attributeKey">
+                            {{ attributes[attributeKey].name + ': ' +
+                                (character.race.attributeBonuses[attributeKey] > 0 ? '+' : '') +
+                                character.race.attributeBonuses[attributeKey] }}
                         </li>
                     </ul>
                 </td>
@@ -37,6 +39,7 @@
 
 <script>
     import races from '../model/races.js';
+    import attributes from '../model/attributes.js';
 
     export default {
         name: 'race-table',
@@ -44,7 +47,8 @@
             selected: Object
         },
         data: () => ({
-            races
+            races,
+            attributes
         }),
         computed: {
             character: function() {

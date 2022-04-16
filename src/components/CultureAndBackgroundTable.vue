@@ -21,8 +21,10 @@
                     <td>Attribute bonuses</td>
                     <td>
                         <ul>
-                            <li v-for="attributeBonus in Object.entries(character.culture.attributeBonuses)" :key="attributeBonus[0]">
-                                {{ attributeBonus[0] + ': +' + attributeBonus[1] }}
+                            <li v-for="attributeKey in Object.keys(character.culture.attributeBonuses)" :key="attributeKey">
+                                {{ attributes[attributeKey].name + ': ' +
+                                    (character.culture.attributeBonuses[attributeKey] > 0 ? '+' : '') +
+                                    character.culture.attributeBonuses[attributeKey] }}
                             </li>
                         </ul>
                     </td>
@@ -63,11 +65,13 @@
 
 <script>
     import cultures from '../model/cultures.js';
+    import attributes from '../model/attributes.js';
 
     export default {
         name: 'culture-and-background-table',
         data: () => ({
-            cultures: cultures.filter(culture => !culture.companionOnly)
+            cultures: cultures.filter(culture => !culture.companionOnly),
+            attributes
         }),
         props: {
             selected: Object
