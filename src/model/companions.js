@@ -6,8 +6,11 @@ import priest from './classes/priest.js';
 import chanter from './classes/chanter.js';
 import ranger from './classes/ranger.js';
 import cipher from './classes/cipher.js';
+<<<<<<< HEAD
 import druid from './classes/druid.js';
 import paladin from './classes/paladin.js';
+=======
+>>>>>>> 92257017a98b759c2a5e8101d7d40e4e8483bf83
 
 import races from './races.js';
 import cultures from './cultures.js';
@@ -161,6 +164,7 @@ export class GrievingMother extends StoryCompanion {
         ];
     }
 }
+<<<<<<< HEAD
 
 export class Hiravias extends StoryCompanion {
     constructor() {
@@ -203,3 +207,5 @@ export class Pallegina extends StoryCompanion {
         ];
     }
 }
+=======
+>>>>>>> 92257017a98b759c2a5e8101d7d40e4e8483bf83
