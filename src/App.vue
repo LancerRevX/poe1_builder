@@ -7,7 +7,8 @@
         <character-switcher :selected="selected"></character-switcher>
         <div class="tables-block">
             <race-table v-bind="{selected}"></race-table>
-            <culture-and-background-table v-bind="{selected}"></culture-and-background-table>
+            <culture-table v-bind="{selected}"></culture-table>
+            <background-table v-bind="{selected}"></background-table>
             <class-table v-bind="{selected}"></class-table>
             <spirit-form-table v-bind="{selected}"></spirit-form-table>
             <animal-companion-table v-bind="{selected}"></animal-companion-table>
@@ -29,7 +30,8 @@
     import SkillsTable from './components/SkillsTable.vue';
     import ClassTable from './components/ClassTable.vue';
     import RaceTable from './components/RaceTable.vue';
-    import CultureAndBackgroundTable from './components/CultureAndBackgroundTable.vue';
+    import CultureTable from './components/CultureTable.vue';
+    import BackgroundTable from './components/BackgroundTable.vue';
     import SpiritFormTable from './components/SpiritFormTable.vue';
     import AnimalCompanionTable from './components/AnimalCompanionTable.vue';
     import WeaponTable from './components/WeaponTable.vue';
@@ -48,7 +50,8 @@
             SkillsTable,
             ClassTable,
             RaceTable,
-            CultureAndBackgroundTable,
+            CultureTable,
+            BackgroundTable,
             SpiritFormTable,
             AnimalCompanionTable,
             WeaponTable,
@@ -108,6 +111,11 @@
         gap: 16px;
         overflow: scroll;
         margin-right: 16px;
+
+        /* display: grid;
+        grid-auto-flow: dense;
+        grid-auto-rows: 100px;
+        grid-auto-columns: 100px; */
     }
 
     table caption {

@@ -19,21 +19,25 @@
                         <td>{{ level.number }}</td>
                         <td>
                             <ul>
-                                <li v-for="ability in level.selectedAbilities" :key="ability.name">
-                                    Select {{ level.character.abilityTerm() }} "{{ ability.name }}"
-                                </li>
-                                <li v-for="phrase in level.selectedPhrases" :key="phrase.name">
-                                    Select phrase "{{ phrase.name }}"
-                                </li>
+                                <div v-if="!character.storyCompanion || level.number > 1">
+                                    <li v-for="ability in level.selectedAbilities" :key="ability.name">
+                                        Select {{ level.character.abilityTerm() }} "{{ ability.name }}"
+                                    </li>
+                                </div>
+                                <div v-if="!character.storyCompanion || level.number > 1">
+                                    <li v-for="phrase in level.selectedPhrases" :key="phrase.name">
+                                        Select phrase "{{ phrase.name }}"
+                                    </li>
+                                </div>
                                 <li v-for="talent in level.selectedTalents" :key="talent.name">
                                     Select talent "{{ talent.name }}"
                                 </li>
                                 <li v-for="advancedSkill in level.advancedSkills()" :key="advancedSkill.name">
                                     Add {{ advancedSkill.value }} point{{ advancedSkill.value > 1 ? 's' : '' }} to skill "{{ advancedSkill.name }}"
                                 </li>
-                                <li v-if="level.weaponChanged()">
+                                <!-- <li v-if="level.weaponChanged()">
                                     Take weapon "{{ level.weapon.name }}"
-                                </li>
+                                </li> -->
                                 <li v-if="level.comment">
                                     + Comment
                                 </li>

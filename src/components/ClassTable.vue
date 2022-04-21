@@ -62,6 +62,16 @@
             <td>Base accuracy</td>
             <td>{{ character.class.accuracy }}</td>
         </tr>
+        <tr>
+            <td>Skill bonuses</td>
+            <td>
+                <ul>
+                    <li v-for="skillBonus in Object.entries(character.class.skillBonuses)" :key="skillBonus[0]">
+                        {{ skillBonus[0] + ': +' + skillBonus[1] }}
+                    </li>
+                </ul>
+            </td>
+        </tr>
     </table>
 </template>
 

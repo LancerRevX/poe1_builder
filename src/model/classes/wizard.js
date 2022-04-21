@@ -36,6 +36,18 @@ export default {
             effects: '<ul><li>Foe AoE: -10 <a href="https://pillarsofeternity.fandom.com/wiki/Will" title="Will"><img alt="Will" src="https://static.wikia.nocookie.net/eternitywiki/images/9/96/Will_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202632" decoding="async" width="18" height="18" /></a></li><li>Foe AoE: <a href="https://pillarsofeternity.fandom.com/wiki/Dazed" class="mw-redirect" title="Dazed">Dazed</a></li></ul>',
             description: 'Overwhelms anyone in the area of effect with a brilliant and bewildering pyrotechnic display, decreasing their Will and leaving them Dazed.',
         },
+        // {
+        //     level: '1',
+        //     link: 'https://pillarsofeternity.fandom.com/wiki/Arkemyr%27s_Dazzling_Lights',
+        //     imageLink: 'https://static.wikia.nocookie.net/eternitywiki/images/5/57/Arkemyrs_dazzling_lights_icon.png',
+        //     name: 'shit test',
+        //     speed: 'Average',
+        //     range: '',
+        //     area: '1.25m Radius',
+        //     duration: '12.0 seconds',
+        //     effects: '<ul><li>Foe AoE: -10 <a href="https://pillarsofeternity.fandom.com/wiki/Will" title="Will"><img alt="Will" src="https://static.wikia.nocookie.net/eternitywiki/images/9/96/Will_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202632" decoding="async" width="18" height="18" /></a></li><li>Foe AoE: <a href="https://pillarsofeternity.fandom.com/wiki/Dazed" class="mw-redirect" title="Dazed">Dazed</a></li></ul>',
+        //     description: 'Overwhelms anyone in the area of effect with a brilliant and bewildering pyrotechnic display, decreasing their Will and leaving them Dazed.',
+        // },
         {
             level: '1',
             link: 'https://pillarsofeternity.fandom.com/wiki/Chill_Fog',
