@@ -6,11 +6,11 @@ import priest from './classes/priest.js';
 import chanter from './classes/chanter.js';
 import ranger from './classes/ranger.js';
 import cipher from './classes/cipher.js';
-<<<<<<< HEAD
 import druid from './classes/druid.js';
 import paladin from './classes/paladin.js';
-=======
->>>>>>> 92257017a98b759c2a5e8101d7d40e4e8483bf83
+import rogue from './classes/rogue.js';
+import monk from './classes/monk.js';
+import barbarian from './classes/barbarian.js';
 
 import races from './races.js';
 import cultures from './cultures.js';
@@ -190,9 +190,9 @@ export class Pallegina extends StoryCompanion {
 
         this.attributes.might.base = 12;
         this.attributes.const.base = 13;
-        this.attributes.dexterity.base = 11;
+        this.attributes.dexterity.base = 10;
         this.attributes.perception.base = 14;
-        this.attributes.intellect.base = 12;
+        this.attributes.intellect.base = 11;
         this.attributes.resolve.base = 15;
 
         this.class = paladin;
@@ -203,6 +203,72 @@ export class Pallegina extends StoryCompanion {
 
         this.level(1).selectedAbilities = [
             paladin.abilities.find(ability => ability.name == 'Flames of Devotion')
+        ];
+    }
+}
+
+export class DevilOfCaroc extends StoryCompanion {
+    constructor() {
+        super('Devil of Caroc');
+
+        this.attributes.might.base = 13;
+        this.attributes.const.base = 10;
+        this.attributes.dexterity.base = 10;
+        this.attributes.perception.base = 16;
+        this.attributes.intellect.base = 12;
+        this.attributes.resolve.base = 14;
+
+        this.class = rogue;
+        this.race = races.find(race => race.name == 'Vessel');
+        this.culture = cultures.find(culture => culture.name == 'Dyrwood');
+        this.background = backgrounds.find(background => background.name == 'Trapper');
+
+        this.level(1).selectedAbilities = [
+            rogue.abilities.find(ability => ability.name == 'Blinding Strike')
+        ];
+    }
+}
+
+export class Zahua extends StoryCompanion {
+    constructor() {
+        super('Zahua');
+
+        this.attributes.might.base = 16;
+        this.attributes.const.base = 17;
+        this.attributes.dexterity.base = 13;
+        this.attributes.perception.base = 10;
+        this.attributes.intellect.base = 10;
+        this.attributes.resolve.base = 9;
+
+        this.class = monk;
+        this.race = races.find(race => race.name == 'Human');
+        this.culture = cultures.find(culture => culture.name == 'Ixamitl Plains');
+        this.background = backgrounds.find(background => background.name == 'Philosopher');
+
+        this.level(1).selectedAbilities = [
+            monk.abilities.find(ability => ability.name == 'Torment\'s Reach')
+        ];
+    }
+}
+
+export class Maneha extends StoryCompanion {
+    constructor() {
+        super('Maneha');
+
+        this.attributes.might.base = 16;
+        this.attributes.const.base = 14;
+        this.attributes.dexterity.base = 9;
+        this.attributes.perception.base = 12;
+        this.attributes.intellect.base = 13;
+        this.attributes.resolve.base = 11;
+
+        this.class = barbarian;
+        this.race = races.find(race => race.name == 'Coastal Aumaua');
+        this.culture = cultures.find(culture => culture.name == 'Rauatai');
+        this.background = backgrounds.find(background => background.name == 'Raider');
+
+        this.level(1).selectedAbilities = [
+            barbarian.abilities.find(ability => ability.name == 'Barbaric Yell')
         ];
     }
 }

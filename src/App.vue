@@ -111,10 +111,7 @@
         gap: 16px;
         overflow: scroll;
         margin-right: 16px;
-<<<<<<< HEAD
         align-items: flex-start;
-=======
->>>>>>> 92257017a98b759c2a5e8101d7d40e4e8483bf83
 
         /* display: grid;
         grid-auto-flow: dense;

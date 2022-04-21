@@ -179,7 +179,23 @@ export default [
             description: '<ul><li>+10 <a href="/wiki/Defense" title="Defense">Defense</a> when Disengaging while Endurance below 50%</li><li>+3 <a href="/wiki/Perception" title="Perception">Perception</a> while Endurance below 50%</li><li>+10 <a href="/wiki/Deflection" class="mw-redirect" title="Deflection">Deflection</a> against ranged attacks</li></ul>'
         },
         attributeBonuses: {
+            dexterity: +1,
+            intellect: +1
         },
         companionOnly: true,
+    },
+    {
+        name: 'Vessel',
+        ability: {
+            name: 'Living Machine',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Living_Machine',
+            imageLink: 'https://static.wikia.nocookie.net/eternitywiki/images/8/88/Race_construct_icon.png',
+            description: 'Self: Immune to Poison, Disease effects, Can\'t use Food, Drinks, or Drugs, Immunity to Sickened, Unconscious, Dominated, Charmed, Confused, +1 Might, +1 Constitution'
+        },
+        attributeBonuses: {
+            might: +1,
+            const: +1
+        },
+        companionOnly: true
     }
 ];

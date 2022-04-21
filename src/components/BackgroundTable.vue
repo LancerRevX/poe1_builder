@@ -47,7 +47,6 @@
     };
 </script>
 
-<<<<<<< HEAD
 <style scoped>
     table {
         border: 1px solid outset;
@@ -63,5 +62,3 @@
     }
 </style>
 
-=======
->>>>>>> 92257017a98b759c2a5e8101d7d40e4e8483bf83
