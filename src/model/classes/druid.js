@@ -707,6 +707,10 @@ export default {
         },
         {
             name: 'Wolf'
+        },
+        {
+            name: 'Stelgaer',
+            companionOnly: true
         }
     ],
     talents: [

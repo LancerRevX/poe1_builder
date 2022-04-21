@@ -77,7 +77,7 @@
             <button class="save-text-button">Save to text</button>
             <button class="save-file-button">Save to file</button>
             <button class="save-server-button">Save on the server</button>
-            <button class="save-text-button">Load from text</button>            
+            <button class="save-text-button">Load from text</button>
             <button class="save-file-button">Load from file</button>
         </div>
     </div>
@@ -95,12 +95,7 @@
         data: () => ({
             party: false,
             mainCharacter: new Character('Watcher'),
-            storyCompanions: [
-                new companions.Aloth,
-                new companions.Eder,
-                new companions.KanaRua,
-                new companions.Durance
-            ],
+            storyCompanions: [],
             customCompanions: [
                 new Character('Adventurer 1'),
                 new Character('Adventurer 2'),
@@ -112,11 +107,15 @@
             oldSelectedCompanions: undefined
         }),
         created: function() {
+            for (let companionClass of Object.values(companions)) {
+                this.storyCompanions.push(new companionClass);
+            }
+
             this.selectedCompanions.push(this.storyCompanions[0]);
             this.selectedCompanions.push(this.storyCompanions[1]);
             this.selectedCompanions.push(this.storyCompanions[2]);
             this.selectedCompanions.push(this.storyCompanions[3]);
-            this.selectedCompanions.push(this.customCompanions[0]);
+            this.selectedCompanions.push(this.storyCompanions[4]);
             this.oldSelectedCompanions = this.selectedCompanions.slice();
 
             this.selectCharacter(this.mainCharacter);
@@ -164,7 +163,7 @@
                 let duplicationIndex;
                 for (let i = 0; i < this.selectedCompanions.length; i++) {
                     if (i != newCompanionIndex &&
-                        this.selectedCompanions[i] == this.selectedCompanions[newCompanionIndex] && 
+                        this.selectedCompanions[i] == this.selectedCompanions[newCompanionIndex] &&
                         this.selectedCompanions[i] != null) {
                         duplicationFound = true;
                         duplicationIndex = i;

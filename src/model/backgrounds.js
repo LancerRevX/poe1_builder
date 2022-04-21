@@ -133,5 +133,19 @@ export default [
             'Athletics': +1,
             'Survival': +1
         }
+    },
+    {
+        name: 'Soldier',
+        skillBonuses: {
+            'Athletics': +1,
+            'Lore': +1
+        }
+    },
+    {
+        name: 'Trapper',
+        skillBonuses: {
+            'Stealth': +1,
+            'Mechanics': +1
+        }
     }
 ];

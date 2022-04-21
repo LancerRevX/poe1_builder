@@ -130,6 +130,10 @@ export default class Level {
     }
 
     selectAbility(ability) {
+        if (this.character.storyCompanion && this.number == 1) {
+            return;
+        }
+
         if (this.selectedAbilities.includes(ability)) {
             this.selectedAbilities.splice(this.selectedAbilities.indexOf(ability), 1);
         } else if (this.remainingAbilityPoints() > 0) {
@@ -218,6 +222,10 @@ export default class Level {
     }
 
     selectPhrase(phrase) {
+        if (this.character.storyCompanion && this.number == 1) {
+            return;
+        }
+
         if (this.selectedPhrases.includes(phrase)) {
             this.selectedPhrases.splice(this.selectedPhrases.indexOf(phrase), 1);
         } else if (this.remainingPhrasePoints() > 0) {

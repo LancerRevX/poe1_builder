@@ -1,19 +1,24 @@
 <template>
     <table v-if="character.class.name == 'Ranger'">
         <caption>Animal Companion</caption>
-        <tr>
-            <td>
-                <select v-model="character.animalCompanion">
-                    <option
-                        v-for="animalCompanion in character.class.animalCompanions"
-                        :key="animalCompanion.name"
-                        :value="animalCompanion"
-                    >
-                        {{ animalCompanion.name }}
-                    </option>
-                </select>
-            </td>
-        </tr>
+        <thead>
+            <tr>
+                <th>
+                    <select v-model="character.animalCompanion" v-if="!character.storyCompanion">
+                        <option
+                            v-for="animalCompanion in character.class.animalCompanions.filter(animal => !animal.companionOnly)"
+                            :key="animalCompanion.name"
+                            :value="animalCompanion"
+                        >
+                            {{ animalCompanion.name }}
+                        </option>
+                    </select>
+                    <span v-else>
+                        {{ character.animalCompanion.name }}
+                    </span>
+                </th>
+            </tr>
+        </thead>
     </table>
 </template>
 

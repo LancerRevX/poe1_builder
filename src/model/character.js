@@ -8,7 +8,9 @@ import Level from './level.js';
 
 export default class Character {
     constructor(name) {
-        this.name = name;
+        this.DEFAULT_NAME = 'Watcher';
+
+        this.name = name ? name : this.DEFAULT_NAME;
         this.race = races[0];
         this._culture = cultures[0];
         this.background = backgrounds[0];
@@ -37,7 +39,7 @@ export default class Character {
         this.attributes = {};
         for (let attributeKey in attributes) {
             this.attributes[attributeKey] = {
-                base: 10,
+                base: this.ATTRIBUTE_DEFAULT,
                 increase: () => {
                     if (this.attributes[attributeKey].base < this.MAX_ATTRIBUTE && this.attributePoints() > 0) {
                         this.attributes[attributeKey].base += 1;
@@ -69,6 +71,20 @@ export default class Character {
         this.levels = Array(this.MAX_LEVEL);
         for (let i = 0; i < this.levels.length; i++) {
             this.levels[i] = new Level(this, i + 1);
+        }
+    }
+
+    reset() {
+        this.race = races[0];
+        this.culture = cultures[0];
+        this.class = classes[0];
+
+        for (let attributeKey in this.attributes) {
+            this.attributes[attributeKey].base = this.ATTRIBUTE_DEFAULT;
+        }
+
+        for (let i = 0; i < this.levels.length; i++) {
+            // this.levels[i] = new Level(this, i + 1);
         }
     }
 

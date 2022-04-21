@@ -250,13 +250,17 @@ export default {
         },
         {
             name: 'Wolf',
+        },
+        {
+            name: 'Itumaak',
+            companionOnly: true
         }
     ],
     talents: [
         {
             name: 'Vicious Companion',
             link: 'https://pillarsofeternity.fandom.com/wiki/Vicious_Companion',
-            imageLink: 'https://pillarsofeternity.fandom.com/wiki/Vicious_Companion',
+            imageLink: rangerPassiveImageLink,
             description: 'Trains the ranger\'s animal companion in vicious tactics, causing it to deal more damage and penetrate Damage Reduction with each hit.'
         },
         {

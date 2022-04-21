@@ -144,7 +144,7 @@ let cultures = [
     new Culture(
         'Eir Glanfath',
         {
-            constitution: +1
+            const: +1
         },
         [],
         true
@@ -158,7 +158,7 @@ let cultures = [
         true
     ),
     new Culture(
-        'The Vailian Republics',
+        'Vailian Republics',
         {
             intellect: +1
         },

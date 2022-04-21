@@ -42,7 +42,7 @@
                         <td><img v-bind:src="phrase.imageLink" decoding="async" width="32" height="32"></td>
                         <td><a :href="phrase.link" target="_blank">{{ phrase.name }}</a></td>
                         <td v-html="phrase.effects"></td>
-                        <td>
+                        <td v-if="!character.storyCompanion || selected.level.number > 1">
                             <button
                                 v-on:click="selected.level.selectPhrase(phrase)"
                                 v-if="selected.level.isPhraseSelected(phrase)"
@@ -187,7 +187,7 @@
         background-color: greenyellow;
     }
 
-    table.abilities-table tr.selected button {
+    tr.selected button {
         background-color: red;
     }
 
@@ -196,6 +196,16 @@
         border: 1px solid black;
     }
 
+    tr.selected {
+        background-color: grey;
+        color: white;
+    }
+    tr.selected :link {
+        color: white;
+    }
+    tr.selected :visited {
+        color: white;
+    }
     /* table.abilities-table > tr.selected > :nth-child(1),
     table.abilities-table > tr.selected > :nth-child(2) {
         background-color: red;

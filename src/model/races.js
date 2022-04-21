@@ -169,5 +169,17 @@ export default [
             dexterity: +1,
             intellect: +1
         }
+    },
+    {
+        name: 'Avian Godlike',
+        ability: {
+            name: 'Elusive Quarry',
+            link: 'https://pillarsofeternity.fandom.com/wiki/Elusive_Quarry',
+            imageLink: 'https://static.wikia.nocookie.net/eternitywiki/images/9/95/Race_godlike_icon.png',
+            description: '<ul><li>+10 <a href="/wiki/Defense" title="Defense">Defense</a> when Disengaging while Endurance below 50%</li><li>+3 <a href="/wiki/Perception" title="Perception">Perception</a> while Endurance below 50%</li><li>+10 <a href="/wiki/Deflection" class="mw-redirect" title="Deflection">Deflection</a> against ranged attacks</li></ul>'
+        },
+        attributeBonuses: {
+        },
+        companionOnly: true,
     }
 ];
