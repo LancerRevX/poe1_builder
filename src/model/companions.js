@@ -164,7 +164,6 @@ export class GrievingMother extends StoryCompanion {
         ];
     }
 }
-<<<<<<< HEAD
 
 export class Hiravias extends StoryCompanion {
     constructor() {
@@ -207,5 +206,3 @@ export class Pallegina extends StoryCompanion {
         ];
     }
 }
-=======
->>>>>>> 92257017a98b759c2a5e8101d7d40e4e8483bf83
