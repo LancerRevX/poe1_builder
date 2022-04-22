@@ -48,8 +48,8 @@ export default {
         range: '',
         area: '5.0m Radius from Caster',
         duration: '15.0 seconds',
-        effects: '<ul><li>Friendly AoE: +15 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a> (base)</li><li>Foe AoE (<a href="https://pillarsofeternity.fandom.com/wiki/Vessel" class="mw-redirect" title="Vessel">Vessels</a>): 30 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> <a href="https://pillarsofeternity.fandom.com/wiki/Damage" class="mw-redirect" title="Damage">damage</a> over 3 seconds</li><li>Foe AoE (<a href="https://pillarsofeternity.fandom.com/wiki/Vessel" class="mw-redirect" title="Vessel">Vessels</a>): If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Frightened" class="mw-redirect" title="Frightened">Frightened</a></li></ul>',
-        description: 'Creates a field of holy energy around the priest, Burning any vessels in the vicinity and regenerating a modest amount of Endurance for allies. The power of a priest\'s Holy Radiance is modified by how well his or her Reputations align with the preferred behaviors of his or her faith.</td></tr><tr><td style="text-align:center;"><a href="/wiki/File:Armor_of_faith_icon.png" class="image"><img alt="Armor of faith icon.png" src="https://static.wikia.nocookie.net/eternitywiki/images/f/ff/Armor_of_faith_icon.png/revision/latest/scale-to-width-down/42?cb=20171108222051" decoding="async" width="42" height="42" /></a>',
+        effects: '<ul><li>Friendly AoE: +15 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a> (base)</li><li>Foe AoE (<a href="https://pillarsofeternity.fandom.com/wiki/Vessel" class="mw-redirect" title="Vessel">Vessels</a>): 30 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> <a href="https://pillarsofeternity.fandom.com/wiki/Damage" class="mw-redirect" title="Damage">damage</a> over 3 seconds</li><li>Foe AoE (<a href="https://pillarsofeternity.fandom.com/wiki/Vessel" class="mw-redirect" title="Vessel">Vessels</a>): If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Frightened" class="mw-redirect" title="Frightened">Frightened</a></li></ul>',
+        description: 'Creates a field of holy energy around the priest, Burning any vessels in the vicinity and regenerating a modest amount of Endurance for allies. The power of a priest\'s Holy Radiance is modified by how well his or her Reputations align with the preferred behaviors of his or her faith.</td></tr><tr><td style="text-align:center;"><a href="/wiki/File:Armor_of_faith_icon.png" class="image"><img alt="Armor of faith icon.png" src="https://static.wikia.nocookie.net/eternitywiki/images/f/ff/Armor_of_faith_icon.png" decoding="async" width="42" height="42" /></a>',
     },
     abilities: [
         {
@@ -61,7 +61,7 @@ export default {
             range: '5m',
             area: '2.5m Radius',
             duration: '30.0 seconds',
-            effects: '<ul><li>Friendly AoE: +4 <a href="https://pillarsofeternity.fandom.com/wiki/Damage_Reduction" title="Damage Reduction (DR)"><img alt="Damage Reduction (DR)" src="https://static.wikia.nocookie.net/eternitywiki/images/2/29/Damage_reduction_icon.png/revision/latest/scale-to-width-down/16?cb=20171001055953" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +4 <a href="https://pillarsofeternity.fandom.com/wiki/Damage_Reduction" title="Damage Reduction (DR)"><img alt="Damage Reduction (DR)" src="https://static.wikia.nocookie.net/eternitywiki/images/2/29/Damage_reduction_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Creates a tangible shield of faith, increasing the Damage Reduction of allies in the area of effect.',
         },
         {
@@ -73,7 +73,7 @@ export default {
             range: '12m',
             area: '',
             duration: '10.0 seconds',
-            effects: '<ul><li>20-30 <a href="https://pillarsofeternity.fandom.com/wiki/Pierce" title="Pierce"><img alt="Pierce" src="https://static.wikia.nocookie.net/eternitywiki/images/5/52/Pierce_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202627" decoding="async" width="18" height="18" /></a> damage</li><li>-5 All <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235313" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>20-30 <a href="https://pillarsofeternity.fandom.com/wiki/Pierce" title="Pierce"><img alt="Pierce" src="https://static.wikia.nocookie.net/eternitywiki/images/5/52/Pierce_icon.png" decoding="async" width="18" height="18" /></a> damage</li><li>-5 All <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Punishes a target for their sins, decreasing their Deflection, Fortitude, Reflex, and Will.',
         },
         {
@@ -85,7 +85,7 @@ export default {
             range: '5m',
             area: '5.0m Radius',
             duration: '20.0 seconds',
-            effects: '<ul><li>Friendly AoE: +5 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a></li><li>Friendly AoE: +10% <a href="https://pillarsofeternity.fandom.com/wiki/Damage" title="Damage"><img alt="Damage" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e2/Damage_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235308" decoding="async" width="18" height="18" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +5 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a></li><li>Friendly AoE: +10% <a href="https://pillarsofeternity.fandom.com/wiki/Damage" title="Damage"><img alt="Damage" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e2/Damage_icon.png" decoding="async" width="18" height="18" /></a></li></ul>',
             description: 'A call for divine favor that increases the Accuracy and damage of allies in the area of effect.',
         },
         {
@@ -145,7 +145,7 @@ export default {
             range: '5m',
             area: '1.5m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: +12 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +12 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Shares a portion of the caster\'s divine strength, restoring some Endurance to all allies in the area of effect.',
         },
         {
@@ -157,7 +157,7 @@ export default {
             range: '5m',
             area: '',
             duration: '20.0 seconds',
-            effects: '<ul><li>Friendly Target: Invisible</li><li>Friendly Target: +76.7 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a> over time</li><li>Friendly Target: <a href="https://pillarsofeternity.fandom.com/wiki/Stasis_Shield?action=edit&amp;redlink=1" class="new" title="Stasis Shield (page does not exist)">Stasis Shield</a></li></ul>',
+            effects: '<ul><li>Friendly Target: Invisible</li><li>Friendly Target: +76.7 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a> over time</li><li>Friendly Target: <a href="https://pillarsofeternity.fandom.com/wiki/Stasis_Shield?action=edit&amp;redlink=1" class="new" title="Stasis Shield (page does not exist)">Stasis Shield</a></li></ul>',
             description: 'Isolates a single target within a protective sphere, shielding them from harm while their Endurance regenerates.',
         },
         {
@@ -169,7 +169,7 @@ export default {
             range: '',
             area: '2.5m Radius from Caster',
             duration: '20.0 seconds',
-            effects: '<ul><li>Friendly AoE: +9.3 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a> per second</li></ul>',
+            effects: '<ul><li>Friendly AoE: +9.3 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a> per second</li></ul>',
             description: 'Creates a long-lasting circle of healing, regenerating ally Endurance.',
         },
         {
@@ -181,7 +181,7 @@ export default {
             range: '2.5m',
             area: '',
             duration: '10.0 seconds',
-            effects: '<ul><li>40-50 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> <a href="https://pillarsofeternity.fandom.com/wiki/Damage" title="Damage"><img alt="Damage" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e2/Damage_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235308" decoding="async" width="18" height="18" /></a></li><li>-25 <a href="https://pillarsofeternity.fandom.com/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235317" decoding="async" width="18" height="18" /></a></li></ul>',
+            effects: '<ul><li>40-50 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> <a href="https://pillarsofeternity.fandom.com/wiki/Damage" title="Damage"><img alt="Damage" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e2/Damage_icon.png" decoding="async" width="18" height="18" /></a></li><li>-25 <a href="https://pillarsofeternity.fandom.com/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png" decoding="async" width="18" height="18" /></a></li></ul>',
             description: 'Marks a target for retribution, inflicting Burn damage and lowering Deflection.',
         },
         {
@@ -205,7 +205,7 @@ export default {
             range: '',
             area: 'Length: 10m',
             duration: '',
-            effects: '<ul><li>Foe Target: 20 <a href="https://pillarsofeternity.fandom.com/wiki/Freeze" title="Freeze"><img alt="Freeze" src="https://static.wikia.nocookie.net/eternitywiki/images/9/95/Freeze_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202622" decoding="async" width="18" height="18" /></a> damage</li><li>Friendly Target: +20 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Foe Target: 20 <a href="https://pillarsofeternity.fandom.com/wiki/Freeze" title="Freeze"><img alt="Freeze" src="https://static.wikia.nocookie.net/eternitywiki/images/9/95/Freeze_icon.png" decoding="async" width="18" height="18" /></a> damage</li><li>Friendly Target: +20 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Creates a slow-moving energetic projection of the priest\'s faith, returning Endurance to allies and inflicting Freeze damage to enemies.',
         },
         {
@@ -253,7 +253,7 @@ export default {
             range: '5m',
             area: '1.5m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: +18 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +18 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Shares a portion of the caster\'s divine strength, restoring some Endurance to all allies in the area of effect.',
         },
         {
@@ -277,7 +277,7 @@ export default {
             range: '10m',
             area: '5.0m Radius',
             duration: '10.0 seconds',
-            effects: '<ul><li>Friendly AoE: +15 All <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235313" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +15 All <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Creates a large zone of divine shelter, granting allies a bonus to all Defenses.',
         },
         {
@@ -289,7 +289,7 @@ export default {
             range: '10m',
             area: '1.25m Radius',
             duration: '30.0 seconds',
-            effects: '<ul><li>Foe AoE: -15 Melee <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a></li><li>Foe AoE: +15% of <a href="https://pillarsofeternity.fandom.com/wiki/Crit" class="mw-redirect" title="Crit">Crits</a> converted to <a href="https://pillarsofeternity.fandom.com/wiki/Hit" class="mw-redirect" title="Hit">Hits</a></li></ul>',
+            effects: '<ul><li>Foe AoE: -15 Melee <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a></li><li>Foe AoE: +15% of <a href="https://pillarsofeternity.fandom.com/wiki/Crit" class="mw-redirect" title="Crit">Crits</a> converted to <a href="https://pillarsofeternity.fandom.com/wiki/Hit" class="mw-redirect" title="Hit">Hits</a></li></ul>',
             description: 'Nagging doubt in the face of unbreakable faith consumes enemies in the area of effect, lowering their Melee Accuracy and Critical Hit range.',
         },
         {
@@ -313,7 +313,7 @@ export default {
             range: '10m',
             area: 'Target + 1.25m Radius',
             duration: '10.0 seconds',
-            effects: '<ul><li>Target: 30-40 <a href="https://pillarsofeternity.fandom.com/wiki/Crush" title="Crush"><img alt="Crush" src="https://static.wikia.nocookie.net/eternitywiki/images/8/8f/Crush_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235303" decoding="async" width="18" height="18" /></a>&#160;<a href="https://pillarsofeternity.fandom.com/wiki/Damage" title="Damage"><img alt="Damage" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e2/Damage_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235308" decoding="async" width="18" height="18" /></a> (+10 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Reflex" title="Reflex"><img alt="Reflex" src="https://static.wikia.nocookie.net/eternitywiki/images/8/80/Reflex_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235341" decoding="async" width="18" height="18" /></a>)</li><li>Foe AoE: <a href="https://pillarsofeternity.fandom.com/wiki/Prone" class="mw-redirect" title="Prone">Prone</a> (+15 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Fortitude" title="Fortitude"><img alt="Fortitude" src="https://static.wikia.nocookie.net/eternitywiki/images/b/b9/Fortitude_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235327" decoding="async" width="18" height="18" /></a>)</li></ul>',
+            effects: '<ul><li>Target: 30-40 <a href="https://pillarsofeternity.fandom.com/wiki/Crush" title="Crush"><img alt="Crush" src="https://static.wikia.nocookie.net/eternitywiki/images/8/8f/Crush_icon.png" decoding="async" width="18" height="18" /></a>&#160;<a href="https://pillarsofeternity.fandom.com/wiki/Damage" title="Damage"><img alt="Damage" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e2/Damage_icon.png" decoding="async" width="18" height="18" /></a> (+10 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Reflex" title="Reflex"><img alt="Reflex" src="https://static.wikia.nocookie.net/eternitywiki/images/8/80/Reflex_icon.png" decoding="async" width="18" height="18" /></a>)</li><li>Foe AoE: <a href="https://pillarsofeternity.fandom.com/wiki/Prone" class="mw-redirect" title="Prone">Prone</a> (+15 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Fortitude" title="Fortitude"><img alt="Fortitude" src="https://static.wikia.nocookie.net/eternitywiki/images/b/b9/Fortitude_icon.png" decoding="async" width="18" height="18" /></a>)</li></ul>',
             description: 'Calls down a pillar of divine judgment, inflicting Crush damage and Knockdown on enemies in the area of effect.',
         },
         {
@@ -337,7 +337,7 @@ export default {
             range: '5m',
             area: '1.5m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: +26 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +26 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Shares a portion of the caster\'s divine strength, restoring a moderate amount of Endurance to all allies in the area of effect.',
         },
         {
@@ -349,7 +349,7 @@ export default {
             range: '10m',
             area: '1.25m Radius Hazard',
             duration: '600.0 seconds',
-            effects: '<ul><li>Hazard AoE: 40-50 <a href="https://pillarsofeternity.fandom.com/wiki/Shock" title="Shock"><img alt="Shock" src="https://static.wikia.nocookie.net/eternitywiki/images/8/89/Shock_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235346" decoding="async" width="18" height="18" /></a>&#160;<a href="https://pillarsofeternity.fandom.com/wiki/Damage" class="mw-redirect" title="Damage">damage</a></li></ul>',
+            effects: '<ul><li>Hazard AoE: 40-50 <a href="https://pillarsofeternity.fandom.com/wiki/Shock" title="Shock"><img alt="Shock" src="https://static.wikia.nocookie.net/eternitywiki/images/8/89/Shock_icon.png" decoding="async" width="18" height="18" /></a>&#160;<a href="https://pillarsofeternity.fandom.com/wiki/Damage" class="mw-redirect" title="Damage">damage</a></li></ul>',
             description: 'Generates a magical seal that explodes in a burst of electrical energy when an enemy comes into contact with it, inflicting Shock damage.',
         },
         {
@@ -361,7 +361,7 @@ export default {
             range: '5m',
             area: '5.0m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: +35 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a> when <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" class="mw-redirect" title="Endurance">Endurance</a> below 20%</li></ul>',
+            effects: '<ul><li>Friendly AoE: +35 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a> when <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" class="mw-redirect" title="Endurance">Endurance</a> below 20%</li></ul>',
             description: 'Blesses allies with the aid of a sympathetic soul, releasing a healing effect when their Endurance is low.',
         },
         {
@@ -385,7 +385,7 @@ export default {
             range: '5m',
             area: '2.5m Radius',
             duration: '30.0 seconds',
-            effects: '<ul><li>Friendly AoE: +4 <a href="https://pillarsofeternity.fandom.com/wiki/Might" title="Might">Might</a>, +20 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a></li><li>Foe AoE: -10 <a href="https://pillarsofeternity.fandom.com/wiki/Might" title="Might">Might</a>, -20 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +4 <a href="https://pillarsofeternity.fandom.com/wiki/Might" title="Might">Might</a>, +20 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a></li><li>Foe AoE: -10 <a href="https://pillarsofeternity.fandom.com/wiki/Might" title="Might">Might</a>, -20 <a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Invokes the benediction of the priest\'s god, imbuing allies in the area of effect with Accuracy and Might bonuses while enemies receive penalties to the same.',
         },
         {
@@ -421,7 +421,7 @@ export default {
             range: '5m',
             area: '1.5m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: +38 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +38 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Shares a generous portion of the caster\'s divine strength, restoring a significant amount of Endurance to all allies in the area of effect.',
         },
         {
@@ -433,7 +433,7 @@ export default {
             range: '10m',
             area: '2.5m Radius Hazard',
             duration: '600.0 seconds',
-            effects: '<ul><li>20-35 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> damage (<a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Will" title="Will"><img alt="Will" src="https://static.wikia.nocookie.net/eternitywiki/images/9/96/Will_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202632" decoding="async" width="18" height="18" /></a>)</li><li>If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Blinded" class="mw-redirect" title="Blinded">Blinded</a> for 15 seconds (<a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Will" title="Will"><img alt="Will" src="https://static.wikia.nocookie.net/eternitywiki/images/9/96/Will_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202632" decoding="async" width="18" height="18" /></a>)</li></ul>',
+            effects: '<ul><li>20-35 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> damage (<a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Will" title="Will"><img alt="Will" src="https://static.wikia.nocookie.net/eternitywiki/images/9/96/Will_icon.png" decoding="async" width="18" height="18" /></a>)</li><li>If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Blinded" class="mw-redirect" title="Blinded">Blinded</a> for 15 seconds (<a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Will" title="Will"><img alt="Will" src="https://static.wikia.nocookie.net/eternitywiki/images/9/96/Will_icon.png" decoding="async" width="18" height="18" /></a>)</li></ul>',
             description: 'Places a magical seal on the floor that bursts into flame when an enemy comes into contact with it, Blinding them and inflicting Burn damage.',
         },
         {
@@ -445,7 +445,7 @@ export default {
             range: '5m',
             area: '2.5m Radius',
             duration: '9.0 seconds',
-            effects: '<ul><li>Foe AoE: -10 All <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235313" decoding="async" width="16" height="16" /></a></li><li>Foe AoE: 80 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> damage over time</li></ul>',
+            effects: '<ul><li>Foe AoE: -10 All <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png" decoding="async" width="16" height="16" /></a></li><li>Foe AoE: 80 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> damage over time</li></ul>',
             description: 'Conjures an intensely luminous beacon of light, causing enemies in the area of effect to take a penalty to all defenses and accrue Burn damage over time.',
         },
         {
@@ -457,7 +457,7 @@ export default {
             range: '10m',
             area: '1.25m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: +200 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a> per kill</li></ul>',
+            effects: '<ul><li>Friendly AoE: +200 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a> per kill</li></ul>',
             description: 'Imparts to allies the fervor of righteousness in battle. When any ally in the area of effect delivers a killing blow, he or she regains Endurance.',
         },
         {
@@ -469,7 +469,7 @@ export default {
             range: '',
             area: '',
             duration: '30.0 seconds',
-            effects: '<ul><li>Friendly Target: +10 <a href="https://pillarsofeternity.fandom.com/wiki/Might" title="Might">Might</a></li><li>Friendly Target: +10 <a href="https://pillarsofeternity.fandom.com/wiki/Perception" title="Perception">Perception</a></li><li>Friendly Target: +5 <a href="https://pillarsofeternity.fandom.com/wiki/Damage_Reduction" title="Damage Reduction (DR)"><img alt="Damage Reduction (DR)" src="https://static.wikia.nocookie.net/eternitywiki/images/2/29/Damage_reduction_icon.png/revision/latest/scale-to-width-down/16?cb=20171001055953" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly Target: +10 <a href="https://pillarsofeternity.fandom.com/wiki/Might" title="Might">Might</a></li><li>Friendly Target: +10 <a href="https://pillarsofeternity.fandom.com/wiki/Perception" title="Perception">Perception</a></li><li>Friendly Target: +5 <a href="https://pillarsofeternity.fandom.com/wiki/Damage_Reduction" title="Damage Reduction (DR)"><img alt="Damage Reduction (DR)" src="https://static.wikia.nocookie.net/eternitywiki/images/2/29/Damage_reduction_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Grants a divine favor to an ally, imbuing him or her with a bonus to Might, Perception and all Damage Reductions.',
         },
         {
@@ -481,7 +481,7 @@ export default {
             range: '10m',
             area: '1.25m Radius',
             duration: '',
-            effects: '<ul><li>AoE: 50-60 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> damage</li></ul>',
+            effects: '<ul><li>AoE: 50-60 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> damage</li></ul>',
             description: 'Summons a flaming pillar of righteous anger, Burning everyone in the area of effect.',
         },
         {
@@ -505,7 +505,7 @@ export default {
             range: '5m',
             area: '1.5m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: +55 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +55 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Shares a substantial portion of the caster\'s divine strength, restoring a large amount of Endurance to all allies in the area of effect.',
         },
         {
@@ -517,7 +517,7 @@ export default {
             range: '5m',
             area: '1.25m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: Revive with 50 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: Revive with 50 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'Grants fallen friends a second chance, reviving unconscious allies in the area of effect and restoring a small amount of their Endurance.',
         },
         {
@@ -541,7 +541,7 @@ export default {
             range: '10m',
             area: '1.75m Radius',
             duration: '30.0 seconds',
-            effects: '<ul><li>Friendly AoE: +25 <a href="https://pillarsofeternity.fandom.com/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235317" decoding="async" width="18" height="18" /></a></li></ul>',
+            effects: '<ul><li>Friendly AoE: +25 <a href="https://pillarsofeternity.fandom.com/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png" decoding="async" width="18" height="18" /></a></li></ul>',
             description: 'Conjures a powerful holy shield, granting a Deflection bonus to all allies in the area of effect.',
         },
         {
@@ -553,7 +553,7 @@ export default {
             range: '10m + 3m Jump',
             area: 'Foe Target + 2 Jump Targets',
             duration: '5.0 seconds',
-            effects: '<ul><li>Foe Target: 80 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> damage over time</li><li>Foe Target: -5 seconds duration of active beneficial effects</li><li>Foe Target: +100% Damage Over Time tick rate</li><li>Foe Jump Targets (x2): Applies same effects as Foe Target</li></ul>',
+            effects: '<ul><li>Foe Target: 80 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> damage over time</li><li>Foe Target: -5 seconds duration of active beneficial effects</li><li>Foe Target: +100% Damage Over Time tick rate</li><li>Foe Jump Targets (x2): Applies same effects as Foe Target</li></ul>',
             description: 'The priest hurls a ball of holy fire at the enemy that purges its protections and speeds its doom. Does continuous Burn damage for five seconds and accelerates the timer for all beneficial effects on the target (except heals), as well as those of any continuous damage effects. Leaps to up to two add',
         },
         {
@@ -589,7 +589,7 @@ export default {
             range: '5m',
             area: '5.0m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: +25 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li><li>Friendly AoE: -5 seconds duration of active hostile effects</li></ul>',
+            effects: '<ul><li>Friendly AoE: +25 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li><li>Friendly AoE: -5 seconds duration of active hostile effects</li></ul>',
             description: 'Calls upon the aid of the priest\'s god, restoring Endurance and reducing durations of negative effects for all allies in the area of effect.',
         },
         {
@@ -613,7 +613,7 @@ export default {
             range: '2.5m',
             area: '2.5m Radius',
             duration: '30.0 seconds',
-            effects: '<ul><li>Allied AoE: Aura dealing <a href="https://pillarsofeternity.fandom.com/wiki/Shock" title="Shock"><img alt="Shock" src="https://static.wikia.nocookie.net/eternitywiki/images/8/89/Shock_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235346" decoding="async" width="18" height="18" /></a> damage to enemies</li></ul>',
+            effects: '<ul><li>Allied AoE: Aura dealing <a href="https://pillarsofeternity.fandom.com/wiki/Shock" title="Shock"><img alt="Shock" src="https://static.wikia.nocookie.net/eternitywiki/images/8/89/Shock_icon.png" decoding="async" width="18" height="18" /></a> damage to enemies</li></ul>',
             description: 'Ignites a powerful zeal within allies that manifests in an aura that Shocks any enemies near them.',
         },
         {
@@ -625,7 +625,7 @@ export default {
             range: '',
             area: '',
             duration: '30.0 seconds',
-            effects: '<ul><li>+20% <a href="https://pillarsofeternity.fandom.com/wiki/Damage" title="Damage"><img alt="Damage" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e2/Damage_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235308" decoding="async" width="18" height="18" /></a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Might" title="Might">Might</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Dexterity" title="Dexterity">Dexterity</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Constitution" title="Constitution">Constitution</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Perception" title="Perception">Perception</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Resolve" title="Resolve">Resolve</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Intellect" title="Intellect">Intellect</a></li><li>+40 Max <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>+20% <a href="https://pillarsofeternity.fandom.com/wiki/Damage" title="Damage"><img alt="Damage" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e2/Damage_icon.png" decoding="async" width="18" height="18" /></a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Might" title="Might">Might</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Dexterity" title="Dexterity">Dexterity</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Constitution" title="Constitution">Constitution</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Perception" title="Perception">Perception</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Resolve" title="Resolve">Resolve</a></li><li>+8 <a href="https://pillarsofeternity.fandom.com/wiki/Intellect" title="Intellect">Intellect</a></li><li>+40 Max <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'The priest gains a supernatural glow as he or she is infused with power. As a minor avatar of their deity, the priest gains bonuses in all Attributes, Endurance, Health, and weapon damage.',
         },
         {
@@ -637,7 +637,7 @@ export default {
             range: '5m',
             area: 'Friendly Target + 1.5m Radius',
             duration: '20.0 seconds',
-            effects: '<ul><li>Friendly Target: Revive with 125 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li><li>Friendly Target: Prevent <a href="https://pillarsofeternity.fandom.com/wiki/Death" class="mw-redirect" title="Death">Death</a> for 20 seconds</li><li>Friendly AoE: +75 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a></li></ul>',
+            effects: '<ul><li>Friendly Target: Revive with 125 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li><li>Friendly Target: Prevent <a href="https://pillarsofeternity.fandom.com/wiki/Death" class="mw-redirect" title="Death">Death</a> for 20 seconds</li><li>Friendly AoE: +75 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a></li></ul>',
             description: 'A single ally is revived and healed. They receive the effects of Barring Death\'s Door and nearby allies are healed.',
         },
         {
@@ -649,7 +649,7 @@ export default {
             range: '15m',
             area: '5.0m Radius',
             duration: '9.0 seconds',
-            effects: '<ul><li>AoE: 24-30 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> damage</li></ul>',
+            effects: '<ul><li>AoE: 24-30 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> damage</li></ul>',
             description: 'A terrible rain of fire falls in the area of effect, repeatedly inflicting Burn damage on all in the area of effect.',
         },
         {
@@ -661,7 +661,7 @@ export default {
             range: '5m',
             area: '',
             duration: '10.0 seconds',
-            effects: '<ul><li>Foe Target: 25 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> damage per second</li><li>Foe Beam: 25 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> damage per second</li><li>Friendly Target: +25 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a> per second</li><li>Friendly Beam: +25 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a> per second</li></ul>',
+            effects: '<ul><li>Foe Target: 25 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> damage per second</li><li>Foe Beam: 25 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> damage per second</li><li>Friendly Target: +25 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a> per second</li><li>Friendly Beam: +25 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a> per second</li></ul>',
             description: 'The priest calls forth a beam of light that heals allies and burns enemies caught in the ray.',
         },
         {
@@ -674,7 +674,7 @@ export default {
             range: '3m',
             area: '2.5m Radius',
             duration: '20.0 seconds',
-            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Corrode" title="Corrode"><img alt="Corrode" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Corrode_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235258" decoding="async" width="18" height="18" /></a> damage</li><li>Foe AoE: If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Weakened" class="mw-redirect" title="Weakened">Weakened</a> for 3 seconds</li></ul>',
+            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Corrode" title="Corrode"><img alt="Corrode" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Corrode_icon.png" decoding="async" width="18" height="18" /></a> damage</li><li>Foe AoE: If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Weakened" class="mw-redirect" title="Weakened">Weakened</a> for 3 seconds</li></ul>',
             description: 'Emblazons the ground with the symbol of Berath, periodically causing Corrode damage to enemies and leaving them Weakened.',
         },
         {
@@ -687,7 +687,7 @@ export default {
             range: '3m',
             area: '2.5m Radius',
             duration: '20.0 seconds',
-            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> damage</li><li>Friendly AoE: +20 All <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235313" decoding="async" width="16" height="16" /></a> for 3 seconds</li></ul>',
+            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> damage</li><li>Friendly AoE: +20 All <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png" decoding="async" width="16" height="16" /></a> for 3 seconds</li></ul>',
             description: 'Emblazons the ground with the symbol of Eothas, periodically causing Burn damage to enemies in the area and granting defensive bonuses to allies.',
         },
         {
@@ -700,7 +700,7 @@ export default {
             range: '3m',
             area: '2.5m Radius',
             duration: '20.0 seconds',
-            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18" /></a> damage</li><li>Foe AoE: If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Blinded" class="mw-redirect" title="Blinded">Blinded</a> for 3 seconds</li></ul>',
+            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18" /></a> damage</li><li>Foe AoE: If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Blinded" class="mw-redirect" title="Blinded">Blinded</a> for 3 seconds</li></ul>',
             description: 'Emblazons the ground with the symbol of Magran, periodically causing Burn damage to enemies in the area and leaving them Blinded.',
         },
         {
@@ -713,7 +713,7 @@ export default {
             range: '3m',
             area: '2.5m Radius',
             duration: '20.0 seconds',
-            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Pierce" title="Pierce"><img alt="Pierce" src="https://static.wikia.nocookie.net/eternitywiki/images/5/52/Pierce_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202627" decoding="async" width="18" height="18" /></a> damage (<a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235317" decoding="async" width="18" height="18" /></a>)</li><li>Foe AoE: If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Hobbled" class="mw-redirect" title="Hobbled">Hobbled</a> for 3 seconds (<a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235244" decoding="async" width="16" height="16" /></a> vs&#160;<a href="https://pillarsofeternity.fandom.com/wiki/Reflex" title="Reflex"><img alt="Reflex" src="https://static.wikia.nocookie.net/eternitywiki/images/8/80/Reflex_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235341" decoding="async" width="18" height="18" /></a>)</li></ul>',
+            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Pierce" title="Pierce"><img alt="Pierce" src="https://static.wikia.nocookie.net/eternitywiki/images/5/52/Pierce_icon.png" decoding="async" width="18" height="18" /></a> damage (<a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a> vs <a href="https://pillarsofeternity.fandom.com/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png" decoding="async" width="18" height="18" /></a>)</li><li>Foe AoE: If successful: <a href="https://pillarsofeternity.fandom.com/wiki/Hobbled" class="mw-redirect" title="Hobbled">Hobbled</a> for 3 seconds (<a href="https://pillarsofeternity.fandom.com/wiki/Accuracy" title="Accuracy"><img alt="Accuracy" src="https://static.wikia.nocookie.net/eternitywiki/images/d/df/Accuracy_icon.png" decoding="async" width="16" height="16" /></a> vs&#160;<a href="https://pillarsofeternity.fandom.com/wiki/Reflex" title="Reflex"><img alt="Reflex" src="https://static.wikia.nocookie.net/eternitywiki/images/8/80/Reflex_icon.png" decoding="async" width="18" height="18" /></a>)</li></ul>',
             description: 'Emblazons the ground with the symbol of Skaen, periodically causing Pierce damage to enemies in the area and leaving them Hobbled.',
         },
         {
@@ -726,7 +726,7 @@ export default {
             range: '3m',
             area: '2.5m Radius',
             duration: '20.0 seconds',
-            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Freeze" title="Freeze"><img alt="Freeze" src="https://static.wikia.nocookie.net/eternitywiki/images/9/95/Freeze_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202622" decoding="async" width="18" height="18" /></a> damage</li><li>Friendly AoE: +30 <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235313" decoding="async" width="16" height="16" /></a> against <a href="https://pillarsofeternity.fandom.com/wiki/Charmed" class="mw-redirect" title="Charmed">Charmed</a>, <a href="https://pillarsofeternity.fandom.com/wiki/Confused" class="mw-redirect" title="Confused">Confused</a>, <a href="https://pillarsofeternity.fandom.com/wiki/Dominated" class="mw-redirect" title="Dominated">Dominated</a> attacks for 3 seconds</li></ul>',
+            effects: '<ul><li>Foe AoE: 15-25 <a href="https://pillarsofeternity.fandom.com/wiki/Freeze" title="Freeze"><img alt="Freeze" src="https://static.wikia.nocookie.net/eternitywiki/images/9/95/Freeze_icon.png" decoding="async" width="18" height="18" /></a> damage</li><li>Friendly AoE: +30 <a href="https://pillarsofeternity.fandom.com/wiki/Defense" title="Defenses"><img alt="Defenses" src="https://static.wikia.nocookie.net/eternitywiki/images/a/af/Defenses_icon.png" decoding="async" width="16" height="16" /></a> against <a href="https://pillarsofeternity.fandom.com/wiki/Charmed" class="mw-redirect" title="Charmed">Charmed</a>, <a href="https://pillarsofeternity.fandom.com/wiki/Confused" class="mw-redirect" title="Confused">Confused</a>, <a href="https://pillarsofeternity.fandom.com/wiki/Dominated" class="mw-redirect" title="Dominated">Dominated</a> attacks for 3 seconds</li></ul>',
             description: 'Emblazons the ground with the symbol of Wael, periodically causing Freeze damage to enemies in the area and granting Confused, Charmed, and Dominated resistance to allies.',
         },
         {
@@ -738,7 +738,7 @@ export default {
             range: '5m',
             area: '5.0m Radius',
             duration: '',
-            effects: '<ul><li>Friendly AoE: Revive with 75 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16" /></a> on <a href="https://pillarsofeternity.fandom.com/wiki/Unconscious" title="Unconscious">Unconscious</a></li></ul>',
+            effects: '<ul><li>Friendly AoE: Revive with 75 <a href="https://pillarsofeternity.fandom.com/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16" /></a> on <a href="https://pillarsofeternity.fandom.com/wiki/Unconscious" title="Unconscious">Unconscious</a></li></ul>',
             description: 'The priest\'s faith becomes a wellspring of indomitability for his or her allies. When an affected ally is knocked unconscious in battle, he or she will immediately be revived and have some Endurance healed.',
         },
     ],

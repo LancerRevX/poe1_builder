@@ -716,56 +716,56 @@ export default {
     talents: [
         {
             name: 'Wildstrike Shock',
-            effects: '<ul><li>+30% <a href="/wiki/Shock" title="Shock"><img alt="Shock" src="https://static.wikia.nocookie.net/eternitywiki/images/8/89/Shock_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235346" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+30% <a href="/wiki/Shock" title="Shock"><img alt="Shock" src="https://static.wikia.nocookie.net/eternitywiki/images/8/89/Shock_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Wildstrike_Shock',
             imageLink: druidPassiveImageLink,
             exceptionalTalents: ['Wildstrike Burn', 'Wildstrike Freeze', 'Wildstrike Corrode']
         },
         {
             name: 'Wildstrike Burn',
-            effects: '<ul><li>+30% <a href="/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+30% <a href="/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Wildstrike_Burn',
             imageLink: druidPassiveImageLink,
             exceptionalTalents: ['Wildstrike Shock', 'Wildstrike Freeze', 'Wildstrike Corrode']
         },
         {
             name: 'Wildstrike Freeze',
-            effects: '<ul><li>+30% <a href="/wiki/Freeze" title="Freeze"><img alt="Freeze" src="https://static.wikia.nocookie.net/eternitywiki/images/9/95/Freeze_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202622" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+30% <a href="/wiki/Freeze" title="Freeze"><img alt="Freeze" src="https://static.wikia.nocookie.net/eternitywiki/images/9/95/Freeze_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Wildstrike_Freeze',
             imageLink: druidPassiveImageLink,
             exceptionalTalents: ['Wildstrike Shock', 'Wildstrike Burn', 'Wildstrike Corrode']
         },
         {
             name: 'Wildstrike Corrode',
-            effects: '<ul><li>+30% <a href="/wiki/Corrode" title="Corrode"><img alt="Corrode" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Corrode_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235258" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+30% <a href="/wiki/Corrode" title="Corrode"><img alt="Corrode" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Corrode_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Wildstrike_Corrode',
             imageLink: druidPassiveImageLink,
             exceptionalTalents: ['Wildstrike Shock', 'Wildstrike Burn', 'Wildstrike Freeze']
         },
         {
             name: 'Greater Wildstrike Shock',
-            effects: '<ul><li>+15% <a href="/wiki/Shock" title="Shock"><img alt="Shock" src="https://static.wikia.nocookie.net/eternitywiki/images/8/89/Shock_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235346" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+15% <a href="/wiki/Shock" title="Shock"><img alt="Shock" src="https://static.wikia.nocookie.net/eternitywiki/images/8/89/Shock_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Greater_Wildstrike_Shock',
             imageLink: druidPassiveImageLink,
             requiredTalent: 'Wildstrike Shock'
         },
         {
             name: 'Greater Wildstrike Burn',
-            effects: '<ul><li>+15% <a href="/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+15% <a href="/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Greater_Wildstrike_Burn',
             imageLink: druidPassiveImageLink,
             requiredTalent: 'Wildstrike Burn'
         },
         {
             name: 'Greater Wildstrike Freeze',
-            effects: '<ul><li>+15% <a href="/wiki/Freeze" title="Freeze"><img alt="Freeze" src="https://static.wikia.nocookie.net/eternitywiki/images/9/95/Freeze_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202622" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+15% <a href="/wiki/Freeze" title="Freeze"><img alt="Freeze" src="https://static.wikia.nocookie.net/eternitywiki/images/9/95/Freeze_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Greater_Wildstrike_Freeze',
             imageLink: druidPassiveImageLink,
             requiredTalent: 'Wildstrike Freeze'
         },
         {
             name: 'Greater Wildstrike Corrode',
-            effects: '<ul><li>+15% <a href="/wiki/Corrode" title="Corrode"><img alt="Corrode" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Corrode_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235258" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+15% <a href="/wiki/Corrode" title="Corrode"><img alt="Corrode" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Corrode_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Greater_Wildstrike_Corrode',
             imageLink: druidPassiveImageLink,
             requiredTalent: 'Wildstrike Corrode'

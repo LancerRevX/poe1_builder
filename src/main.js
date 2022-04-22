@@ -14,6 +14,13 @@ let i18n = new VueI18n({
     messages: translations
 });
 
+Vue.mixin({
+    data: () => ({
+        MAX_COMMENT_LENGTH: 4,
+        VERSION: 1
+    })
+});
+
 new Vue({
     i18n,
     render: createElement => createElement(App)

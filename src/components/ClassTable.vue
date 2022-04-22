@@ -22,7 +22,8 @@
                 </tr></table>
             </td>
         </tr>
-        <tr v-if="character.class.name == 'Paladin'">
+
+        <tr v-if="character.class.name == 'Paladin' && !character.storyCompanion">
             <td colspan="2">
                 <select v-model="character.order" v-if="!character.storyCompanion">
                     <option v-for="order in paladinOrders" :key="order.name" :value="order">{{ order.name }}</option>
@@ -46,6 +47,40 @@
                 </table>
             </td>
         </tr>
+        <tr v-else-if="character.class.name == 'Paladin' && character.storyCompanion">
+            <td>Order</td>
+            <td>{{ character.deity.name }}</td>
+        </tr>
+
+        <tr v-if="character.class.name == 'Priest' && !character.storyCompanion">
+            <td colspan="2">
+                <select v-model="character.deity" v-if="!character.storyCompanion">
+                    <option v-for="deity in character.class.deities" :key="deity.name" :value="deity">{{ deity.name }}</option>
+                </select>
+                <span v-else>
+                    {{ character.deity.name }}
+                </span>
+            </td>
+        </tr>
+        <tr v-if="character.class.name == 'Priest' && !character.storyCompanion">
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td>Favored dispositions</td>
+                        <td>{{ character.deity.favoredDispositions }}</td>
+                    </tr>
+                    <tr>
+                        <td>Condemned dispositions</td>
+                        <td>{{ character.deity.condemnedDispositions }}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr v-else-if="character.class.name == 'Priest' && character.storyCompanion">
+            <td>Deity</td>
+            <td>{{ character.deity.name }}</td>
+        </tr>
+
         <tr>
             <td>Endurance per level</td>
             <td>{{ character.class.endurancePerLevel }}</td>

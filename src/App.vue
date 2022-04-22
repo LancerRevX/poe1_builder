@@ -2,7 +2,7 @@
     <div id="app">
         <div class="title-block">
             <h1 class="title">Pillars of Eternity 1 Builder</h1>
-            <span class="version">v.1</span>
+            <span class="version">v.{{ VERSION }}</span>
         </div>
         <character-switcher :selected="selected"></character-switcher>
         <div class="tables-block">
@@ -62,8 +62,9 @@
         data: () => ({
             selected: {
                 character: undefined,
-                level: undefined
-            }
+                level: undefined,
+                comment: ''
+            },
         }),
         created: function() {
             let urlSearchParams = new URLSearchParams(window.location.search);

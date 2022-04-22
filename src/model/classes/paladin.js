@@ -262,20 +262,20 @@ export default {
         },
         {
             name: 'Deep Faith',
-            effects: '<ul><li>+2 <a href="/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235317" decoding="async" width="18" height="18"></a></li><li>+3 <a href="/wiki/Fortitude" title="Fortitude"><img alt="Fortitude" src="https://static.wikia.nocookie.net/eternitywiki/images/b/b9/Fortitude_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235327" decoding="async" width="18" height="18"></a></li><li>+3 <a href="/wiki/Reflex" title="Reflex"><img alt="Reflex" src="https://static.wikia.nocookie.net/eternitywiki/images/8/80/Reflex_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235341" decoding="async" width="18" height="18"></a></li><li>+3 <a href="/wiki/Will" title="Will"><img alt="Will" src="https://static.wikia.nocookie.net/eternitywiki/images/9/96/Will_icon.png/revision/latest/scale-to-width-down/18?cb=20170909202632" decoding="async" width="18" height="18"></a></li></ul>',
+            effects: '<ul><li>+2 <a href="/wiki/Deflection" title="Deflection"><img alt="Deflection" src="https://static.wikia.nocookie.net/eternitywiki/images/3/3e/Deflection_icon.png" decoding="async" width="18" height="18"></a></li><li>+3 <a href="/wiki/Fortitude" title="Fortitude"><img alt="Fortitude" src="https://static.wikia.nocookie.net/eternitywiki/images/b/b9/Fortitude_icon.png" decoding="async" width="18" height="18"></a></li><li>+3 <a href="/wiki/Reflex" title="Reflex"><img alt="Reflex" src="https://static.wikia.nocookie.net/eternitywiki/images/8/80/Reflex_icon.png" decoding="async" width="18" height="18"></a></li><li>+3 <a href="/wiki/Will" title="Will"><img alt="Will" src="https://static.wikia.nocookie.net/eternitywiki/images/9/96/Will_icon.png" decoding="async" width="18" height="18"></a></li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Deep_Faith',
             imageLink: paladinPassiveImageLink
         },
         {
             name: 'Greater Lay on Hands',
-            effects: '<ul><li>+26.7 <a href="/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png/revision/latest/scale-to-width-down/16?cb=20170928235322" decoding="async" width="16" height="16"></a> (base) over time</li></ul>',
+            effects: '<ul><li>+26.7 <a href="/wiki/Endurance" title="Endurance"><img alt="Endurance" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Endurance_icon.png" decoding="async" width="16" height="16"></a> (base) over time</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Greater_Lay_on_Hands',
             imageLink: 'https://static.wikia.nocookie.net/eternitywiki/images/6/6f/Lay_on_hands_2_icon.png',
             requiredAbility: 'Lay on Hands'
         },
         {
             name: 'Intense Flames',
-            effects: '<ul><li>+25% <a href="/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235248" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+25% <a href="/wiki/Burn" title="Burn"><img alt="Burn" src="https://static.wikia.nocookie.net/eternitywiki/images/a/aa/Burn_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Intense_Flames',
             imageLink: paladinPassiveImageLink,
             requiredAbility: 'Flames of Devotion'
@@ -295,7 +295,7 @@ export default {
         },
         {
             name: 'Remember Rakhan Field',
-            effects: '<ul><li>+25% <a href="/wiki/Corrode" title="Corrode"><img alt="Corrode" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Corrode_icon.png/revision/latest/scale-to-width-down/18?cb=20170928235258" decoding="async" width="18" height="18"></a> damage</li></ul>',
+            effects: '<ul><li>+25% <a href="/wiki/Corrode" title="Corrode"><img alt="Corrode" src="https://static.wikia.nocookie.net/eternitywiki/images/e/e8/Corrode_icon.png" decoding="async" width="18" height="18"></a> damage</li></ul>',
             link: 'https://pillarsofeternity.fandom.com/wiki/Remember_Rakhan_Field',
             imageLink: paladinPassiveImageLink,
             order: 'Bleak Walkers',

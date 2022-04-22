@@ -16,10 +16,26 @@ import races from './races.js';
 import cultures from './cultures.js';
 import backgrounds from './backgrounds.js';
 
-export class StoryCompanion extends Character {
+class StoryCompanion extends Character {
     constructor(name) {
         super(name);
         this.storyCompanion = true;
+    }
+
+    toByteArray() {
+        let byteArray = [];
+
+        for (let level of this.levels) {
+            byteArray = byteArray.concat(level.toByteArray());
+        }
+
+        return byteArray;
+    }
+
+    feedByteArray(byteArray) {
+        for (let level of this.levels) {
+            level.feedByteArray(byteArray);
+        }
     }
 }
 
@@ -112,7 +128,7 @@ export class Durance extends StoryCompanion {
         this.attributes.resolve.base = 16;
 
         this.class = priest;
-        this.deity = priest.deities.find(deity => deity.name == 'Margran');
+        this.deity = priest.deities.find(deity => deity.name == 'Magran');
         this.race = races.find(race => race.name == 'Human');
         this.culture = cultures.find(culture => culture.name == 'Dyrwood');
         this.background = backgrounds.find(background => background.name == 'Clergy');

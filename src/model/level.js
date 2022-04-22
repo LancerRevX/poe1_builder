@@ -3,13 +3,18 @@ import skillsData from './skills.js';
 import commonTalents from './common-talents.js';
 import weapons from './weapons.js';
 
+import pickRandom from 'pick-random';
+
+const MAX_TALENTS_NUMBER = 1;
+const MAX_ABILITIES_NUMBER = 4; // Wizard has 4 spells on 1 level
+const MAX_PHRASES_NUMBER = 2; // 2 phrases on 1 chanter level
+
 export default class Level {
     constructor(character, levelNumber) {
         let level = this;
         level.character = character;
         level.number = levelNumber;
 
-        this.comment = '';
         this.skillPoints = 0;
         this._weapon = weapons[0];
 
@@ -46,6 +51,9 @@ export default class Level {
             for (let i = this.number; i < this.character.MAX_LEVEL; i++) {
                 this.character.levels[i].resetSkills();
             }
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -63,13 +71,10 @@ export default class Level {
 
     advancedSkills() {
         let previousLevel = this.previous();
-        let result = [];
-        for (let skill in skillsData) {
-            if (this.skills['_' + skill] > previousLevel.skills['_' + skill]) {
-                result.push({
-                    name: skill,
-                    value: this.skills['_' + skill] - previousLevel.skills['_' + skill]
-                });
+        let result = {};
+        for (let skillName in skillsData) {
+            if (this.skills['_' + skillName] > previousLevel.skills['_' + skillName]) {
+                result[skillName] = this.skills['_' + skillName] - previousLevel.skills['_' + skillName];
             }
         }
         return result;
@@ -106,7 +111,7 @@ export default class Level {
         }
     }
 
-    availableAbilities() {
+    availableAbilities(filterAlreadySelected = false) {
         let availableAbilities = [];
         for (let ability of this.character.class.abilities) {
             if (this.character.class.name == 'Priest' &&
@@ -119,11 +124,13 @@ export default class Level {
                 availableAbilities.push(ability);
             }
         }
-        for (let i = 0; i < this.character.levels.length; i++) {
-            if (i != this.number - 1) {
-                availableAbilities = availableAbilities.filter(
-                    ability => !this.character.levels[i].selectedAbilities.includes(ability)
-                );
+        if (filterAlreadySelected) {
+            for (let i = 0; i < this.character.levels.length; i++) {
+                if (i != this.number - 1) {
+                    availableAbilities = availableAbilities.filter(
+                        ability => !this.character.levels[i].selectedAbilities.includes(ability)
+                    );
+                }
             }
         }
         return availableAbilities;
@@ -138,6 +145,14 @@ export default class Level {
             this.selectedAbilities.splice(this.selectedAbilities.indexOf(ability), 1);
         } else if (this.remainingAbilityPoints() > 0) {
             this.selectedAbilities.push(ability);
+        }
+
+        for (let level of this.character.levels) {
+            if (level != this) {
+                if (level.selectedAbilities.includes(ability)) {
+                    level.selectedAbilities.splice(level.selectedAbilities.indexOf(ability), 1);
+                }
+            }
         }
     }
 
@@ -416,15 +431,136 @@ export default class Level {
     }
 
     toJSON() {
+        let comment = this.comment.trim();
+        let skills = [];
+        for (let skillName in skillsData) {
+            skills.push(this.skills['_' + skillName]);
+        }
+        let talents = [];
+        for (let talent of this.selectedTalents) {
+            if (commonTalents.includes(talent)) {
+                talents.push(['co', commonTalents.indexOf(talent)]);
+            } else if (this.character.class.talents.includes(talent)) {
+                talents.push(['cl', this.character.class.talents.indexOf(talent)]);
+            }
+        }
         let json = {
-            number: this.number,
-            skillPoints: this.skillPoints,
-            skills: this.skills,
-            selectedTalents: this.selectedTalents.map(talent => talent.name),
-            selectedAbilities: this.selectedAbilities.map(ability => ability.name),
-            selectedPhrases: this.selectedPhrases.map(phrase => phrase.name),
-            comment: this.comment,
+            // number: this.number,
+            po: this.skillPoints,
+            sk: skills,
+            ta: talents,
+            ab: this.selectedAbilities.length ?
+                this.selectedAbilities.map(ability => this.character.class.abilities.indexOf(ability)) :
+                undefined,
+            ph: this.selectedPhrases.length ?
+                this.selectedPhrases.map(phrase => this.character.class.phrases.indexOf(phrase)) :
+                undefined,
+            co: comment.length ? comment : undefined,
         };
         return json;
+    }
+
+    toByteArray() {
+        let byteArray = [];
+        let advancedSkills = this.advancedSkills();
+        for (let skillName in skillsData) {
+            byteArray.push(advancedSkills[skillName] ? advancedSkills[skillName] : 0);
+        }
+
+        for (let i = 0; i < MAX_TALENTS_NUMBER; i++) {
+            let talent = this.selectedTalents[i];
+            if (talent === undefined) {
+                byteArray.push(0);
+            } else if (commonTalents.includes(talent)) {
+                byteArray.push(commonTalents.indexOf(talent) + 1);
+            } else if (this.character.class.talents.includes(talent)) {
+                byteArray.push(this.character.class.talents.indexOf(talent) + 128 + 1);
+            }
+        }
+        for (let i = 0; i < MAX_ABILITIES_NUMBER; i++) {
+            let ability = this.selectedAbilities[i];
+            if (ability === undefined) {
+                byteArray.push(0);
+            } else {
+                byteArray.push(this.character.class.abilities.indexOf(ability) + 1);
+            }
+        }
+        for (let i = 0; i < MAX_PHRASES_NUMBER; i++) {
+            if (i < this.selectedPhrases.length) {
+                let phrase = this.selectedPhrases[i];
+                byteArray.push(this.character.class.phrases.indexOf(phrase) + 1);
+            } else {
+                byteArray.push(0);
+            }
+        }
+        return byteArray;
+    }
+
+    feedByteArray(byteArray) {
+        this.resetSkills();
+        for (let skillName in skillsData) {
+            let skillDelta = byteArray.shift();
+            for (let i = 0; i < skillDelta; i++) {
+                this.increaseSkill(skillName);
+            }
+        }
+
+        this.selectedTalents = [];
+        for (let i = 0; i < MAX_TALENTS_NUMBER; i++) {
+            let talentIndex = byteArray.shift();
+            if (talentIndex == 0) {
+                continue;
+            } else if (talentIndex <= 128) {
+                this.selectedTalents.push(commonTalents[talentIndex - 1]);
+            } else {
+                this.selectedTalents.push(this.character.class.talents[talentIndex - 1 - 128]);
+            }
+        }
+
+        this.selectedAbilities = [];
+        for (let i = 0; i < MAX_ABILITIES_NUMBER; i++) {
+            let abilityIndex = byteArray.shift();
+            if (abilityIndex == 0) {
+                continue;
+            } else {
+                this.selectedAbilities.push(this.character.class.abilities[abilityIndex - 1]);
+            }
+        }
+
+        this.selectedPhrases = [];
+        for (let i = 0; i < MAX_PHRASES_NUMBER; i++) {
+            let phraseIndex = byteArray.shift();
+            if (phraseIndex == 0) {
+                continue;
+            } else {
+                this.selectedPhrases.push(this.character.class.phrases[phraseIndex - 1]);
+            }
+        }
+    }
+
+    randomize() {
+        let abilities = this.availableAbilities(true);
+        if (abilities.length) {
+            for (let i = 0; i < this.abilityPoints(); i++) {
+                this.selectAbility(pickRandom(abilities)[0]);
+            }
+        }
+        let talents = this.availableTalents();
+        if (talents.length) {
+            for (let i = 0; i < this.talentPoints(); i++) {
+                this.selectTalent(pickRandom(talents)[0]);
+            }
+        }
+        let phrases = this.availablePhrases();
+        if (phrases.length) {
+            for (let i = 0; i < this.phrasePoints(); i++) {
+                this.selectPhrase(pickRandom(phrases)[0]);
+            }
+        }
+        for (let skillName of pickRandom(Object.keys(skillsData), {count: Object.keys(skillsData).length})) {
+            while (this.increaseSkill(skillName)) {
+                1;
+            }
+        }
     }
 }

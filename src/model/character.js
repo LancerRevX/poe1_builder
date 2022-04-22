@@ -6,9 +6,17 @@ import backgrounds from './backgrounds.js';
 
 import Level from './level.js';
 
+import pickRandom from 'pick-random';
+
+const MAX_NAME_LENGTH = 32;
+const MAX_COMMENT_LENGTH = 256;
+
 export default class Character {
     constructor(name) {
         this.DEFAULT_NAME = 'Watcher';
+        this.storyCompanion = false;
+
+        // this.comment = '';
 
         this.name = name ? name : this.DEFAULT_NAME;
         this.race = races[0];
@@ -194,23 +202,134 @@ export default class Character {
     }
 
     toJSON() {
-        let json = {
-            name: this.name,
-            race: this.race.name,
-            culture: this.culture.name,
-            background: this.background.name,
-            class: this.class.name,
-            spiritForm: this.spiritForm ? this.spiritForm.name : null,
-            animalCompanion: this.animalCompanion ? this.animalCompanion.name : null,
-            order: this.order ? this.order.name : null,
-            deity: this.deity ? this.deity.name : null,
-            levels: this.levels
-        };
-        let attributes = {};
+        let attributes = [];
         for (let attributeName in this.attributes) {
-            attributes[attributeName] = this.attributes[attributeName].value;
+            attributes.push(this.attributes[attributeName].base);
         }
-        json.attributes = attributes;
+        let json = {};
+        if (this.storyCompanion) {
+            json = {
+                st: 1,
+                levels: this.levels
+            };
+        } else {
+            json = {
+                na: this.name,
+                ra: races.indexOf(this.race),
+                cu: cultures.indexOf(this.culture),
+                ba: backgrounds.indexOf(this.background),
+                cl: classes.indexOf(this.class),
+                at: attributes,
+                sp: this.spiritForm ? this.class.spiritForms.indexOf(this.spiritForm) : undefined,
+                an: this.animalCompanion ? this.class.animalCompanions.indexOf(this.animalCompanion) : undefined,
+                or: this.order ? this.class.orders.indexOf(this.order) : undefined,
+                de: this.deity ? this.class.deities.indexOf(this.deity) : undefined,
+                levels: this.levels
+            };
+        }
         return json;
+    }
+
+    toByteArray() {
+        let byteArray = [];
+
+        let nameArray = new Uint8Array(MAX_NAME_LENGTH);
+        for (let i = 0; i < MAX_NAME_LENGTH; i++) {
+            nameArray[i] = i < this.name.length ? this.name.charCodeAt(i) : 0;
+        }
+        byteArray = byteArray.concat(Array.from(nameArray));
+
+        byteArray.push(races.indexOf(this.race) + 1);
+        byteArray.push(cultures.indexOf(this.culture) + 1);
+        byteArray.push(backgrounds.indexOf(this.background) + 1);
+        byteArray.push(classes.indexOf(this.class) + 1);
+
+        byteArray.push(
+            this.spiritForm ?
+            this.class.spiritForms.indexOf(this.spiritForm) + 1 :
+            0);
+        byteArray.push(
+            this.animalCompanion ?
+            this.class.animalCompanions.indexOf(this.animalCompanion) + 1 :
+            0);
+        byteArray.push(this.order ? this.class.orders.indexOf(this.order) + 1 : 0);
+        byteArray.push(this.deity ? this.class.deities.indexOf(this.deity) + 1 : 0);
+
+        for (let attributeName in this.attributes) {
+            byteArray.push(this.attributes[attributeName].base);
+        }
+
+        for (let level of this.levels) {
+            byteArray = byteArray.concat(level.toByteArray());
+        }
+
+        // let commentArray = new Uint8Array(MAX_COMMENT_LENGTH);
+        // for (let i = 0; i < MAX_COMMENT_LENGTH; i++) {
+        //     commentArray[i] = i < this.comment.length ? this.comment.charCodeAt(i) : 0;
+        // }
+        // byteArray = byteArray.concat(Array.from(commentArray));
+
+        return byteArray;
+    }
+
+    feedByteArray(byteArray) {
+        this.name = '';
+        for (let i = 0; i < MAX_NAME_LENGTH; i++) {
+            let charCode = byteArray.shift();
+            this.name += charCode > 0 ? String.fromCharCode(charCode) : '';
+        }
+
+        this.race = races[byteArray.shift() - 1];
+        this.culture = cultures[byteArray.shift() - 1];
+        this.background = backgrounds[byteArray.shift() - 1];
+        this.class = classes[byteArray.shift() - 1];
+
+        let spiritFormIndex = byteArray.shift();
+        if (spiritFormIndex) {
+            this.spiritForm = this.class.spiritForms[spiritFormIndex - 1];
+        }
+        let animalCompanionIndex = byteArray.shift();
+        if (animalCompanionIndex) {
+            this.animalCompanion = this.class.animalCompanions[animalCompanionIndex - 1];
+        }
+        let orderIndex = byteArray.shift();
+        if (orderIndex) {
+            this.order = this.class.orders[orderIndex - 1];
+        }
+        let deityIndex = byteArray.shift();
+        if (deityIndex) {
+            this.deity = this.class.deities[deityIndex - 1];
+        }
+
+        for (let attributeName in this.attributes) {
+            this.attributes[attributeName].base = byteArray.shift();
+        }
+
+        for (let level of this.levels) {
+            level.feedByteArray(byteArray);
+        }
+    }
+
+    randomize() {
+        if (!this.storyCompanion) {
+            this.class = pickRandom(classes)[0];
+            this.culture = pickRandom(cultures.filter(culture => !culture.companionOnly))[0];
+            this.background = pickRandom(this.culture.backgrounds)[0];
+            this.race = pickRandom(races.filter(race => !race.companionOnly))[0];
+        }
+
+        for (let level of this.levels) {
+            level.randomize();
+        }
+
+        while (this.attributePoints()) {
+            this.attributes[pickRandom(Object.keys(this.attributes))[0]].increase();
+        }
+
+        this.comment = '';
+        let randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
+        for (let i = 0; i < MAX_COMMENT_LENGTH; i++) {
+            this.comment += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+        }
     }
 }

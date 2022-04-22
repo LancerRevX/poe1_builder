@@ -1,7 +1,7 @@
 <template>
     <div class="comment-block">
-        <h2>Comment for level {{ selected.level.number }}</h2>
-        <textarea class="comment-block-textarea" v-model="selected.level.comment">
+        <h2>Comment ({{ selected.comment.length }}/{{ MAX_COMMENT_LENGTH }})</h2>
+        <textarea class="comment-block-textarea" v-model="selected.comment" :maxlength="MAX_COMMENT_LENGTH">
 
         </textarea>
     </div>
@@ -10,6 +10,8 @@
 <script>
     export default {
         name: 'comment-block',
+        data: () => ({
+        }),
         props: {
             selected: Object
         }

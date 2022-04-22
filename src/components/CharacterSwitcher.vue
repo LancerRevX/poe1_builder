@@ -62,7 +62,7 @@
                     >
                         Custom adventurer {{ j }}
                     </option>
-                    <option :value="null">Empty</option>
+                    <option :value="undefined">Empty</option>
                 </select>
                 <button
                     v-if="selectedCompanions[i] != null"
@@ -74,11 +74,12 @@
         </div>
 
         <div class="saveload-buttons-block">
-            <button class="save-text-button">Save to text</button>
-            <button class="save-file-button">Save to file</button>
-            <button class="save-server-button">Save on the server</button>
-            <button class="save-text-button">Load from text</button>
-            <button class="save-file-button">Load from file</button>
+            <!-- <button class="save-text-button">Save to text</button>
+            <button class="save-file-button">Save to file</button> -->
+            <button class="randomize-button" @click="randomize()">Randomize</button>
+            <button class="get-link-button" v-on:click="getLink()">Get link</button>
+            <!-- <button class="save-text-button">Load from text</button>
+            <button class="save-file-button">Load from file</button> -->
         </div>
     </div>
 </template>
@@ -86,6 +87,7 @@
 <script>
     import Character from '../model/character.js';
     import * as companions from '../model/companions.js';
+    import LZString from 'lz-string';
 
     export default {
         props: {
@@ -120,6 +122,7 @@
 
             this.selectCharacter(this.mainCharacter);
 
+            this.loadCharacterFromLink();
         },
         computed: {
         },
@@ -128,19 +131,126 @@
                 this.selected.character = character;
                 this.selected.level = character.level(1);
             },
-            getLink: function() {
-                let link =  window.location.href.split('?')[0];
-                link += '?';
-                link += `party=${this.party ? 1 : 0}`;
-                link += '&';
-                link += `maincharacter=${this.mainCharacter}`;
-                for (let i = 0; i < this.selectedCompanions.length; i++) {
-                    link += '&';
-                    link += `companion${i+1}=${JSON.stringify(this.selectedCompanions[i])}`;
+            randomize: function() {
+                this.selected.character.randomize();
+            },
+            characterToByteArray(character) {
+                let byteArray = [];
+                if (character.storyCompanion) {
+                    byteArray.push(this.storyCompanions.indexOf(character) + 1);
+                } else {
+                    byteArray.push(0);
                 }
-                navigator.clipboard.writeText(link);
+                byteArray = byteArray.concat(character.toByteArray());
+                return byteArray;
+            },
+            loadCharacterFromLink() {
+                let urlParams = new URLSearchParams(document.location.search);
+                let linkBytes = urlParams.get('bytes');
+                if (!linkBytes) {
+                    return;
+                }
+
+                let compressedBytes = '';
+                for (let i = 0; i < linkBytes.length; i += 4) {
+                    compressedBytes += String.fromCharCode(parseInt(linkBytes.slice(i, i+4), 16));
+                }
+                let byteArray = [];
+                for (let byte of LZString.decompress(compressedBytes)) {
+                    byteArray.push(byte.charCodeAt(0));
+                }
+                console.log(byteArray);
+
+                this.selected.comment = '';
+                for (let i = 0; i < this.MAX_COMMENT_LENGTH; i++) {
+                    let charCode = byteArray.shift();
+                    this.selected.comment += charCode > 0 ? String.fromCharCode(charCode) : '';
+                }
+
+                this.party = byteArray.shift();
+                if (this.party) {
+                    byteArray.shift();
+                    this.mainCharacter.feedByteArray(byteArray);
+
+                    this.selectedCompanions = [];
+                    let customCompanionIndex = 0;
+                    while (byteArray.length) {
+                        let storyCompanionIndex = byteArray.shift();
+                        let companion = null;
+                        if (storyCompanionIndex) {
+                            companion = this.storyCompanions[storyCompanionIndex - 1];
+                        } else {
+                            companion = this.customCompanions[customCompanionIndex];
+                            customCompanionIndex += 1;
+                        }
+                        companion.feedByteArray(byteArray);
+                        this.selectedCompanions.push(companion);
+                    }
+                } else {
+                    let storyCompanionIndex = byteArray.shift();
+                    if (storyCompanionIndex) {
+                        this.selectCharacter(this.storyCompanions[storyCompanionIndex - 1]);
+                    } else {
+                        this.selectCharacter(this.mainCharacter);
+                    }
+                    this.selected.character.feedByteArray(byteArray);
+                }
+            },
+            getLink: function() {
+                let byteArray = [];
+
+                let commentArray = new Uint8Array(this.MAX_COMMENT_LENGTH);
+                for (let i = 0; i < this.MAX_COMMENT_LENGTH; i++) {
+                    commentArray[i] = i < this.selected.comment.length ? this.selected.comment.charCodeAt(i) : 0;
+                }
+                byteArray = byteArray.concat(Array.from(commentArray));
+
+                byteArray.push(this.party ? 1 : 0);
+
+                if (this.party) {
+                    byteArray = byteArray.concat(this.characterToByteArray(this.mainCharacter));
+                    for (let companion of this.selectedCompanions) {
+                        if (companion !== undefined) {
+                            byteArray = byteArray.concat(this.characterToByteArray(companion));
+                        }
+                    }
+                } else {
+                    byteArray = byteArray.concat(this.characterToByteArray(this.selected.character));
+                }
+                console.log(byteArray);
+                console.log('Byte array length: ' + byteArray.length);
+
+                let byteArrayStr = '';
+                for (let byte of byteArray) {
+                    byteArrayStr += String.fromCharCode(byte);
+                }
+
+                let compressed = LZString.compress(byteArrayStr);
+                console.log('Byte array compressed length: ' + compressed.length);
+
+                let compressedLetters = '';
+                for (let i = 0; i < compressed.length; i++) {
+                    let hex = compressed.charCodeAt(i).toString(16);
+                    if (hex.length < 4) {
+                        hex = '0'.repeat(4 - hex.length) + hex;
+                    }
+                    compressedLetters += hex;
+                }
+                console.log(compressedLetters);
+
+                let newCompressed = '';
+                for (let i = 0; i < compressedLetters.length; i += 4) {
+                    newCompressed += String.fromCharCode(parseInt(compressedLetters.slice(i, i+4), 16));
+                }
+                console.log('==', compressed == newCompressed);
+
+                let url = new URL(window.location.href.split('?')[0]);
+                url.searchParams.append('bytes', compressedLetters);
+                console.log(url.href);
+                console.log('Link length: ' + url.href.length);
+
+                navigator.clipboard.writeText(url.href);
                 // alert('Your link is copied to clipboard');
-                console.log(link);
             }
         },
         watch: {
@@ -277,7 +387,7 @@
 
     button.get-link-button {
         margin-left: auto;
-        background-color: blue;
+        background-color: green;
         color: white;
         font-weight: bold;
         text-transform: uppercase;
