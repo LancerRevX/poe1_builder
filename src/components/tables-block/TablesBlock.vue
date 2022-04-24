@@ -378,13 +378,20 @@
 
 <style scoped>
     .tables-block {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-area: tables;
+
+        display: flex;
         gap: 16px;
         padding: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .tables-block-column {
+        max-width: 300px;
+        flex-basis: 280px;
+        flex-grow: 1;
+
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -420,6 +427,10 @@
         text-align: center;
         text-indent: 6px;
         cursor: pointer;
+    }
+
+    select:hover {
+        /* background-color: lightgrey; */
     }
 
     ul {

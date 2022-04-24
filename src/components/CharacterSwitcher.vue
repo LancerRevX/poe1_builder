@@ -74,12 +74,8 @@
         </div>
 
         <div class="saveload-buttons-block">
-            <!-- <button class="save-text-button">Save to text</button>
-            <button class="save-file-button">Save to file</button> -->
             <button class="randomize-button" @click="randomize()">Randomize</button>
             <button class="get-link-button" v-on:click="getLink()">Get link</button>
-            <!-- <button class="save-text-button">Load from text</button>
-            <button class="save-file-button">Load from file</button> -->
         </div>
     </div>
 </template>
@@ -301,7 +297,8 @@
 
 <style>
     div.character-switcher {
-        grid-column: span 3;
+        grid-area: switcher;
+        height: 50px;
 
         padding: 4px 8px;
         border-style: solid;
@@ -309,22 +306,26 @@
         display: flex;
         flex-direction: row;
         gap: 8px;
+        overflow-x: scroll;
     }
 
     div.characters-cards {
         display: flex;
         flex-direction: row;
+        gap: 4px;
     }
 
     div.character-card {
-        border-radius: 16px;
+        border-radius: 12px;
         padding: 0px 4px;
         display: grid;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 4px;
-        border: 1px solid black;
+        gap: 0px 4px;
+        border: 2px outset black;
+        min-width: 150px;
+        padding-left: 8px;
     }
 
     div.character-card.story-companion > select {
@@ -332,11 +333,17 @@
     }
 
     div.character-card.selected {
-        border: 1px solid red;
+        border: 2px outset red;
     }
 
     div.character-card > input {
+        min-width: 0;
         grid-column: 1;
+        align-self: flex-end;
+    }
+
+    .character-card > span {
+        align-self: flex-start;
     }
 
     div.character-card > select {
@@ -355,44 +362,47 @@
     div.party-buttons-block {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        flex-shrink: 0;
     }
 
     .saveload-buttons-block {
         margin-left: auto;
 
-        display: grid;
-        grid: repeat(2, 1fr) / repeat(3, 1fr);
-        gap: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4px;
     }
 
     .saveload-buttons-block button {
-        color: white;
         font-weight: bold;
         border-radius: 32px;
+        border-width: 1px;
+        border-style: solid;
         cursor: pointer;
-    }
-
-    .saveload-buttons-block .save-text-button {
-        background-color: green;
-    }
-
-    .saveload-buttons-block .save-file-button {
-        background-color: blue;
-    }
-
-    .saveload-buttons-block .save-server-button {
-        grid-row: span 2;
-        background-color: red;
-    }
-
-    button.get-link-button {
-        margin-left: auto;
-        background-color: green;
-        color: white;
-        font-weight: bold;
         text-transform: uppercase;
-        cursor: pointer;
-        border-radius: 32px;
         width: 8em;
+        height: 2em;
+    }
+
+    .randomize-button {
+        background-color: orange;
+        color: white;
+        border-color: darkorange;
+    }
+
+    .randomize-button:hover {
+        background-color: darkorange;
+    }
+
+    .get-link-button {
+        background-color: blue;
+        color: white;
+        border-color: darkblue;
+    }
+
+    .get-link-button:hover {
+        background-color: darkblue;
     }
 </style>

@@ -20,6 +20,8 @@
 
 <style>
     .comment-block {
+        grid-area: comment;
+
         margin: 0px 24px 16px 16px;
         display: flex;
         flex-direction: column;
@@ -29,5 +31,6 @@
         width: 100%;
         height: 100%;
         resize: none;
+        min-height: 3em;
     }
 </style>

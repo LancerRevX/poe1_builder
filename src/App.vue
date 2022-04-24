@@ -5,18 +5,6 @@
             <span class="version">v.{{ VERSION }}</span>
         </div>
         <character-switcher :selected="selected"></character-switcher>
-        <!-- <div class="tables-block">
-            <race-table v-bind="{selected}"></race-table>
-            <culture-table v-bind="{selected}"></culture-table>
-            <background-table v-bind="{selected}"></background-table>
-            <class-table v-bind="{selected}"></class-table>
-            <spirit-form-table v-bind="{selected}"></spirit-form-table>
-            <animal-companion-table v-bind="{selected}"></animal-companion-table>
-            <attributes-table v-bind="{selected}"></attributes-table>
-            <skills-table v-bind="{selected}"></skills-table>
-            <weapon-table v-bind="{selected}"></weapon-table>
-            <stats-table v-bind="{selected}"></stats-table>
-        </div> -->
         <tables-block v-bind="{selected}"></tables-block>
         <abilities-block v-bind="{selected}"></abilities-block>
         <levels-block v-bind="{selected}"></levels-block>
@@ -70,13 +58,19 @@
 
     #app {
         display: grid;
-        grid-template-rows: auto auto 2fr 1fr;
+        grid-template-rows: auto auto 3fr 1fr;
         grid-template-columns: 2fr 1fr 1fr;
+        grid-template-areas:
+            "title title title"
+            "switcher switcher switcher"
+            "tables abilities levels"
+            "comment abilities levels";
     }
 
     .title-block {
+        grid-area: title;
+
         display: flex;
-        grid-column: span 3;
         padding: 0 8px 0 16px;
         align-items: flex-start;
     }
@@ -94,4 +88,61 @@
         flex-grow: 1;
         text-align: right;
     }
+
+    @media (max-width: 1800px) {
+
+        #app {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "title title"
+                "switcher switcher"
+                "tables tables"
+                "abilities levels"
+                "comment comment";
+        }
+
+        .levels-outer-block {
+            margin: 0 16px 0 8px;
+        }
+
+        .abilities-block {
+            margin: 0 8px 0 16px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .title-block {
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .title {
+            font-size: 16px;
+        }
+
+        .version {
+            flex-grow: 0;
+        }
+
+        .levels-outer-block {
+            margin: 0 16px;
+        }
+
+        .abilities-block {
+            margin: 0 16px;
+        }
+
+        #app {
+            grid-template-columns: 1fr;
+            grid-auto-rows: auto;
+            grid-template-areas:
+                "title"
+                "switcher"
+                "tables"
+                "levels"
+                "abilities"
+                "comment";
+        }
+    }
+
 </style>

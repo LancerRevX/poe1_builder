@@ -133,9 +133,9 @@
 
 <style>
     div.abilities-block {
-        min-height: 0;
+        /* min-height: 0; */
 
-        grid-row: span 2;
+        grid-area: abilities;
 
         display: flex;
         flex-direction: column;

@@ -66,9 +66,9 @@
 
 <style>
     div.levels-outer-block {
-        min-height: 0;
+        /* min-height: 0; */
 
-        grid-row: span 2;
+        grid-area: levels;
 
         display: flex;
         flex-direction: column;
