@@ -16,7 +16,7 @@ let i18n = new VueI18n({
 
 Vue.mixin({
     data: () => ({
-        MAX_COMMENT_LENGTH: 4,
+        MAX_COMMENT_LENGTH: 512,
         VERSION: 1
     })
 });

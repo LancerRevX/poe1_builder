@@ -52,7 +52,7 @@
 
 <script>
     export default {
-        name: 'levels-table',
+        name: 'levels-block',
         props: {
             selected: Object
         },

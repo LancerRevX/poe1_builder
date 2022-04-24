@@ -4,11 +4,11 @@
         <div class="party-buttons-block">
             <label>
                 Full party
-                <input type="radio" name="party-on" v-on:click="party = true">
+                <input type="radio" name="party-on" v-on:click="party = true" v-bind:checked="party">
             </label>
             <label>
                 Single character
-                <input type="radio" name="party-on" v-on:click="party = false" checked>
+                <input type="radio" name="party-on" v-on:click="party = false" v-bind:checked="!party">
             </label>
         </div>
 
