@@ -289,16 +289,16 @@
                             <button
                                 class="decrease-button"
                                 @click="character.attributes[attributeKey].decrease()"
-                            >-</button>
+                            >−</button>
                         </td>
                         <td class="base-attribute-cell">
                             {{ character.attributes[attributeKey].base }}
                         </td>
                         <td class="bonus-attribute-cell">
-                            + {{ character.attributes[attributeKey].bonus }} =
+                            ({{ character.attributes[attributeKey].bonus >= 0 ? '+' : '−'}} {{ Math.abs(character.attributes[attributeKey].bonus) }})
                         </td>
                         <td class="modified-attribute-cell">
-                            {{ character.attributes[attributeKey].modified }}
+                            = {{ character.attributes[attributeKey].modified }}
                         </td>
                         <td class="increase-cell">
                             <button
@@ -318,7 +318,7 @@
                         <button
                             class="decrease-button"
                             @click="level.decreaseSkill(skillName)"
-                        >-</button>
+                        >−</button>
                     </td>
                     <td class="base-attribute-cell">
                         {{ level.skills[skillName] }}
@@ -424,9 +424,12 @@
         font-size: 16px;
         width: 100%;
         border: none;
+        border-radius: 0;
         text-align: center;
         text-indent: 6px;
         cursor: pointer;
+        padding: 0;
+        margin: 0;
     }
 
     select:hover {
@@ -456,6 +459,8 @@
     .decrease-button, .increase-button {
         width: 24px;
         height: 24px;
+        min-width: none;
+        min-height: none;
         border-radius: 50%;
         border: none;
         border-width: 1px;
@@ -464,6 +469,7 @@
         color: white;
         font-weight: bold;
         font-size: 16px;
+        padding: 0;
     }
 
     .decrease-button {
@@ -489,8 +495,14 @@
         text-align: center;
     }
 
-    .decrease-cell, .increase-cell {
+    .decrease-cell {
         width: 24px;
+        padding: 4px 0;
+    }
+
+    .increase-cell {
+        width: 48px;
+        padding: 4px 0;
     }
 
     .base-attribute-cell {
@@ -499,11 +511,12 @@
     }
 
     .bonus-attribute-cell {
-        width: 36px;
+        width: 32px;
+        text-align: center;
     }
 
     .modified-attribute-cell {
-        width: 16px;
+        width: 30px;
         text-align: left;
     }
 

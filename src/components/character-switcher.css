@@ -1,0 +1,125 @@
+.character-switcher {
+    grid-area: switcher;
+
+    padding: 4px 8px;
+    border-style: solid;
+    border-width: 1px 0px;
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    grid-template-areas: "party single-card cards saveload";
+}
+
+.characters-cards {
+    grid-area: cards;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.character-card {
+    grid-area: single-card;
+
+    border-radius: 12px;
+    padding: 0px 4px;
+    gap: 0px 4px;
+    border: 4px outset grey;
+    min-width: 150px;
+    max-width: 240px;
+    flex-grow: 1;
+    padding-left: 8px;
+
+    display: grid;
+    align-items: center;
+    grid-template: 1fr 1fr / 1fr auto;
+}
+
+div.character-card.story-companion > select {
+    grid-row: span 2;
+}
+
+div.character-card.selected {
+    border: 4px outset red;
+}
+
+div.character-card > input {
+    min-width: 0;
+    grid-column: 1;
+    align-self: flex-end;
+}
+
+.character-card > span {
+    align-self: flex-start;
+}
+
+.character-card > select {
+    grid-column: 1;
+    min-width: 0;
+}
+
+.character-card > button {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    border-radius: 8px;
+    border: 1px solid grey;
+    background-color: lightgray;
+    cursor: pointer;
+    /* width: 32px;
+    height: 32px; */
+    color: white;
+    padding: 2px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.character-card > button:hover {
+    background-color: grey;
+}
+
+.party-buttons-block {
+    grid-area: party;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 136px;
+}
+
+.saveload-buttons-block {
+    grid-area: saveload;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    margin-left: 8px;
+}
+
+.saveload-buttons-block button {
+    font-weight: bold;
+    border-radius: 32px;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 8em;
+    height: 2em;
+}
+
+.randomize-button {
+    background-color: orange;
+    color: white;
+    border-color: darkorange;
+}
+
+.randomize-button:hover {
+    background-color: darkorange;
+}
+
+.get-link-button {
+    background-color: blue;
+    color: white;
+    border-color: darkblue;
+}
+
+.get-link-button:hover {
+    background-color: darkblue;
+}

@@ -54,6 +54,7 @@
         margin: 0;
         padding: 0;
         height: 100%;
+        font-family: 'Times New Roman', Times, serif;
     }
 
     #app {
@@ -108,11 +109,24 @@
         .abilities-block {
             margin: 0 8px 0 16px;
         }
+
+        .character-switcher {
+            grid-template: auto auto / auto 1fr auto;
+            grid-template-areas:
+                "party single-card saveload"
+                "cards cards cards";
+        }
+
+        .characters-cards {
+            margin-top: 8px;
+            overflow-x: scroll;
+        }
     }
 
     @media (max-width: 600px) {
         .title-block {
             justify-content: center;
+            align-items: center;
             gap: 8px;
         }
 
@@ -130,6 +144,23 @@
 
         .abilities-block {
             margin: 0 16px;
+        }
+
+        .character-switcher {
+            grid-template: auto auto auto / 1fr auto;
+            grid-template-areas:
+                "party saveload"
+                "single-card single-card"
+                "cards cards";
+        }
+
+        .character-card {
+            margin-top: 8px;
+            justify-self: center;
+        }
+
+        .characters-cards {
+            margin-top: 0;
         }
 
         #app {

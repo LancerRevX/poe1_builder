@@ -27,7 +27,7 @@
                 <span style="grid-row: 2;">Main character</span>
                 <input type="text" v-model="mainCharacter.name">
                 <button @click="selectCharacter(mainCharacter)">
-                    🖉
+                    {{ buttonText }}
                 </button>
             </div>
             <div
@@ -68,7 +68,7 @@
                     v-if="selectedCompanions[i] != null"
                     @click="selectCharacter(selectedCompanions[i])"
                 >
-                    🖉
+                    {{ buttonText }}
                 </button>
             </div>
         </div>
@@ -102,7 +102,8 @@
                 new Character('Adventurer 5')
             ],
             selectedCompanions: [],
-            oldSelectedCompanions: undefined
+            oldSelectedCompanions: undefined,
+            buttonText: 'Edit'
         }),
         created: function() {
             for (let companionClass of Object.values(companions)) {
@@ -246,7 +247,11 @@
                 console.log('Link length: ' + url.href.length);
 
                 navigator.clipboard.writeText(url.href);
-                // alert('Your link is copied to clipboard');
+                if (url.href.length > 2000) {
+                    alert('Warning: the link is bigger than 2000 characters!');
+                } else {
+                    alert('The link is copied to your clipboard');
+                }
             }
         },
         watch: {
@@ -295,114 +300,4 @@
     };
 </script>
 
-<style>
-    div.character-switcher {
-        grid-area: switcher;
-        height: 50px;
-
-        padding: 4px 8px;
-        border-style: solid;
-        border-width: 1px 0px;
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        overflow-x: scroll;
-    }
-
-    div.characters-cards {
-        display: flex;
-        flex-direction: row;
-        gap: 4px;
-    }
-
-    div.character-card {
-        border-radius: 12px;
-        padding: 0px 4px;
-        display: grid;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 0px 4px;
-        border: 2px outset black;
-        min-width: 150px;
-        padding-left: 8px;
-    }
-
-    div.character-card.story-companion > select {
-        grid-row: span 2;
-    }
-
-    div.character-card.selected {
-        border: 2px outset red;
-    }
-
-    div.character-card > input {
-        min-width: 0;
-        grid-column: 1;
-        align-self: flex-end;
-    }
-
-    .character-card > span {
-        align-self: flex-start;
-    }
-
-    div.character-card > select {
-        grid-column: 1;
-    }
-
-    div.character-card > button {
-        grid-column: 2;
-        grid-row: 1 / span 2;
-        border-radius: 100%;
-        border: 4px dotted black;
-        background-color: white;
-        cursor: pointer;
-    }
-
-    div.party-buttons-block {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .saveload-buttons-block {
-        margin-left: auto;
-
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 4px;
-    }
-
-    .saveload-buttons-block button {
-        font-weight: bold;
-        border-radius: 32px;
-        border-width: 1px;
-        border-style: solid;
-        cursor: pointer;
-        text-transform: uppercase;
-        width: 8em;
-        height: 2em;
-    }
-
-    .randomize-button {
-        background-color: orange;
-        color: white;
-        border-color: darkorange;
-    }
-
-    .randomize-button:hover {
-        background-color: darkorange;
-    }
-
-    .get-link-button {
-        background-color: blue;
-        color: white;
-        border-color: darkblue;
-    }
-
-    .get-link-button:hover {
-        background-color: darkblue;
-    }
-</style>
+<style src="./character-switcher.css"></style>
