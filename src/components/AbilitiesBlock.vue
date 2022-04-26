@@ -133,7 +133,7 @@
 
 <style>
     div.abilities-block {
-        /* min-height: 0; */
+        min-height: 0;
 
         grid-area: abilities;
 

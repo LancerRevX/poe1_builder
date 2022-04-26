@@ -544,13 +544,13 @@ export default class Level {
                 this.selectAbility(pickRandom(abilities)[0]);
             }
         }
-        let talents = this.availableTalents();
+        let talents = this.availableTalents;
         if (talents.length) {
             for (let i = 0; i < this.talentPoints; i++) {
                 this.selectTalent(pickRandom(talents)[0]);
             }
         }
-        let phrases = this.availablePhrases();
+        let phrases = this.availablePhrases;
         if (phrases.length) {
             for (let i = 0; i < this.phrasePoints; i++) {
                 this.selectPhrase(pickRandom(phrases)[0]);

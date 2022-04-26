@@ -398,6 +398,10 @@
         gap: 16px;
     }
 
+    .attributes-column {
+        max-width: fit-content;
+    }
+
     .tables-block table {
         /* width: 300px; */
         table-layout: fixed;
@@ -497,7 +501,7 @@
     }
 
     .increase-cell {
-        width: 48px;
+        /* width: 48px; */
         /* padding: 4px 0; */
     }
 
@@ -518,7 +522,7 @@
 
     @media (max-width: 1800px) {
         .tables-block {
-            min-height: auto;
+            /* min-height: auto; */
 
             justify-content: center;
         }

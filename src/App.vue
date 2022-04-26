@@ -100,14 +100,14 @@
 
     @media (max-width: 1800px) {
         .main-block {
-            /* min-height: 0; */
-            /* max-height: 80hv; */
+            /* min-height: auto; */
+            /* height: 120vh; */
 
-            grid-template-columns: 1fr 1fr;
+            grid-template: auto 2fr 3fr / 1fr 1fr;
             grid-template-areas:
                 "comment comment"
-                "tables tables"
-                "abilities levels";
+                "tables levels"
+                "tables abilities";
         }
 
         .character-switcher {
@@ -123,7 +123,7 @@
         }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
         .title-block {
             justify-content: center;
             align-items: center;

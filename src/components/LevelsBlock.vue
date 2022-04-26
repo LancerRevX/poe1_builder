@@ -159,7 +159,7 @@
 
 <style>
     .levels-outer-block {
-        /* min-height: 0; */
+        min-height: 0;
 
         grid-area: levels;
 
@@ -294,6 +294,15 @@
         text-align: center;
     }
 
+    @media (max-width: 1800px) {
+        .levels-outer-block {
+            grid-template: auto auto / 1fr;
+        }
+
+        .levels-table-block {
+            display: none;
+        }
+    }
 
     @media (max-width: 600px) {
         .levels-outer-block {
