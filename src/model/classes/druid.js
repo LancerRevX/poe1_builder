@@ -8,8 +8,8 @@ export default {
     accuracy: 20,
     deflection: 20,
     skillBonuses: {
-        Lore: +1,
-        Survival: +2
+        lore: +1,
+        survival: +2
     },
     baseAbility: null,
     abilities: [

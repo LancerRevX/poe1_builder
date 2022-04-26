@@ -7,9 +7,9 @@ export default {
     accuracy: 30,
     deflection: 30,
     skillBonuses: {
-        Athletics: +1,
-        Lore: +1,
-        Survival: +1
+        athletics: +1,
+        lore: +1,
+        survival: +1
     },
     baseAbility: {
         name: 'Constant Recovery',

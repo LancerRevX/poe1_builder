@@ -36,8 +36,8 @@ export default {
     accuracy: 20,
     deflection: 15,
     skillBonuses: {
-        Athletics: +1,
-        Lore: +2
+        athletics: +1,
+        lore: +2
     },
     baseAbility: {
         level: '1',

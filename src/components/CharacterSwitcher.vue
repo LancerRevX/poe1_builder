@@ -300,4 +300,4 @@
     };
 </script>
 
-<style src="./character-switcher.css"></style>
+<style src="../styles/character-switcher.css"></style>

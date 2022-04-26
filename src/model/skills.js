@@ -1,17 +1,22 @@
 export default {
-    'Stealth': {
-
+    stealth: {
+        name: 'Stealth',
+        link: 'https://pillarsofeternity.fandom.com/wiki/Stealth'
     },
-    'Athletics': {
-
+    athletics: {
+        name: 'Athletics',
+        link: 'https://pillarsofeternity.fandom.com/wiki/Athletics'
     },
-    'Lore': {
-
+    lore: {
+        name: 'Lore',
+        link: 'https://pillarsofeternity.fandom.com/wiki/Lore'
     },
-    'Mechanics': {
-
+    mechanics: {
+        name: 'Mechanics',
+        link: 'https://pillarsofeternity.fandom.com/wiki/Mechanics'
     },
-    'Survival': {
-
+    survival: {
+        name: 'Survival',
+        link: 'https://pillarsofeternity.fandom.com/wiki/Survival'
     }
 };

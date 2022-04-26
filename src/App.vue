@@ -5,10 +5,12 @@
             <span class="version">v.{{ VERSION }}</span>
         </div>
         <character-switcher :selected="selected"></character-switcher>
-        <tables-block v-bind="{selected}"></tables-block>
-        <abilities-block v-bind="{selected}"></abilities-block>
-        <levels-block v-bind="{selected}"></levels-block>
-        <comment-block :selected="selected"></comment-block>
+        <div class="main-block">
+            <tables-block v-bind="{selected}"></tables-block>
+            <abilities-block v-bind="{selected}"></abilities-block>
+            <levels-block v-bind="{selected}"></levels-block>
+            <comment-block :selected="selected"></comment-block>
+        </div>
     </div>
 </template>
 
@@ -50,22 +52,26 @@
 </script>
 
 <style>
-    html, body, #app {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        font-family: 'Times New Roman', Times, serif;
-    }
+    @import './styles/global.css';
 
     #app {
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-block {
+        min-height: 0;
+        flex-grow: 1;
+
         display: grid;
-        grid-template-rows: auto auto 3fr 1fr;
-        grid-template-columns: 2fr 1fr 1fr;
+        grid-template: auto 1fr / 2fr 1fr 1fr;
         grid-template-areas:
-            "title title title"
-            "switcher switcher switcher"
-            "tables abilities levels"
-            "comment abilities levels";
+            "comment abilities levels"
+            "tables abilities levels";
+        padding: 8px 16px 0 16px;
+        gap: 16px;
     }
 
     .title-block {
@@ -74,10 +80,12 @@
         display: flex;
         padding: 0 8px 0 16px;
         align-items: flex-start;
+        color: white;
+        background-color: black;
     }
 
     .title, .title:visited {
-        color: black;
+        color: inherit;
         font-size: 32px;
         text-align: center;
         grid-column: span 3;
@@ -91,23 +99,15 @@
     }
 
     @media (max-width: 1800px) {
+        .main-block {
+            /* min-height: 0; */
+            /* max-height: 80hv; */
 
-        #app {
             grid-template-columns: 1fr 1fr;
             grid-template-areas:
-                "title title"
-                "switcher switcher"
+                "comment comment"
                 "tables tables"
-                "abilities levels"
-                "comment comment";
-        }
-
-        .levels-outer-block {
-            margin: 0 16px 0 8px;
-        }
-
-        .abilities-block {
-            margin: 0 8px 0 16px;
+                "abilities levels";
         }
 
         .character-switcher {
@@ -138,14 +138,6 @@
             flex-grow: 0;
         }
 
-        .levels-outer-block {
-            margin: 0 16px;
-        }
-
-        .abilities-block {
-            margin: 0 16px;
-        }
-
         .character-switcher {
             grid-template: auto auto auto / 1fr auto;
             grid-template-areas:
@@ -163,16 +155,15 @@
             margin-top: 0;
         }
 
-        #app {
+        .main-block {
+            min-height: auto;
             grid-template-columns: 1fr;
             grid-auto-rows: auto;
             grid-template-areas:
-                "title"
-                "switcher"
+                "comment"
                 "tables"
                 "levels"
-                "abilities"
-                "comment";
+                "abilities";
         }
     }
 

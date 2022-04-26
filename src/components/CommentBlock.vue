@@ -1,6 +1,7 @@
 <template>
     <div class="comment-block">
-        <h2>Comment ({{ selected.comment.length }}/{{ MAX_COMMENT_LENGTH }})</h2>
+        <span class="comment-block-title">Comment</span>
+        <span class="comment-block-counter">({{ selected.comment.length }}/{{ MAX_COMMENT_LENGTH }})</span>
         <textarea class="comment-block-textarea" v-model="selected.comment" :maxlength="MAX_COMMENT_LENGTH">
 
         </textarea>
@@ -22,14 +23,19 @@
     .comment-block {
         grid-area: comment;
 
-        margin: 0px 24px 16px 16px;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template: auto 1fr / 1fr 1fr;
+        /* max-width: 64em; */
+    }
+
+    .comment-block-counter {
+        text-align: right;
     }
 
     .comment-block-textarea {
-        width: 100%;
-        height: 100%;
+        grid-column: span 2;
+        line-height: 2ex;
+        height: 8ex;
         resize: none;
         min-height: 3em;
     }

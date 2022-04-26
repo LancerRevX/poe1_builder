@@ -1,7 +1,7 @@
 <script src="./tables-block.js"></script>
 <template>
     <div class="tables-block">
-        <div class="tables-block-column">
+        <div class="tables-block-column race-column">
             <table class="race-table">
                 <caption>Race</caption>
                 <thead>
@@ -95,7 +95,7 @@
                         <td>
                             <ul>
                                 <li v-for="skillBonus in Object.entries(character.background.skillBonuses)" :key="skillBonus[0]">
-                                    {{ skillBonus[0] + ': +' + skillBonus[1] }}
+                                    {{ skills[skillBonus[0]].name + ': +' + skillBonus[1] }}
                                 </li>
                             </ul>
                         </td>
@@ -103,7 +103,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="tables-block-column">
+        <div class="tables-block-column class-column">
             <table class="class-table">
                 <caption>Class</caption>
                 <thead>
@@ -152,7 +152,7 @@
                         <td>
                             <ul>
                                 <li v-for="skillBonus in Object.entries(character.class.skillBonuses)" :key="skillBonus[0]">
-                                    {{ skillBonus[0] + ': +' + skillBonus[1] }}
+                                    {{ skills[skillBonus[0]].name + ': +' + skillBonus[1] }}
                                 </li>
                             </ul>
                         </td>
@@ -277,7 +277,7 @@
                 </thead>
             </table>
         </div>
-        <div class="tables-block-column">
+        <div class="tables-block-column attributes-column">
             <table class="attributes-table">
                 <caption>Attributes{{ attributePointsCounter }}</caption>
                 <tbody>
@@ -310,81 +310,82 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="skills-table">
-                <caption>Skills ({{ level.skillPoints }})</caption>
-                <tr v-for="skillName in Object.keys(skills)" :key="skillName">
-                    <td class="attribute-name-cell">{{ skillName }}</td>
-                    <td class="decrease-cell">
-                        <button
-                            class="decrease-button"
-                            @click="level.decreaseSkill(skillName)"
-                        >−</button>
-                    </td>
-                    <td class="base-attribute-cell">
-                        {{ level.skills[skillName] }}
-                    </td>
-                    <td class="bonus-attribute-cell">
+        <!-- <table class="skills-table">
+            <caption>Skills ({{ level.skillPoints }})</caption>
+            <tr v-for="skillName in Object.keys(skills)" :key="skillName">
+                <td class="attribute-name-cell">{{ skillName }}</td>
+                <td class="decrease-cell">
+                    <button
+                        class="decrease-button"
+                        @click="level.decreaseSkill(skillName)"
+                    >−</button>
+                </td>
+                <td class="base-attribute-cell">
+                    {{ level.skills[skillName] }}
+                </td>
+                <td class="bonus-attribute-cell">
 
-                    </td>
-                    <td class="modified-attribute-cell">
+                </td>
+                <td class="modified-attribute-cell">
 
-                    </td>
-                    <td class="increase-cell">
-                        <button
-                            class="increase-button"
-                            @click="level.increaseSkill(skillName)"
-                        >+</button>
-                    </td>
+                </td>
+                <td class="increase-cell">
+                    <button
+                        class="increase-button"
+                        @click="level.increaseSkill(skillName)"
+                    >+</button>
+                </td>
+            </tr>
+        </table>
+        <table class="stats-table">
+            <caption>Stats on LVL {{ level.number }}</caption>
+            <thead>
+                <tr>
+                    <th colspan="2">General</th>
+                    <th colspan="2">Defenses</th>
                 </tr>
-            </table>
-            <table class="stats-table">
-                <caption>Stats on LVL {{ level.number }}</caption>
-                <thead>
-                    <tr>
-                        <th colspan="2">General</th>
-                        <th colspan="2">Defenses</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Endurance</td>
-                        <td>{{ level.endurance }}</td>
-                        <td>Deflection</td>
-                        <td>{{ level.deflection }}</td>
-                    </tr>
-                    <tr>
-                        <td>Health</td>
-                        <td>{{ level.health }}</td>
-                        <td>Fortitude</td>
-                        <td>{{ level.fortitude }}</td>
-                    </tr>
-                    <tr>
-                        <td>Accuracy</td>
-                        <td>{{ level.accuracy }}</td>
-                        <td>Reflex</td>
-                        <td>{{ level.reflex }}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>Will</td>
-                        <td>{{ level.will }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Endurance</td>
+                    <td>{{ level.endurance }}</td>
+                    <td>Deflection</td>
+                    <td>{{ level.deflection }}</td>
+                </tr>
+                <tr>
+                    <td>Health</td>
+                    <td>{{ level.health }}</td>
+                    <td>Fortitude</td>
+                    <td>{{ level.fortitude }}</td>
+                </tr>
+                <tr>
+                    <td>Accuracy</td>
+                    <td>{{ level.accuracy }}</td>
+                    <td>Reflex</td>
+                    <td>{{ level.reflex }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Will</td>
+                    <td>{{ level.will }}</td>
+                </tr>
+            </tbody>
+        </table> -->
         </div>
     </div>
 </template>
 
-<style scoped>
+<style>
     .tables-block {
         grid-area: tables;
+        min-height: 0;
 
         display: flex;
         gap: 16px;
-        padding: 16px;
         flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: row;
+        align-content: flex-start;
     }
 
     .tables-block-column {
@@ -397,8 +398,8 @@
         gap: 16px;
     }
 
-    table {
-        width: 100%;
+    .tables-block table {
+        /* width: 300px; */
         table-layout: fixed;
         border: 1px solid black;
         border-collapse: collapse;
@@ -409,17 +410,16 @@
         font-weight: bold;
     }
 
-
-    td {
+    .tables-block td {
         padding: 2px 4px;
     }
 
-    th {
+    .tables-block th {
         padding: 0;
         border: 1px solid black;
     }
 
-    select {
+    .tables-block select {
         font-weight: bold;
         font-size: 16px;
         width: 100%;
@@ -432,11 +432,11 @@
         margin: 0;
     }
 
-    select:hover {
+    .tables-block select:hover {
         /* background-color: lightgrey; */
     }
 
-    ul {
+    .tables-block ul {
         padding-left: 16px;
         margin: 0;
     }
@@ -445,11 +445,6 @@
         display: flex;
         align-items: center;
         gap: 4px;
-    }
-
-    .stats-table td:nth-child(even) {
-        border-right: 1px solid black;
-        text-align: center
     }
 
     .attributes-table {
@@ -497,12 +492,13 @@
 
     .decrease-cell {
         width: 24px;
-        padding: 4px 0;
+        /* height: 24px; */
+        /* padding: 4px 0; */
     }
 
     .increase-cell {
         width: 48px;
-        padding: 4px 0;
+        /* padding: 4px 0; */
     }
 
     .base-attribute-cell {
@@ -520,4 +516,17 @@
         text-align: left;
     }
 
+    @media (max-width: 1800px) {
+        .tables-block {
+            min-height: auto;
+
+            justify-content: center;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .tables-block {
+            justify-content: center;
+        }
+    }
 </style>

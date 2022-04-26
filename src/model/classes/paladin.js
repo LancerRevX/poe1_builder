@@ -7,8 +7,8 @@ export default {
     accuracy: 25,
     deflection: 20,
     skillBonuses: {
-        Athletics: +2,
-        Lore: +1
+        athletics: +2,
+        lore: +1
     },
     baseAbility: {
         name: 'Faith And Conviction',

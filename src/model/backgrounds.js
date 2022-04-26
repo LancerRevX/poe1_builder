@@ -2,150 +2,150 @@ export default [
     {
         name: 'Aristocrat',
         skillBonuses: {
-            'Lore': +2
+            lore: +2
         }
     },
     {
         name: 'Artist',
         skillBonuses: {
-            'Lore': +2
+            lore: +2
         }
     },
     {
         name: 'Clergy',
         skillBonuses: {
-            'Lore': +2
+            lore: +2
         }
     },
     {
         name: 'Colonist',
         skillBonuses: {
-            'Survival': +2
+            survival: +2
         }
     },
     {
         name: 'Dissident',
         skillBonuses: {
-            'Lore': +1,
-            'Stealth': +1
+            lore: +1,
+            stealth: +1
         }
     },
     {
         name: 'Drifter',
         skillBonuses: {
-            'Mechanics': +1,
-            'Stealth': +1
+            mechanics: +1,
+            stealth: +1
         }
     },
     {
         name: 'Explorer',
         skillBonuses: {
-            'Lore': +1,
-            'Survival': +1
+            lore: +1,
+            survival: +1
         }
     },
     {
         name: 'Farmer',
         skillBonuses: {
-            'Athletics': +1,
-            'Survival': +1
+            athletics: +1,
+            survival: +1
         },
         companionOnly: true
     },
     {
         name: 'Gentry',
         skillBonuses: {
-            'Lore': +2
+            lore: +2
         },
         companionOnly: true
     },
     {
         name: 'Hunter',
         skillBonuses: {
-            'Survival': +1,
-            'Stealth': +1
+            survival: +1,
+            stealth: +1
         }
     },
     {
         name: 'Laborer',
         skillBonuses: {
-            'Mechanics': +1,
-            'Athletics': +1
+            mechanics: +1,
+            athletics: +1
         }
     },
     {
         name: 'Mercenary',
         skillBonuses: {
-            'Lore': +1,
-            'Athletics': +1
+            lore: +1,
+            athletics: +1
         }
     },
     {
         name: 'Merchant',
         skillBonuses: {
-            'Lore': +1,
-            'Mechanics': +1
+            lore: +1,
+            mechanics: +1
         }
     },
     {
         name: 'Midwife',
         skillBonuses: {
-            'Lore': +1,
-            'Survival': +1
+            lore: +1,
+            survival: +1
         },
         companionOnly: true
     },
     {
         name: 'Mystic',
         skillBonuses: {
-            'Lore': +2
+            lore: +2
         }
     },
     {
         name: 'Philosopher',
         skillBonuses: {
-            'Lore': +2
+            lore: +2
         }
     },
     {
         name: 'Raider',
         skillBonuses: {
-            'Athletics': +1,
-            'Stealth': +1
+            athletics: +1,
+            stealth: +1
         }
     },
     {
         name: 'Scholar',
         skillBonuses: {
-            'Lore': +2
+            lore: +2
         }
     },
     {
         name: 'Scientist',
         skillBonuses: {
-            'Lore': +1,
-            'Mechanics': +1
+            lore: +1,
+            mechanics: +1
         }
     },
     {
         name: 'Slave',
         skillBonuses: {
-            'Athletics': +1,
-            'Survival': +1
+            athletics: +1,
+            survival: +1
         }
     },
     {
         name: 'Soldier',
         skillBonuses: {
-            'Athletics': +1,
-            'Lore': +1
+            athletics: +1,
+            lore: +1
         }
     },
     {
         name: 'Trapper',
         skillBonuses: {
-            'Stealth': +1,
-            'Mechanics': +1
+            stealth: +1,
+            mechanics: +1
         }
     }
 ];

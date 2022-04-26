@@ -7,8 +7,8 @@ export default {
     accuracy: 25,
     deflection: 15,
     skillBonuses: {
-        'Athletics': +2,
-        'Survival': +1
+        athletics: +2,
+        survival: +1
     },
     baseAbility: {
         name: 'Carnage',

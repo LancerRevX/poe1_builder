@@ -7,9 +7,9 @@ export default {
     accuracy: 30,
     deflection: 25,
     skillBonuses: {
-        Stealth: +1,
-        Athletics: +1,
-        Survival: +1
+        stealth: +1,
+        athletics: +1,
+        survival: +1
     },
     baseAbility: {
         name: 'Transcendent Suffering',

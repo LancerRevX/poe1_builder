@@ -1,11 +1,11 @@
 <template>
     <div class="abilities-block">
         <div class="abilities-table-outer-block" v-if="showAbilitiesTable">
-            <h2>{{ `${abilitiesTitle} (${selected.level.remainingAbilityPoints()})` }}</h2>
+            <h2 class="abilities-block-title">{{ `${abilitiesTitle} (${selected.level.remainingAbilityPoints})` }}</h2>
             <div class="abilities-table-inner-block">
                 <table class="abilities-table">
                     <tr
-                        v-for="ability in selected.level.availableAbilities()"
+                        v-for="ability in selected.level.availableAbilities"
                         v-bind:key="ability.name"
                         v-bind:class="{selected: selected.level.isAbilitySelected(ability)}"
                     >
@@ -21,7 +21,7 @@
                             </button>
                             <button
                                 v-on:click="selected.level.selectAbility(ability)"
-                                v-else-if="selected.level.remainingAbilityPoints()"
+                                v-else-if="selected.level.remainingAbilityPoints"
                             >
                                 ✓
                             </button>
@@ -31,11 +31,11 @@
             </div>
         </div>
         <div class="abilities-table-outer-block" v-if="showPhrasesTable">
-            <h2>Phrases ({{ selected.level.remainingPhrasePoints() }})</h2>
+            <h2 class="abilities-block-title">Phrases ({{ selected.level.remainingPhrasePoints }})</h2>
             <div class="abilities-table-inner-block">
                 <table class="abilities-table">
                     <tr
-                        v-for="phrase in selected.level.availablePhrases()"
+                        v-for="phrase in selected.level.availablePhrases"
                         v-bind:key="phrase.name"
                         v-bind:class="{selected: selected.level.isPhraseSelected(phrase)}"
                     >
@@ -51,7 +51,7 @@
                             </button>
                             <button
                                 v-on:click="selected.level.selectPhrase(phrase)"
-                                v-else-if="selected.level.remainingPhrasePoints()"
+                                v-else-if="selected.level.remainingPhrasePoints"
                             >
                                 ✓
                             </button>
@@ -61,11 +61,11 @@
             </div>
         </div>
         <div class="abilities-table-outer-block" v-if="showTalentsTable">
-            <h2>Talents ({{ selected.level.remainingTalentPoints() }})</h2>
+            <h2 class="abilities-block-title">Talents ({{ selected.level.remainingTalentPoints }})</h2>
             <div class="abilities-table-inner-block">
                 <table class="abilities-table">
                     <tr
-                        v-for="talent in selected.level.availableTalents()"
+                        v-for="talent in selected.level.availableTalents"
                         v-bind:key="talent.name"
                         v-bind:class="{selected: selected.level.isTalentSelected(talent)}"
                     >
@@ -81,7 +81,7 @@
                             </button>
                             <button
                                 v-on:click="selected.level.selectTalent(talent)"
-                                v-else-if="selected.level.remainingTalentPoints()"
+                                v-else-if="selected.level.remainingTalentPoints"
                             >
                                 ✓
                             </button>
@@ -113,7 +113,7 @@
                 }
             },
             typesOfAbilitiesToSelect: function() {
-                return this.selected.level.typesOfAbilitiesToSelect();
+                return this.selected.level.typesOfAbilitiesToSelect;
             },
             showAbilitiesTable: function() {
                 return this.typesOfAbilitiesToSelect.includes('abilities');
@@ -141,20 +141,26 @@
         flex-direction: column;
     }
 
-    div.abilities-table-outer-block {
+    .abilities-table-outer-block {
         flex: 1;
         display: flex;
         flex-direction: column;
         height: 50%;
+        gap: 8px;
     }
 
-    div.abilities-table-inner-block {
+    .abilities-table-inner-block {
         flex-grow: 1;
         overflow-y: scroll;
 
     }
 
-    table.abilities-table {
+    .abilities-block-title {
+        margin: 0;
+        text-align: center;
+    }
+
+    .abilities-table {
         border-collapse: collapse;
         width: 100%;
     }
@@ -217,4 +223,18 @@
         background-color: red;
         color: white;
     } */
+
+    @media (max-width: 600px) {
+        .abilities-table {
+            margin-bottom: 16px;
+        }
+
+        .abilities-table-outer-block {
+            height: auto;
+        }
+
+        .abilities-table-inner-block {
+            overflow-y: visible;
+        }
+    }
 </style>

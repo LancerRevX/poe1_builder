@@ -7,9 +7,9 @@ export default {
     accuracy: 25,
     deflection: 20,
     skillBonuses: {
-        Stealth: +1,
-        Lore: +1,
-        Mechanics: +1
+        stealth: +1,
+        lore: +1,
+        mechanics: +1
     },
     baseAbility: {
         name: 'Soul Whip',

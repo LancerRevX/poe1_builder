@@ -1,80 +1,94 @@
-import skillsData from './skills.js';
+import skills from './skills.js';
 
 import commonTalents from './common-talents.js';
 import weapons from './weapons.js';
 
 import pickRandom from 'pick-random';
 
+const MAX_LEVEL = 16;
+
 const MAX_TALENTS_NUMBER = 1;
 const MAX_ABILITIES_NUMBER = 4; // Wizard has 4 spells on 1 level
 const MAX_PHRASES_NUMBER = 2; // 2 phrases on 1 chanter level
 
+const SKILL_DEFAULT = 0;
+const SKILL_POINTS_PER_LEVEL = 6;
+
 export default class Level {
     constructor(character, levelNumber) {
-        let level = this;
-        level.character = character;
-        level.number = levelNumber;
+        this.character = character;
+        this.number = levelNumber;
 
         this.skillPoints = 0;
-        this._weapon = weapons[0];
 
-        level.skills = {};
-        for (let skillName in skillsData) {
-            this.skills['_' + skillName] = 0;
-            Object.defineProperty(level.skills, skillName, {
-                get: function() {
-                    let result = this['_' + skillName];
-                    let classBonus = level.character.class.skillBonuses[skillName];
-                    if (classBonus) {
-                        result += classBonus;
+        this.skills = {};
+        for (let skillName in skills) {
+            this.skills[skillName] = {
+                base: SKILL_DEFAULT,
+                increase: () => {
+                    let requiredPoints = this.skills[skillName].base + 1;
+                    if (requiredPoints <= this.skillPoints) {
+                        this.skillPoints -= requiredPoints;
+                        this.skills[skillName].base += 1;
+                        for (let i = this.number; i < this.character.MAX_LEVEL; i++) {
+                            this.character.levels[i].resetSkills();
+                        }
+                        if (this.number < MAX_LEVEL) {
+                            this.next.resetSkills();
+                        }
+                        return true;
+                    } else {
+                        return false;
                     }
-                    let backgroundBonus = level.character.background.skillBonuses[skillName];
-                    if (backgroundBonus) {
-                        result += backgroundBonus;
+                },
+                decrease: () => {
+                    let previousLevel = this.previous || this;
+                    let previousLevelSkills = previousLevel.skills;
+                    if (this.skills[skillName].base > previousLevelSkills[skillName].base) {
+                        let releasedPoints = this.skills[skillName].base;
+                        this.skillPoints += releasedPoints;
+                        this.skills[skillName].base -= 1;
+                        if (this.number < MAX_LEVEL) {
+                            this.next.resetSkills();
+                        }
                     }
+                }
+            };
+            Object.defineProperty(this.skills[skillName], 'bonus', {
+                get: () => {
+                    let result = 0;
+                    let classBonus = this.character.class.skillBonuses[skillName] || 0;
+                    result += classBonus;
+                    let backgroundBonus = this.character.background.skillBonuses[skillName] || 0;
+                    result += backgroundBonus;
+                    return result;
+                }
+            });
+            Object.defineProperty(this.skills[skillName], 'modified', {
+                get: () => {
+                    let result = this.skills[skillName].base;
+                    let classBonus = this.character.class.skillBonuses[skillName] || 0;
+                    result += classBonus;
+                    let backgroundBonus = this.character.background.skillBonuses[skillName] || 0;
+                    result += backgroundBonus;
                     return result;
                 }
             });
         }
-        level.resetSkills();
 
-        level.selectedAbilities = [];
-        level.selectedPhrases = [];
-        level.selectedTalents = [];
-    }
+        this.skillPoints = (this.number - 1) * SKILL_POINTS_PER_LEVEL;
 
-    increaseSkill(skill) {
-        let requiredPointsNumber = this.skills['_' + skill] + 1;
-        if (requiredPointsNumber <= this.skillPoints) {
-            this.skillPoints -= requiredPointsNumber;
-            this.skills['_' + skill] += 1;
-            for (let i = this.number; i < this.character.MAX_LEVEL; i++) {
-                this.character.levels[i].resetSkills();
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    decreaseSkill(skill) {
-        let previousLevelSkills = this.previous().skills;
-        if (this.skills['_' + skill] > previousLevelSkills['_' + skill]) {
-            let releasedPointsNumber = this.skills['_' + skill];
-            this.skillPoints += releasedPointsNumber;
-            this.skills['_' + skill] -= 1;
-            for (let i = this.number; i < this.character.MAX_LEVEL; i++) {
-                this.character.levels[i].resetSkills();
-            }
-        }
+        this.selectedAbilities = [];
+        this.selectedPhrases = [];
+        this.selectedTalents = [];
     }
 
     advancedSkills() {
-        let previousLevel = this.previous();
+        let previousLevel = this.previous || this;
         let result = {};
-        for (let skillName in skillsData) {
-            if (this.skills['_' + skillName] > previousLevel.skills['_' + skillName]) {
-                result[skillName] = this.skills['_' + skillName] - previousLevel.skills['_' + skillName];
+        for (let skillName in skills) {
+            if (this.skills[skillName].base > previousLevel.skills[skillName].base) {
+                result[skillName] = this.skills[skillName].base - previousLevel.skills[skillName].base;
             }
         }
         return result;
@@ -83,27 +97,31 @@ export default class Level {
     resetSkills() {
         if (this.number == 1) {
             this.skillPoints = 0;
-            for (let skill in skillsData) {
-                this.skills['_' + skill] = 0;
+            for (let skillName in skills) {
+                this.skills[skillName].base = SKILL_DEFAULT;
             }
+            this.next.resetSkills();
         } else {
-            let previousLevel = this.previous();
-            for (let skill in skillsData) {
-                this.skills['_' + skill] = previousLevel.skills['_' + skill];
+            let previousLevel = this.previous;
+            for (let skillName in skills) {
+                this.skills[skillName].base = previousLevel.skills[skillName].base;
             }
-            this.skillPoints = previousLevel.skillPoints + this.character.SKILL_POINTS_PER_LEVEL;
+            this.skillPoints = previousLevel.skillPoints + SKILL_POINTS_PER_LEVEL;
+            if (this.number < MAX_LEVEL) {
+                this.next.resetSkills();
+            }
         }
     }
 
-    previous() {
+    get previous() {
         if (this.number == 1) {
-            return this;
+            return null;
         } else {
             return this.character.levels[this.number - 2];
         }
     }
 
-    next() {
+    get next() {
         if (this.number == this.character.MAX_LEVEL) {
             return null;
         } else {
@@ -111,7 +129,7 @@ export default class Level {
         }
     }
 
-    availableAbilities(filterAlreadySelected = false) {
+    get availableAbilities() {
         let availableAbilities = [];
         for (let ability of this.character.class.abilities) {
             if (this.character.class.name == 'Priest' &&
@@ -124,15 +142,7 @@ export default class Level {
                 availableAbilities.push(ability);
             }
         }
-        if (filterAlreadySelected) {
-            for (let i = 0; i < this.character.levels.length; i++) {
-                if (i != this.number - 1) {
-                    availableAbilities = availableAbilities.filter(
-                        ability => !this.character.levels[i].selectedAbilities.includes(ability)
-                    );
-                }
-            }
-        }
+
         return availableAbilities;
     }
 
@@ -143,7 +153,7 @@ export default class Level {
 
         if (this.selectedAbilities.includes(ability)) {
             this.selectedAbilities.splice(this.selectedAbilities.indexOf(ability), 1);
-        } else if (this.remainingAbilityPoints() > 0) {
+        } else if (this.remainingAbilityPoints > 0) {
             this.selectedAbilities.push(ability);
         }
 
@@ -169,21 +179,21 @@ export default class Level {
         return false;
     }
 
-    typesOfAbilitiesToSelect() {
+    get typesOfAbilitiesToSelect() {
         let typesOfAbilitiesToSelect = [];
-        if (['Druid', 'Priest'].includes(this.character.class.name) && this.number % 2 == 1 || this.abilityPoints()) {
+        if (['Druid', 'Priest'].includes(this.character.class.name) && this.number % 2 == 1 || this.abilityPoints) {
             typesOfAbilitiesToSelect.push('abilities');
         }
-        if (this.phrasePoints()) {
+        if (this.phrasePoints) {
             typesOfAbilitiesToSelect.push('phrases');
         }
-        if (this.talentPoints()) {
+        if (this.talentPoints) {
             typesOfAbilitiesToSelect.push('talents');
         }
         return typesOfAbilitiesToSelect;
     }
 
-    abilityPoints() {
+    get abilityPoints() {
         if (this.character.class.name == 'Chanter') {
             if (this.number == 1 || this.number % 2 == 0) {
                 return 1;
@@ -209,13 +219,14 @@ export default class Level {
         } else if (this.number % 2 == 1) {
             return 1;
         }
+        return 0;
     }
 
-    remainingAbilityPoints() {
-        return this.abilityPoints() - this.selectedAbilities.length;
+    get remainingAbilityPoints() {
+        return this.abilityPoints - this.selectedAbilities.length;
     }
 
-    availablePhrases() {
+    get availablePhrases() {
         if (this.character.class.name != 'Chanter') {
             return [];
         }
@@ -243,7 +254,7 @@ export default class Level {
 
         if (this.selectedPhrases.includes(phrase)) {
             this.selectedPhrases.splice(this.selectedPhrases.indexOf(phrase), 1);
-        } else if (this.remainingPhrasePoints() > 0) {
+        } else if (this.remainingPhrasePoints > 0) {
             this.selectedPhrases.push(phrase);
         }
     }
@@ -252,7 +263,7 @@ export default class Level {
         return this.selectedPhrases.includes(ability);
     }
 
-    phrasePoints() {
+    get phrasePoints() {
         if (this.character.class.name != 'Chanter') {
             return 0;
         }
@@ -261,16 +272,15 @@ export default class Level {
             return 2;
         } else if (this.number % 2 == 1) {
             return 1;
-        } else if (this.number % 2 == 0) {
-            return 0;
         }
+        return 0;
     }
 
-    remainingPhrasePoints() {
-        return this.phrasePoints() - this.selectedPhrases.length;
+    get remainingPhrasePoints() {
+        return this.phrasePoints - this.selectedPhrases.length;
     }
 
-    talentPoints() {
+    get talentPoints() {
         if (this.number % 2 == 0) {
             return this.character.TALENT_POINTS_PER_LEVEL;
         } else {
@@ -278,8 +288,8 @@ export default class Level {
         }
     }
 
-    remainingTalentPoints() {
-        return this.talentPoints() - this.selectedTalents.length;
+    get remainingTalentPoints() {
+        return this.talentPoints - this.selectedTalents.length;
     }
 
     isTalentSelected(talent) {
@@ -295,7 +305,7 @@ export default class Level {
         return false;
     }
 
-    availableTalents() {
+    get availableTalents() {
         let availableTalents = [];
         for (let commonTalent of commonTalents) {
             if (commonTalent.level > this.level) {
@@ -346,31 +356,13 @@ export default class Level {
     selectTalent(talent) {
         if (this.selectedTalents.includes(talent)) {
             this.selectedTalents.splice(this.selectedTalents.indexOf(talent), 1);
-        } else if (this.remainingTalentPoints() > 0) {
+        } else if (this.remainingTalentPoints > 0) {
             this.selectedTalents.push(talent);
         }
     }
 
     get weapon() {
         return this._weapon;
-    }
-
-    set weapon(weapon) {
-        this._weapon = weapon;
-        let next = this.next();
-        if (next) {
-            next.weapon = weapon;
-        }
-    }
-
-    weaponChanged() {
-        if (this.number == 1) {
-            return true;
-        }
-        if (this.previous().weapon != this.weapon) {
-            return true;
-        }
-        return false;
     }
 
     get damage() {
@@ -433,8 +425,8 @@ export default class Level {
     toJSON() {
         let comment = this.comment.trim();
         let skills = [];
-        for (let skillName in skillsData) {
-            skills.push(this.skills['_' + skillName]);
+        for (let skillName in skills) {
+            skills.push(this.skills[skillName].base);
         }
         let talents = [];
         for (let talent of this.selectedTalents) {
@@ -462,8 +454,8 @@ export default class Level {
 
     toByteArray() {
         let byteArray = [];
-        let advancedSkills = this.advancedSkills();
-        for (let skillName in skillsData) {
+        let advancedSkills = this.advancedSkills;
+        for (let skillName in skills) {
             byteArray.push(advancedSkills[skillName] ? advancedSkills[skillName] : 0);
         }
 
@@ -498,10 +490,10 @@ export default class Level {
 
     feedByteArray(byteArray) {
         this.resetSkills();
-        for (let skillName in skillsData) {
+        for (let skillName in skills) {
             let skillDelta = byteArray.shift();
             for (let i = 0; i < skillDelta; i++) {
-                this.increaseSkill(skillName);
+                this.skills[skillName].increase();
             }
         }
 
@@ -539,26 +531,33 @@ export default class Level {
     }
 
     randomize() {
-        let abilities = this.availableAbilities(true);
+        let abilities = this.availableAbilities;
+        for (let i = 0; i < this.character.levels.length; i++) {
+            if (i != this.number - 1) {
+                abilities = abilities.filter(
+                    ability => !this.character.levels[i].selectedAbilities.includes(ability)
+                );
+            }
+        }
         if (abilities.length) {
-            for (let i = 0; i < this.abilityPoints(); i++) {
+            for (let i = 0; i < this.abilityPoints; i++) {
                 this.selectAbility(pickRandom(abilities)[0]);
             }
         }
         let talents = this.availableTalents();
         if (talents.length) {
-            for (let i = 0; i < this.talentPoints(); i++) {
+            for (let i = 0; i < this.talentPoints; i++) {
                 this.selectTalent(pickRandom(talents)[0]);
             }
         }
         let phrases = this.availablePhrases();
         if (phrases.length) {
-            for (let i = 0; i < this.phrasePoints(); i++) {
+            for (let i = 0; i < this.phrasePoints; i++) {
                 this.selectPhrase(pickRandom(phrases)[0]);
             }
         }
-        for (let skillName of pickRandom(Object.keys(skillsData), {count: Object.keys(skillsData).length})) {
-            while (this.increaseSkill(skillName)) {
+        for (let skillName of pickRandom(Object.keys(skills), {count: Object.keys(skills).length})) {
+            while (this.skills[skillName].increase()) {
                 1;
             }
         }

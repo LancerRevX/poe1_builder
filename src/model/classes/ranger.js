@@ -7,8 +7,8 @@ export default {
     accuracy: 30,
     deflection: 20,
     skillBonuses: {
-        Stealth: +1,
-        Survival: +2
+        stealth: +1,
+        survival: +2
     },
     baseAbility: {
         name: 'Animal Companion',

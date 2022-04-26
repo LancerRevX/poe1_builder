@@ -7,8 +7,8 @@ export default {
     accuracy: 25,
     deflection: 25,
     skillBonuses: {
-        'Lore': +2,
-        'Mechanics': +1
+        lore: +2,
+        mechanics: +1
     },
     baseAbility: {
         name: 'Brisk Recitation',

@@ -7,8 +7,8 @@ export default {
     accuracy: 30,
     deflection: 15,
     skillBonuses: {
-        Stealth: +1,
-        Mechanics: +2
+        stealth: +1,
+        mechanics: +2
     },
     baseAbility: {
         name: 'Sneak Attack',
