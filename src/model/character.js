@@ -322,8 +322,15 @@ export default class Character {
             level.randomize();
         }
 
+        for (let attributeKey in this.attributes) {
+            this.attributes[attributeKey].base = this.ATTRIBUTE_DEFAULT;
+        }
         while (this.attributePoints()) {
-            this.attributes[pickRandom(Object.keys(this.attributes))[0]].increase();
+            if (Math.random() > 0.5) {
+                this.attributes[pickRandom(Object.keys(this.attributes))[0]].increase();
+            } else {
+                this.attributes[pickRandom(Object.keys(this.attributes))[0]].decrease();
+            }
         }
 
         this.comment = '';
