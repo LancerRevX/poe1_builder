@@ -186,7 +186,7 @@ export default class Character {
 
     set culture(newCulture) {
         if (!newCulture.backgrounds.includes(this.background)) {
-            this.background = this.culture.backgrounds[0];
+            this.background = newCulture.backgrounds[0];
         }
         this._culture = newCulture;
     }

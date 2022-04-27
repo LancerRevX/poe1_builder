@@ -49,7 +49,7 @@
                     <tr>
                         <th colspan="2">
                             <select v-if="!character.storyCompanion" v-model="character.culture">
-                                <option v-for="culture in cultures" :key="culture.name" :value="culture">
+                                <option v-for="culture in cultures.filter(culture => !culture.companionOnly)" :key="culture.name" :value="culture">
                                     {{ culture.name }}
                                 </option>
                             </select>
