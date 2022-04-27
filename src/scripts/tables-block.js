@@ -1,8 +1,8 @@
-import races from '../../model/races.js';
-import classes from '../../model/classes.js';
-import cultures from '../../model/cultures.js';
-import attributes from '../../model/attributes.js';
-import skills from '../../model/skills.js';
+import races from '../model/races.js';
+import classes from '../model/classes.js';
+import cultures from '../model/cultures.js';
+import attributes from '../model/attributes.js';
+import skills from '../model/skills.js';
 
 export default {
     name: 'race-table',

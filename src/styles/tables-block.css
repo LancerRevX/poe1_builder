@@ -1,0 +1,156 @@
+.tables-block {
+    grid-area: tables;
+    min-height: 0;
+
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+}
+
+.tables-block-column {
+    max-width: 300px;
+    flex-basis: 280px;
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.attributes-column {
+    max-width: fit-content;
+}
+
+.tables-block table {
+    /* width: 300px; */
+    table-layout: fixed;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+caption {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tables-block td {
+    padding: 2px 4px;
+}
+
+.tables-block th {
+    padding: 0;
+    border: 1px solid black;
+}
+
+.tables-block select {
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    text-indent: 6px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.tables-block select:hover {
+    /* background-color: lightgrey; */
+}
+
+.tables-block ul {
+    padding-left: 16px;
+    margin: 0;
+}
+
+.ability-block {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.attributes-table {
+    /* table-layout: auto; */
+}
+
+.decrease-button, .increase-button {
+    width: 24px;
+    height: 24px;
+    min-width: none;
+    min-height: none;
+    border-radius: 50%;
+    border: none;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0;
+}
+
+.decrease-button {
+    background-color: red;
+    border-color: brown;
+}
+
+.decrease-button:hover {
+    background-color: brown;
+    color: white;
+}
+
+.increase-button {
+    background-color: green;
+    border-color: darkgreen;
+}
+
+.increase-button:hover {
+    background-color: darkgreen;
+}
+
+.attribute-name-cell {
+    text-align: center;
+}
+
+.decrease-cell {
+    width: 24px;
+    /* height: 24px; */
+    /* padding: 4px 0; */
+}
+
+.increase-cell {
+    /* width: 48px; */
+    /* padding: 4px 0; */
+}
+
+.base-attribute-cell {
+    width: 16px;
+    text-align: right;
+}
+
+.bonus-attribute-cell {
+    width: 32px;
+    text-align: center;
+}
+
+.modified-attribute-cell {
+    width: 30px;
+    text-align: left;
+}
+
+@media (max-width: 1800px) {
+    .tables-block {
+        min-height: 320px;
+
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .tables-block {
+        justify-content: center;
+    }
+}

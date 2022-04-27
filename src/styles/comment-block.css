@@ -1,0 +1,26 @@
+.comment-block {
+    grid-area: comment;
+
+    display: flex;
+    justify-content: center;
+}
+
+.comment-inner-block {
+    max-width: 64em;
+    flex-grow: 1;
+
+    display: grid;
+    grid-template: auto 1fr / 1fr 1fr;
+}
+
+.comment-block-counter {
+    text-align: right;
+}
+
+.comment-block-textarea {
+    grid-column: span 2;
+    line-height: 2ex;
+    height: 8ex;
+    resize: none;
+    min-height: 3em;
+}
