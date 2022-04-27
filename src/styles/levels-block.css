@@ -1,18 +1,16 @@
-.levels-outer-block {
+.levels-block {
     min-height: 0;
     grid-area: levels;
 
-    display: grid;
-    grid-template-areas:
-        "header"
-        "skills"
-        "table";
+    display: flex;
+    flex-direction: column;
     gap: 8px;
 }
 
 .levels-table-block {
     grid-area: table;
     min-height: 0;
+    flex: 1;
 
     overflow-y: scroll;
 }
@@ -20,6 +18,12 @@
 .levels-table {
     border-collapse: collapse;
     width: 100%;
+}
+
+.level-number-cell {
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .level {
@@ -140,28 +144,27 @@
 }
 
 @media (max-width: 1800px) {
-    .levels-outer-block {
-        display: flex;
+    .levels-block {
+        height: 300px;
+
         flex-direction: row;
         justify-content: center;
     }
 
     .levels-top-block {
         max-width: 600px;
-        flex-grow: 1;
-
+        flex: 1;
     }
 
     .levels-table-block {
         max-width: 600px;
         flex-grow: 1;
-        height: 300px;
     }
 }
 
-@media (max-width: 900px) {
-    .levels-outer-block {
-        grid-template: auto auto / 1fr;
+@media (max-width: 1000px) {
+    .levels-block {
+        height: auto;
     }
 
     .levels-table-block {

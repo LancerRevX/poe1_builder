@@ -23,7 +23,7 @@
                     <tr>
                         <td>Ability</td>
                         <td>
-                            <div class="ability-block">
+                            <div class="base-ability-block">
                                 <img :src="character.race.ability.imageLink" width="32" height="32">
                                 <a :href="character.race.ability.link" target="_blank">{{ character.race.ability.name }}</a>
                             </div>
@@ -125,7 +125,7 @@
                     <tr v-if="character.class.baseAbility">
                         <td>Base ability</td>
                         <td>
-                            <div class="ability-block">
+                            <div class="base-ability-block">
                                 <img :src="character.class.baseAbility.imageLink" width="32" height="32">
                                 <a :href="character.class.baseAbility.link">{{ character.class.baseAbility.name }}</a>
                             </div>

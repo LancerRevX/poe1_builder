@@ -99,27 +99,20 @@
     }
 
     @media (max-width: 1800px) {
+        html, body, #app {
+            height: auto;
+        }
+
         .main-block {
-            /* min-height: auto; */
-            /* height: 120vh; */
+            min-height: auto;
 
-            grid-template: auto 2fr 3fr / 1fr 1fr;
+            grid-template: auto auto 1fr / 1fr;
             grid-template-areas:
-                "comment comment"
-                "tables levels"
-                "tables abilities";
-        }
-
-        .character-switcher {
-            grid-template: auto auto / auto 1fr auto;
-            grid-template-areas:
-                "party single-card saveload"
-                "cards cards cards";
-        }
-
-        .characters-cards {
-            margin-top: 8px;
-            overflow-x: scroll;
+                "comment"
+                "tables"
+                "levels"
+                "abilities";
+            padding-bottom: 16px;
         }
     }
 
@@ -136,23 +129,6 @@
 
         .version {
             flex-grow: 0;
-        }
-
-        .character-switcher {
-            grid-template: auto auto auto / 1fr auto;
-            grid-template-areas:
-                "party saveload"
-                "single-card single-card"
-                "cards cards";
-        }
-
-        .character-card {
-            margin-top: 8px;
-            justify-self: center;
-        }
-
-        .characters-cards {
-            margin-top: 0;
         }
 
         .main-block {

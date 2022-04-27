@@ -18,6 +18,7 @@ export default class Level {
     constructor(character, levelNumber) {
         this.character = character;
         this.number = levelNumber;
+        this.storyCompanion = false;
 
         this.skillPoints = 0;
 
@@ -83,7 +84,7 @@ export default class Level {
         this.selectedTalents = [];
     }
 
-    advancedSkills() {
+    get advancedSkills() {
         let previousLevel = this.previous || this;
         let result = {};
         for (let skillName in skills) {
@@ -140,6 +141,13 @@ export default class Level {
                 availableAbilities.push(ability);
             } else if (ability.level <= this.number) {
                 availableAbilities.push(ability);
+            }
+        }
+        for (let i = 0; i < this.character.levels.length; i++) {
+            if (i != this.number - 1) {
+                availableAbilities = availableAbilities.filter(
+                    ability => !this.character.levels[i].selectedAbilities.includes(ability)
+                );
             }
         }
 
@@ -458,6 +466,7 @@ export default class Level {
         for (let skillName in skills) {
             byteArray.push(advancedSkills[skillName] ? advancedSkills[skillName] : 0);
         }
+        console.log('advanced skills', advancedSkills);
 
         for (let i = 0; i < MAX_TALENTS_NUMBER; i++) {
             let talent = this.selectedTalents[i];
@@ -532,28 +541,24 @@ export default class Level {
 
     randomize() {
         let abilities = this.availableAbilities;
-        for (let i = 0; i < this.character.levels.length; i++) {
-            if (i != this.number - 1) {
-                abilities = abilities.filter(
-                    ability => !this.character.levels[i].selectedAbilities.includes(ability)
-                );
-            }
-        }
         if (abilities.length) {
-            for (let i = 0; i < this.abilityPoints; i++) {
-                this.selectAbility(pickRandom(abilities)[0]);
+            abilities = pickRandom(abilities, {count: this.abilityPoints});
+            for (let ability of abilities) {
+                this.selectAbility(ability);
             }
         }
         let talents = this.availableTalents;
         if (talents.length) {
-            for (let i = 0; i < this.talentPoints; i++) {
-                this.selectTalent(pickRandom(talents)[0]);
+            talents = pickRandom(talents, {count: this.talentPoints});
+            for (let talent of talents) {
+                this.selectTalent(talent);
             }
         }
         let phrases = this.availablePhrases;
         if (phrases.length) {
-            for (let i = 0; i < this.phrasePoints; i++) {
-                this.selectPhrase(pickRandom(phrases)[0]);
+            phrases = pickRandom(phrases, {count: this.phrasePoints});
+            for (let phrase of phrases) {
+                this.selectPhrase(phrase);
             }
         }
         for (let skillName of pickRandom(Object.keys(skills), {count: Object.keys(skills).length})) {

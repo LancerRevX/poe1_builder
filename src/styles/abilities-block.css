@@ -7,28 +7,38 @@
     flex-direction: column;
 }
 
-.abilities-table-block {
-    flex: 1;
+.abilities-table-outer-block {
+    min-height: 0;
+    flex: 1 50%;
+
     display: flex;
-    flex-direction: column;
-    height: 50%;
+    flex-direction: row;
+    justify-content: center;
     gap: 8px;
 }
 
 .abilities-table-inner-block {
-    flex-grow: 1;
-    overflow-y: scroll;
+    flex: 1;
 
+    display: flex;
+    flex-direction: column;
 }
 
-.abilities-block-title {
+.abilities-table-scroll-block {
+    flex: 1;
+
+    overflow-y: scroll;
+}
+
+.abilities-table-title {
     margin: 0;
     text-align: center;
 }
 
 .abilities-table {
-    border-collapse: collapse;
     width: 100%;
+
+    border-collapse: collapse;
 }
 
 .abilities-table tr {
@@ -39,9 +49,10 @@
     vertical-align: top;
 }
 
-.abilities-table ul {
-    margin: 0;
-    padding: 0;
+.abilities-table td:last-child {
+    vertical-align: bottom;
+    text-align: right;
+    padding: 4px;
 }
 
 /* table.abilities-table > tr.selected {
@@ -51,31 +62,32 @@
 } */
 
 .abilities-table button {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     text-align: center;
-    border-radius: 100%;
+    /* border-radius: 100%; */
     border: 1px solid white;
     background-color: greenyellow;
 }
 
-tr.selected button {
+.ability.selected button {
     background-color: red;
+    border: 1px solid grey;
 }
 
-table.abilities-table button:hover {
+.abilities-table button:hover {
     cursor: pointer;
     border: 1px solid black;
 }
 
-tr.selected {
+.ability.selected {
     background-color: grey;
     color: white;
 }
-tr.selected :link {
+.ability.selected :link {
     color: white;
 }
-tr.selected :visited {
+.ability.selected :visited {
     color: white;
 }
 /* table.abilities-table > tr.selected > :nth-child(1),
@@ -97,17 +109,12 @@ table.abilities-table > tr.selected > :nth-child(2) {
         justify-content: center;
     }
     
-    .abilities-table-block {
+    .abilities-table-outer-block {
         height: 300px;
-        max-width: 600px;
-    }
-
-    .abilities-table {
-        margin-bottom: 16px;
     }
 
     .abilities-table-inner-block {
-        /* overflow-y: visible; */
+        max-width: 600px;
     }
 }
 
@@ -117,11 +124,16 @@ table.abilities-table > tr.selected > :nth-child(2) {
         align-items: center;
     }
 
-    .abilities-table-block {
-        height: auto;
+    .abilities-table-outer-block {
+        width: 100%;
+        flex: 1 min-content;
     }
 
     .abilities-table-inner-block {
+        flex: 1;
+    }
+
+    .abilities-table-scroll-block {
         overflow-y: visible;
     }
 }

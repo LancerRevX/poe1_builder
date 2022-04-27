@@ -1,52 +1,55 @@
 .character-switcher {
     grid-area: switcher;
 
-    padding: 4px 8px;
+    padding: 0;
     border-style: solid;
     border-width: 1px 0px;
     display: grid;
-    grid-template-columns: auto auto 1fr auto;
-    grid-template-areas: "party single-card cards saveload";
+    grid-template: auto / auto 1fr auto;
+    grid-template-areas: "party cards saveload";
+    gap: 0;
 }
 
-.characters-cards {
+.single-character-card {
     grid-area: cards;
+}
+
+.party-character-cards {
+    grid-area: cards;
+
     display: flex;
     flex-direction: row;
     gap: 4px;
 }
 
-.single-character-card {
-    grid-area: single-card;
-
-    display: flex;
-    justify-content: left;
-}
-
 .character-card {
+    height: 48px;
     border-radius: 12px;
-    padding: 0px 4px;
+    padding: 0px 4px 0px 8px;
     gap: 0px 4px;
     border: 4px outset grey;
     min-width: 150px;
     max-width: 240px;
     flex-grow: 1;
-    padding-left: 8px;
 
     display: grid;
     align-items: center;
     grid-template: 1fr 1fr / 1fr auto;
 }
 
-div.character-card.story-companion > select {
+.character-card.story-companion > select {
     grid-row: span 2;
 }
 
-div.character-card.selected {
+.character-card.selected {
     border: 4px outset red;
 }
 
-div.character-card > input {
+.character-card.empty > select {
+    grid-row: span 2;
+}
+
+.character-card > input {
     min-width: 0;
     grid-column: 1;
     align-self: flex-end;
@@ -86,6 +89,7 @@ div.character-card > input {
     flex-direction: column;
     justify-content: center;
     width: 136px;
+    margin-left: 8px;
 }
 
 .saveload-buttons-block {
@@ -95,7 +99,7 @@ div.character-card > input {
     flex-direction: row;
     align-items: center;
     gap: 4px;
-    margin-left: 8px;
+    margin: 0 8px;
 }
 
 .saveload-buttons-block button {
@@ -130,8 +134,40 @@ div.character-card > input {
 }
 
 
-@media (max-width: 900px) {
+@media (max-width: 1450px) {
+    .character-switcher {
+        grid-template: 56px auto / auto 1fr auto;
+        grid-template-areas:
+            "party single-card saveload"
+            "party-cards party-cards party-cards";
+    }
+
+    .party-character-cards {
+        grid-area: party-cards;
+        overflow-x: scroll;
+    }
+
     .single-character-card {
+        grid-area: single-card;
+    }
+}
+
+@media (max-width: 600px) {
+    .character-switcher {
+        grid-template: 48px auto / 1fr auto;
+        grid-template-areas:
+            "party saveload"
+            "cards cards";
+    }
+
+    .party-character-cards {
+        grid-area: cards;
+    }
+
+    .single-character-card {
+        grid-area: cards;
+
+        display: flex;
         justify-content: center;
     }
 }

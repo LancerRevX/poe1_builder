@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="characters-cards" v-else-if="party">
+        <div class="party-character-cards" v-else-if="party">
             <div class="character-card" :class="{'selected': selected.character == mainCharacter}">
                 <span style="grid-row: 2;">Main character</span>
                 <input type="text" v-model="mainCharacter.name">
@@ -38,7 +38,8 @@
                 class="character-card"
                 :class="{
                     'story-companion': storyCompanions.includes(selectedCompanions[i]),
-                    'selected': selectedCompanions[i] == selected.character
+                    'selected': selectedCompanions[i] == selected.character,
+                    'empty': selectedCompanions[i] === null
                 }"
                 v-for="i in [0, 1, 2, 3, 4]"
                 :key="i"
@@ -66,7 +67,7 @@
                     >
                         Custom adventurer {{ j }}
                     </option>
-                    <option :value="undefined">Empty</option>
+                    <option :value="null">Empty</option>
                 </select>
                 <button
                     v-if="selectedCompanions[i] != null"

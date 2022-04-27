@@ -1,7 +1,7 @@
 <script src="../scripts/levels-block.js"></script>
 <style src="../styles/levels-block.css"></style>
 <template>
-    <div class="levels-outer-block">
+    <div class="levels-block">
         <div class="levels-top-block">
             <div class="levels-header-block">
                 <button
@@ -97,7 +97,7 @@
                         v-bind:class="{selected: selected.level.number == level.number}"
                         v-on:click="selected.level = level"
                     >
-                        <td>{{ level.number }}</td>
+                        <td class="level-number-cell">{{ level.number }}</td>
                         <td>
                             <ul>
                                 <div v-if="!character.storyCompanion || level.number > 1">
@@ -113,7 +113,7 @@
                                 <li v-for="talent in level.selectedTalents" :key="talent.name">
                                     Select talent "{{ talent.name }}"
                                 </li>
-                                <li v-for="advancedSkill in Object.entries(level.advancedSkills())" :key="advancedSkill[0]">
+                                <li v-for="advancedSkill in Object.entries(level.advancedSkills)" :key="advancedSkill[0]">
                                     Add {{ advancedSkill[1] }} point{{ advancedSkill[1] > 1 ? 's' : '' }} to skill "{{ skills[advancedSkill[0]].name }}"
                                 </li>
                                 <!-- <li v-if="level.weaponChanged()">

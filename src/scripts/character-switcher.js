@@ -179,36 +179,29 @@ export default {
             this.selected.level = this.selected.character.level(1);
         },
         selectedCompanions: function() {
-            let newCompanionIndex;
+            let newCompanionIndex = null;
+            let newCompanion = null;
             for (let i = 0; i < this.selectedCompanions.length; i++) {
                 if (this.selectedCompanions[i] != this.oldSelectedCompanions[i]) {
                     newCompanionIndex = i;
+                    newCompanion = this.selectedCompanions[i];
                     break;
                 }
             }
 
-            let duplicationFound;
-            let duplicationIndex;
             for (let i = 0; i < this.selectedCompanions.length; i++) {
                 if (i != newCompanionIndex &&
                     this.selectedCompanions[i] == this.selectedCompanions[newCompanionIndex] &&
                     this.selectedCompanions[i] != null) {
-                    duplicationFound = true;
-                    duplicationIndex = i;
+                    this.selectedCompanions[i] = null;
                     break;
                 }
             }
 
-            if (duplicationFound) {
-                this.selectedCompanions[duplicationIndex] = this.oldSelectedCompanions[newCompanionIndex];
-            } else {
-                let editedCompanionIndex = this.oldSelectedCompanions.indexOf(this.selected.character);
-                if (editedCompanionIndex == newCompanionIndex) {
-                    this.selectCharacter(this.mainCharacter);
-                }
+            let editedCompanionIndex = this.oldSelectedCompanions.indexOf(this.selected.character);
+            if (editedCompanionIndex == newCompanionIndex) {
+                this.selectCharacter(this.selectedCompanions[newCompanionIndex]);
             }
-
-            // this.selectCharacter(this.selectedCompanions[newCompanionIndex]);
 
             this.oldSelectedCompanions = this.selectedCompanions.slice();
         },
