@@ -1,86 +1,88 @@
 <template>
     <div class="levels-outer-block">
-        <div class="levels-header-block">
-            <button
-                class="previous-button"
-                @click="goToPreviousLevel()"
-                :disabled="this.selected.level.previous === null"
-            >←</button>
-            <div class="levels-title-block">
-                <span class="levels-title">Level <span class="levels-title-counter">{{ this.selected.level.number }}</span></span>
+        <div class="levels-top-block">
+            <div class="levels-header-block">
+                <button
+                    class="previous-button"
+                    @click="goToPreviousLevel()"
+                    :disabled="this.selected.level.previous === null"
+                >←</button>
+                <div class="levels-title-block">
+                    <span class="levels-title">Level <span class="levels-title-counter">{{ this.selected.level.number }}</span></span>
+                </div>
+                <button
+                    class="next-button"
+                    @click="goToNextLevel()"
+                    :disabled="this.selected.level.next === null"
+                >→</button>
             </div>
-            <button
-                class="next-button"
-                @click="goToNextLevel()"
-                :disabled="this.selected.level.next === null"
-            >→</button>
-        </div>
 
-        <div class="skills-stats-block">
-            <table class="stats-table">
-                <caption>Stats<!-- on LVL {{ level.number }}--></caption>
-                <thead>
-                    <tr>
-                        <th colspan="2">General</th>
-                        <th colspan="2">Defenses</th>
+            <div class="skills-stats-block">
+                <table class="stats-table">
+                    <caption>Stats<!-- on LVL {{ level.number }}--></caption>
+                    <thead>
+                        <tr>
+                            <th colspan="2">General</th>
+                            <th colspan="2">Defenses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Endurance</td>
+                            <td>{{ level.endurance }}</td>
+                            <td>Deflection</td>
+                            <td>{{ level.deflection }}</td>
+                        </tr>
+                        <tr>
+                            <td>Health</td>
+                            <td>{{ level.health }}</td>
+                            <td>Fortitude</td>
+                            <td>{{ level.fortitude }}</td>
+                        </tr>
+                        <tr>
+                            <td>Accuracy</td>
+                            <td>{{ level.accuracy }}</td>
+                            <td>Reflex</td>
+                            <td>{{ level.reflex }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Will</td>
+                            <td>{{ level.will }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="skills-table">
+                    <caption>Skills ({{ level.skillPoints }})</caption>
+                    <tr v-for="skillKey in Object.keys(skills)" :key="skillKey">
+                        <td class="attribute-name-cell">
+                            <a :href="skills[skillKey].link" target="_blank">{{ skills[skillKey].name }}</a>
+                        </td>
+                        <td class="decrease-cell">
+                            <button
+                                class="decrease-button"
+                                @click="level.skills[skillKey].decrease()"
+                            >−</button>
+                        </td>
+                        <td class="base-attribute-cell">
+                            {{ level.skills[skillKey].base }}
+                        </td>
+                        <td class="bonus-attribute-cell">
+                            ({{ level.skills[skillKey].bonus >= 0 ? '+' : '−'}} {{ Math.abs(level.skills[skillKey].bonus) }})
+                        </td>
+                        <td class="modified-attribute-cell">
+                            = {{ level.skills[skillKey].modified }}
+                        </td>
+                        <td class="increase-cell">
+                            <button
+                                class="increase-button"
+                                @click="level.skills[skillKey].increase()"
+                            >+</button>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Endurance</td>
-                        <td>{{ level.endurance }}</td>
-                        <td>Deflection</td>
-                        <td>{{ level.deflection }}</td>
-                    </tr>
-                    <tr>
-                        <td>Health</td>
-                        <td>{{ level.health }}</td>
-                        <td>Fortitude</td>
-                        <td>{{ level.fortitude }}</td>
-                    </tr>
-                    <tr>
-                        <td>Accuracy</td>
-                        <td>{{ level.accuracy }}</td>
-                        <td>Reflex</td>
-                        <td>{{ level.reflex }}</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>Will</td>
-                        <td>{{ level.will }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="skills-table">
-                <caption>Skills ({{ level.skillPoints }})</caption>
-                <tr v-for="skillKey in Object.keys(skills)" :key="skillKey">
-                    <td class="attribute-name-cell">
-                        <a :href="skills[skillKey].link" target="_blank">{{ skills[skillKey].name }}</a>
-                    </td>
-                    <td class="decrease-cell">
-                        <button
-                            class="decrease-button"
-                            @click="level.skills[skillKey].decrease()"
-                        >−</button>
-                    </td>
-                    <td class="base-attribute-cell">
-                        {{ level.skills[skillKey].base }}
-                    </td>
-                    <td class="bonus-attribute-cell">
-                        ({{ level.skills[skillKey].bonus >= 0 ? '+' : '−'}} {{ Math.abs(level.skills[skillKey].bonus) }})
-                    </td>
-                    <td class="modified-attribute-cell">
-                        = {{ level.skills[skillKey].modified }}
-                    </td>
-                    <td class="increase-cell">
-                        <button
-                            class="increase-button"
-                            @click="level.skills[skillKey].increase()"
-                        >+</button>
-                    </td>
-                </tr>
-            </table>
+                </table>
+            </div>
         </div>
 
         <div class="levels-table-block">
@@ -160,17 +162,19 @@
 <style>
     .levels-outer-block {
         min-height: 0;
-
         grid-area: levels;
 
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-areas:
+            "header"
+            "skills"
+            "table";
         gap: 8px;
     }
 
     .levels-table-block {
-        flex-grow: 1;
-        grid-column: span 2;
+        grid-area: table;
+        min-height: 0;
 
         overflow-y: scroll;
     }
@@ -194,7 +198,8 @@
 
 
     .levels-header-block {
-        grid-column: span 2;
+        grid-area: header;
+        /* grid-column: span 2; */
         height: 32px;
         margin: 0;
 
@@ -256,6 +261,8 @@
 
 
     .skills-stats-block {
+        grid-area: skills;
+
         display: flex;
         flex-direction: row;
         gap: 8px;
@@ -296,15 +303,25 @@
 
     @media (max-width: 1800px) {
         .levels-outer-block {
-            grid-template: auto auto / 1fr;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .levels-top-block {
+            max-width: 600px;
+            flex-grow: 1;
+            
         }
 
         .levels-table-block {
-            display: none;
+            max-width: 600px;
+            flex-grow: 1;
+            height: 300px;
         }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
         .levels-outer-block {
             grid-template: auto auto / 1fr;
         }

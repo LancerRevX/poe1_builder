@@ -100,14 +100,15 @@
 
     @media (max-width: 1800px) {
         .main-block {
-            /* min-height: auto; */
+            min-height: auto;
             /* height: 120vh; */
-
-            grid-template: auto 2fr 3fr / 1fr 1fr;
+        
+            grid-template: auto auto 1fr / 1fr;
             grid-template-areas:
-                "comment comment"
-                "tables levels"
-                "tables abilities";
+                "comment"
+                "tables"
+                "levels"
+                "abilities";
         }
 
         .character-switcher {

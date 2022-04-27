@@ -16,9 +16,14 @@
     gap: 4px;
 }
 
-.character-card {
+.single-character-card {
     grid-area: single-card;
 
+    display: flex;
+    justify-content: left;
+}
+
+.character-card {
     border-radius: 12px;
     padding: 0px 4px;
     gap: 0px 4px;
@@ -122,4 +127,11 @@ div.character-card > input {
 
 .get-link-button:hover {
     background-color: darkblue;
+}
+
+
+@media (max-width: 900px) {
+    .single-character-card {
+        justify-content: center;
+    }
 }

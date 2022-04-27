@@ -12,14 +12,16 @@
             </label>
         </div>
 
-        <div class="character-card" v-if="!party" :class="{'story-companion': storyCompanions.includes(selected.character)}">
-            <input type="text" v-model="selected.character.name" v-if="selected.character == mainCharacter">
-            <select v-model="selected.character">
-                <option :value="mainCharacter">Custom character</option>
-                <option v-for="storyCompanion in storyCompanions" :key="storyCompanion.name" :value="storyCompanion">
-                    {{ storyCompanion.name }}
-                </option>
-            </select>
+        <div class="single-character-card" v-if="!party">
+            <div class="character-card" :class="{'story-companion': storyCompanions.includes(selected.character)}">
+                <input type="text" v-model="selected.character.name" v-if="selected.character == mainCharacter">
+                <select v-model="selected.character">
+                    <option :value="mainCharacter">Custom character</option>
+                    <option v-for="storyCompanion in storyCompanions" :key="storyCompanion.name" :value="storyCompanion">
+                        {{ storyCompanion.name }}
+                    </option>
+                </select>
+            </div>
         </div>
 
         <div class="characters-cards" v-else-if="party">

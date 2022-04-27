@@ -1,9 +1,11 @@
 <template>
     <div class="abilities-block">
-        <div class="abilities-table-outer-block" v-if="showAbilitiesTable">
-            <h2 class="abilities-block-title">{{ `${abilitiesTitle} (${selected.level.remainingAbilityPoints})` }}</h2>
-            <div class="abilities-table-inner-block">
-                <table class="abilities-table">
+        <div class="abilities-table-block" v-if="showAbilitiesTable">
+            <!-- <h2 class="abilities-block-title">{{ `${abilitiesTitle} (${selected.level.remainingAbilityPoints})` }}</h2> -->
+            <!-- <div class="abilities-table-inner-block"> -->
+            <table class="abilities-table">
+                <caption>{{ `${abilitiesTitle} (${selected.level.remainingAbilityPoints})` }}</caption>
+                <tbody>
                     <tr
                         v-for="ability in selected.level.availableAbilities"
                         v-bind:key="ability.name"
@@ -27,13 +29,15 @@
                             </button>
                         </td>
                     </tr>
-                </table>
-            </div>
+                </tbody>
+            </table>
+            <!-- </div> -->
         </div>
-        <div class="abilities-table-outer-block" v-if="showPhrasesTable">
-            <h2 class="abilities-block-title">Phrases ({{ selected.level.remainingPhrasePoints }})</h2>
-            <div class="abilities-table-inner-block">
-                <table class="abilities-table">
+        <div class="abilities-table-block" v-if="showPhrasesTable">
+            <!-- <h2 class="abilities-block-title">Phrases ({{ selected.level.remainingPhrasePoints }})</h2> -->
+            <table class="abilities-table">
+                <caption>Phrases ({{ selected.level.remainingPhrasePoints }})</caption>
+                <tbody>
                     <tr
                         v-for="phrase in selected.level.availablePhrases"
                         v-bind:key="phrase.name"
@@ -57,13 +61,13 @@
                             </button>
                         </td>
                     </tr>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
-        <div class="abilities-table-outer-block" v-if="showTalentsTable">
-            <h2 class="abilities-block-title">Talents ({{ selected.level.remainingTalentPoints }})</h2>
-            <div class="abilities-table-inner-block">
-                <table class="abilities-table">
+        <div class="abilities-table-block" v-if="showTalentsTable">
+            <table class="abilities-table">
+                <caption>Talents ({{ selected.level.remainingTalentPoints }})</caption>
+                <tbody>
                     <tr
                         v-for="talent in selected.level.availableTalents"
                         v-bind:key="talent.name"
@@ -87,8 +91,8 @@
                             </button>
                         </td>
                     </tr>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
@@ -132,7 +136,7 @@
 </script>
 
 <style>
-    div.abilities-block {
+    .abilities-block {
         min-height: 0;
 
         grid-area: abilities;
@@ -141,7 +145,7 @@
         flex-direction: column;
     }
 
-    .abilities-table-outer-block {
+    .abilities-table-block {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -165,15 +169,15 @@
         width: 100%;
     }
 
-    table.abilities-table tr {
+    .abilities-table tr {
         border: 1px solid black;
     }
 
-    table.abilities-table td {
+    .abilities-table td {
         vertical-align: top;
     }
 
-    table.abilities-table ul {
+    .abilities-table ul {
         margin: 0;
         padding: 0;
     }
@@ -184,7 +188,7 @@
         border-color: green
     } */
 
-    table.abilities-table button {
+    .abilities-table button {
         width: 24px;
         height: 24px;
         text-align: center;
@@ -224,12 +228,34 @@
         color: white;
     } */
 
-    @media (max-width: 600px) {
+    @media (max-width: 1800px) {
+        .abilities-block {
+            flex-direction: row;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .abilities-table-block {
+            height: 300px;
+            max-width: 600px;
+        }
+
         .abilities-table {
             margin-bottom: 16px;
         }
 
-        .abilities-table-outer-block {
+        .abilities-table-inner-block {
+            /* overflow-y: visible; */
+        }
+    }
+
+    @media (max-width: 900px) {
+        .abilities-block {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .abilities-table-block {
             height: auto;
         }
 

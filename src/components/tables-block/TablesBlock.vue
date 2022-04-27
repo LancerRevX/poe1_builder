@@ -522,7 +522,7 @@
 
     @media (max-width: 1800px) {
         .tables-block {
-            /* min-height: auto; */
+            min-height: 320px;
 
             justify-content: center;
         }
