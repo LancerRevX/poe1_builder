@@ -312,8 +312,7 @@ export default class Character {
 
     randomize() {
         if (!this.storyCompanion) {
-            // this.class = pickRandom(classes)[0];
-            this.class = classes.find(class_ => class_.name == 'Chanter');
+            this.class = pickRandom(classes)[0];
             this.culture = pickRandom(cultures.filter(culture => !culture.companionOnly))[0];
             this.background = pickRandom(this.culture.backgrounds)[0];
             this.race = pickRandom(races.filter(race => !race.companionOnly))[0];
