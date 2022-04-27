@@ -9,7 +9,7 @@
                     <tr>
                         <th colspan="2">
                             <select v-model="character.race" v-if="!character.storyCompanion">
-                                <option v-for="race in races" :key="race.name" :value="race">
+                                <option v-for="race in races.filter(race => !race.companionOnly)" :key="race.name" :value="race">
                                     {{ race.name }}
                                 </option>
                             </select>
