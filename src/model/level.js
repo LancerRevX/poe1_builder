@@ -540,6 +540,11 @@ export default class Level {
     }
 
     randomize() {
+        this.resetSkills();
+        this.selectedAbilities = [];
+        this.selectedTalents = [];
+        this.selectedPhrases = [];
+
         let abilities = this.availableAbilities;
         if (abilities.length) {
             abilities = pickRandom(abilities, {count: this.abilityPoints});
