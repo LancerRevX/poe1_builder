@@ -124,7 +124,7 @@ export default {
             if (this.party) {
                 byteArray = byteArray.concat(this.characterToByteArray(this.mainCharacter));
                 for (let companion of this.selectedCompanions) {
-                    if (companion !== undefined) {
+                    if (companion !== null) {
                         byteArray = byteArray.concat(this.characterToByteArray(companion));
                     }
                 }

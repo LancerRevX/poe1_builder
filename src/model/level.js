@@ -466,7 +466,6 @@ export default class Level {
         for (let skillName in skills) {
             byteArray.push(advancedSkills[skillName] ? advancedSkills[skillName] : 0);
         }
-        console.log('advanced skills', advancedSkills);
 
         for (let i = 0; i < MAX_TALENTS_NUMBER; i++) {
             let talent = this.selectedTalents[i];
