@@ -101,7 +101,7 @@ export default {
                     this.selectedCompanions.push(companion);
                 }
                 while (this.selectedCompanions.length < 6) {
-                    this.selectedCompanions.push(this.storyCompanions.find(companion => !this.selectedCompanions.includes(companion)));
+                    this.selectedCompanions.push(null);
                 }
             } else {
                 let storyCompanionIndex = byteArray.shift();
