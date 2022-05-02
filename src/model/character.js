@@ -42,7 +42,7 @@ export default class Character {
         this.ATTRIBUTE_DEFAULT = 10;
         this.MAX_ATTRIBUTE = 18;
         this.MIN_ATTRIBUTE = 3;
-        this.MAX_ATTRIBUTES_SUM = 76;
+        this.MAX_ATTRIBUTES_SUM = 75;
 
         this.attributes = {};
         for (let attributeKey in attributes) {
