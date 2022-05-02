@@ -100,6 +100,9 @@ export default {
                     companion.feedByteArray(byteArray);
                     this.selectedCompanions.push(companion);
                 }
+                while (this.selectedCompanions.length < 6) {
+                    this.selectedCompanions.push(this.storyCompanions.find(companion => !this.selectedCompanions.includes(companion)));
+                }
             } else {
                 let storyCompanionIndex = byteArray.shift();
                 if (storyCompanionIndex) {
